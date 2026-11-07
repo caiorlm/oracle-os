@@ -1,0 +1,21 @@
+{
+  "packId": "oracle-lite-model-dev",
+  "version": "0.1.0",
+  "minAndroidApi": 28,
+  "keyId": "oracle-dev-2026",
+  "packages": [
+    {
+      "id": "qwen35-08b-q4km",
+      "type": "gguf",
+      "source": "downloads/models/Qwen3.5-0.8B-Q4_K_M.gguf",
+      "path": "models/Qwen3.5-0.8B-Q4_K_M.gguf",
+      "minRamMb": 4096
+    },
+    {
+      "id": "qwen35-license",
+      "type": "license",
+      "source": "data/licenses/Qwen3.5-0.8B-LICENSE.txt",
+      "path": "licenses/Qwen3.5-0.8B-LICENSE.txt"
+    }
+  ]
+}

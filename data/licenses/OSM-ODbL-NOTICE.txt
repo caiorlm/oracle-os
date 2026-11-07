@@ -1,0 +1,5 @@
+Map data: © OpenStreetMap contributors.
+Source extract: Geofabrik GmbH, Greater London snapshot 2026-11-03.
+Data license: Open Database License (ODbL) 1.0.
+Attribution and terms: https://www.openstreetmap.org/copyright
+Geofabrik download information: https://www.geofabrik.de/data/download.html

@@ -1,0 +1,20 @@
+{
+  "packId": "oracle-london-map-dev",
+  "version": "0.1.0",
+  "minAndroidApi": 28,
+  "keyId": "oracle-dev-2026",
+  "packages": [
+    {
+      "id": "greater-london-pmtiles",
+      "type": "map",
+      "source": "downloads/maps/greater-london.pmtiles",
+      "path": "maps/greater-london.pmtiles"
+    },
+    {
+      "id": "osm-attribution",
+      "type": "license",
+      "source": "data/licenses/OSM-ODbL-NOTICE.txt",
+      "path": "licenses/OSM-ODbL-NOTICE.txt"
+    }
+  ]
+}

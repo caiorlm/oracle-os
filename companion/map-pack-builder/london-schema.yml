@@ -1,0 +1,82 @@
+schema_name: Oracle London Essentials
+schema_description: Offline streets, landmarks and basic land cover from the London OSM extract
+attribution: "© OpenStreetMap contributors (ODbL 1.0)"
+sources:
+  osm:
+    type: osm
+    local_path: downloads/maps/greater-london-261103.osm.pbf
+layers:
+  - id: roads
+    features:
+      - source: osm
+        geometry: line
+        min_zoom: 8
+        include_when:
+          highway: __any__
+        attributes:
+          - key: highway
+          - key: name
+          - key: ref
+  - id: buildings
+    features:
+      - source: osm
+        geometry: polygon
+        min_zoom: 13
+        include_when:
+          building: __any__
+        attributes:
+          - key: building
+          - key: name
+  - id: water
+    features:
+      - source: osm
+        geometry: polygon
+        min_zoom: 8
+        include_when:
+          natural: water
+        attributes:
+          - key: name
+  - id: waterways
+    features:
+      - source: osm
+        geometry: line
+        min_zoom: 9
+        include_when:
+          waterway: __any__
+        attributes:
+          - key: name
+          - key: waterway
+  - id: green
+    features:
+      - source: osm
+        geometry: polygon
+        min_zoom: 9
+        include_when:
+          leisure: [park, garden, nature_reserve]
+          natural: [wood, grassland]
+        attributes:
+          - key: name
+          - key: leisure
+          - key: natural
+  - id: places
+    features:
+      - source: osm
+        geometry: point
+        min_zoom: 10
+        include_when:
+          place: [city, town, village, suburb, neighbourhood]
+        attributes:
+          - key: name
+          - key: place
+  - id: essential_poi
+    features:
+      - source: osm
+        geometry: point
+        min_zoom: 12
+        include_when:
+          amenity: [hospital, police, fire_station, pharmacy]
+          emergency: shelter
+        attributes:
+          - key: name
+          - key: amenity
+          - key: emergency

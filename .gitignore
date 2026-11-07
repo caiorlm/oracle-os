@@ -1,0 +1,17 @@
+.gradle/
+.idea/
+.kotlin/
+**/build/
+**/.cxx/
+**/__pycache__/
+local.properties
+*.iml
+.DS_Store
+*.apk
+*.aab
+downloads/
+third_party/llama.cpp/
+.oracle-keys/
+oracle-ssd/
+logs/
+phone-*.png

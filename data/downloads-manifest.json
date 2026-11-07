@@ -1,0 +1,76 @@
+{
+  "schemaVersion": 1,
+  "updatedAt": "2026-11-07T21:28:49.434130+00:00",
+  "notes": [
+    "Downloaded model and OSM source URLs are pinned to a Hugging Face commit or a dated Geofabrik extract.",
+    "The London PMTiles is derived locally from the pinned OSM PBF using the checked Planetiler archive.",
+    "Model license metadata is Apache-2.0. OSM data is ODbL 1.0; redistribution requires attribution and license compliance."
+  ],
+  "assets": [
+    {
+      "id": "qwen35-08b-q4km",
+      "role": "lite-text-model",
+      "requiredFor": "Lite local text inference",
+      "url": "https://huggingface.co/unsloth/Qwen3.5-0.8B-GGUF/resolve/6ab461498e2023f6e3c1baea90a8f0fe38ab64d0/Qwen3.5-0.8B-Q4_K_M.gguf?download=true",
+      "relativePath": "downloads/models/Qwen3.5-0.8B-Q4_K_M.gguf",
+      "expectedBytes": 532517120,
+      "expectedSha256": "bd258782e35f7f458f8aced1adc053e6e92e89bc735ba3be89d38a06121dc517",
+      "sourceMd5": null,
+      "license": "Apache-2.0",
+      "licenseUrl": "https://huggingface.co/Qwen/Qwen3.5-0.8B/blob/main/LICENSE",
+      "sourcePage": "https://huggingface.co/unsloth/Qwen3.5-0.8B-GGUF",
+      "status": "complete",
+      "bytesDownloaded": 532517120,
+      "downloadedSha256": "bd258782e35f7f458f8aced1adc053e6e92e89bc735ba3be89d38a06121dc517",
+      "checkedAt": "2026-11-07T15:19:42+00:00",
+      "error": null
+    },
+    {
+      "id": "qwen35-08b-mmproj-f16",
+      "role": "optional-vision-projector",
+      "requiredFor": "Future image input; not needed for first text chat",
+      "url": "https://huggingface.co/unsloth/Qwen3.5-0.8B-GGUF/resolve/6ab461498e2023f6e3c1baea90a8f0fe38ab64d0/mmproj-F16.gguf?download=true",
+      "relativePath": "downloads/models/mmproj-Qwen3.5-0.8B-F16.gguf",
+      "expectedBytes": 204987232,
+      "expectedSha256": "56e4c6cfe73b0c82e3e82bc518d7591997e61d81f723fc41a586f4fa69ea2453",
+      "sourceMd5": null,
+      "license": "Apache-2.0",
+      "licenseUrl": "https://huggingface.co/Qwen/Qwen3.5-0.8B/blob/main/LICENSE",
+      "sourcePage": "https://huggingface.co/unsloth/Qwen3.5-0.8B-GGUF",
+      "status": "complete",
+      "bytesDownloaded": 204987232,
+      "downloadedSha256": "56e4c6cfe73b0c82e3e82bc518d7591997e61d81f723fc41a586f4fa69ea2453",
+      "checkedAt": "2026-11-07T15:19:29+00:00",
+      "error": null
+    },
+    {
+      "id": "osm-greater-london-20261103",
+      "role": "offline-map-source",
+      "requiredFor": "First UK map pipeline sample; not directly usable as MapLibre tiles",
+      "url": "https://download.geofabrik.de/europe/united-kingdom/england/greater-london-261103.osm.pbf",
+      "relativePath": "downloads/maps/greater-london-261103.osm.pbf",
+      "expectedBytes": 130033723,
+      "expectedSha256": "243865504ba6d2d12eb0f9823f13e8bcc7fd45aa1cecf24b3c2818e2ed9f60f4",
+      "sourceMd5": "9aa780dbe59b6a1fe8d85368343777bc",
+      "license": "ODbL-1.0",
+      "licenseUrl": "https://www.openstreetmap.org/copyright",
+      "sourcePage": "https://download.geofabrik.de/europe/united-kingdom/england/greater-london.html",
+      "status": "complete",
+      "bytesDownloaded": 130033723,
+      "downloadedSha256": "243865504ba6d2d12eb0f9823f13e8bcc7fd45aa1cecf24b3c2818e2ed9f60f4",
+      "checkedAt": "2026-11-07T15:19:26+00:00",
+      "error": null
+    },
+    {
+      "id": "london-pmtiles-derived",
+      "role": "offline-map-pack",
+      "relativePath": "downloads/maps/greater-london.pmtiles",
+      "bytesDownloaded": 68128278,
+      "downloadedSha256": "8283946741789a09547afde134c049ae3412647faa26607fca149fe37fb148e2",
+      "status": "complete",
+      "derivedFrom": "osm-greater-london-20261103",
+      "generator": "planetiler 0.10.3-SNAPSHOT f7819f99478ba78b271f6f663a1fdb4683dc4836; archive sha256:25e02617cfd9006139ae2ee03cf9bd2bf3659221fa170c69c2a4832bddcc191f",
+      "license": "ODbL-1.0"
+    }
+  ]
+}
