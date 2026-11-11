@@ -38,3 +38,10 @@ O arquivo `local.properties` aponta para o SDK desta máquina e não deve entrar
 2. Copie `downloads/maps/greater-london.pmtiles` para `Download`. Abra **Mapa → Importar PMTiles de Londres** e escolha o arquivo. Depois use **Abrir Londres offline**.
 
 Os arquivos são copiados para armazenamento privado do app apenas após conferência de tamanho e SHA-256. O mapa cobre somente a região de Londres; não fornece dados de trânsito ou risco atual. O modelo Lite gera texto localmente, mas as respostas devem ser conferidas nas fontes exibidas.
+
+## Mapa da Grã-Bretanha, GPS e acervo de sobrevivência
+
+1. `bash scripts/oracle-dados.command` descarrega a Escócia, a Inglaterra e o País de Gales (Geofabrik, MD5 verificado), gera `great-britain.pmtiles` com o Planetiler e assina `oracle-ssd/oracle-gb-map-<data>`. Também descarrega o acervo de `companion/library-builder/survival-catalog.json`, monta a base FTS5 com página por trecho (`oracle-survival-library-<data>`) e as coleções ZIM (`oracle-kiwix-library-<data>`). Pode ser interrompido e retomado.
+2. `bash scripts/oracle-instalar.command` corre os testes unitários, compila e instala o APK, e copia os pacotes para `Android/data/com.oracleos.app/files/packs/` e os ZIM para `/sdcard/Kiwix/`, confirmando o SHA-256 no telefone.
+
+No telefone, o Oracle volta a verificar a assinatura Ed25519 (chave em `app/src/main/assets/keys/`) e o SHA-256 de cada ficheiro antes de usar um pacote. O mapa abre na posição atual, ou em Glasgow quando ainda não há sinal. O GPS combina os fornecedores GPS, fused e rede e mostra a precisão e os satélites usados. Os PDFs do acervo abrem na página citada. Nada disto depende de internet nem do modelo de IA.

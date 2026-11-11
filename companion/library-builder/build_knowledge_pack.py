@@ -1,0 +1,441 @@
+#!/usr/bin/env python3
+"""Build the Oracle survival library packs from files obtained by fetch.py.
+
+  python3 build_knowledge_pack.py --library downloads/library --out oracle-ssd [--version YYYY.MM.DD]
+
+Produces two signed packs (Ed25519 + SHA-256 through pack_builder.py):
+
+* oracle-survival-library-<ver>: knowledge/library.db, a pre-indexed SQLite FTS5 database in
+  exactly the schema the Android knowledge module opens (documents, chunks, chunk_fts), with
+  one chunk per page or page fragment so every citation carries its PDF page; and originals/,
+  the PDFs themselves, so the app can open the cited page.
+* oracle-kiwix-library-<ver>: the verified ZIM collections, opened on the phone with Kiwix.
+
+Only entries that fetch.py marked complete or partial are used, and only their recorded files.
+Text is extracted, never rewritten: each chunk is an exact substring of the stored document text.
+"""
+
+from __future__ import annotations
+
+import argparse
+import hashlib
+import html.parser
+import json
+import os
+import re
+import sqlite3
+import subprocess
+import sys
+from datetime import datetime, timezone
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parents[2]
+PACK_BUILDER = ROOT / "companion/desktop-pack-builder/pack_builder.py"
+PRIVATE_KEY = ROOT / ".oracle-keys/dev-private.pem"
+PUBLIC_KEY = ROOT / "data/keys/oracle-dev-public.pem"
+INDEX_DOC = Path(__file__).with_name("oracle-indice-sobrevivencia.md")
+# Oracle-written guides (Markdown, PT and EN), searchable and used as context by the local AI.
+GUIDES_DIR = Path(__file__).with_name("guias")
+MAX_CHARS = 1200
+SCHEMA_VERSION = 1
+
+
+def log(message: str) -> None:
+    print(f"{datetime.now().strftime('%H:%M:%S')} {message}", flush=True)
+
+
+def sha256_bytes(data: bytes) -> str:
+    return hashlib.sha256(data).hexdigest()
+
+
+def sha256_file(path: Path) -> str:
+    digest = hashlib.sha256()
+    with path.open("rb") as stream:
+        for block in iter(lambda: stream.read(1 << 20), b""):
+            digest.update(block)
+    return digest.hexdigest()
+
+
+# --------------------------------------------------------------------------- extraction
+
+def clean_page(text: str) -> str:
+    text = text.replace("\x00", "").replace("\r\n", "\n").replace("\r", "\n")
+    text = re.sub(r"-\n(?=[a-zà-ú])", "", text)  # Re-join hyphenated words at line ends.
+    text = re.sub(r"[ \t ]+", " ", text)
+    text = re.sub(r"\n{3,}", "\n\n", text)
+    return text.strip()
+
+
+def pdf_pages(path: Path) -> list[str]:
+    from pypdf import PdfReader  # Installed by the pipeline script.
+
+    reader = PdfReader(str(path), strict=False)
+    pages = []
+    for index, page in enumerate(reader.pages):
+        try:
+            pages.append(clean_page(page.extract_text() or ""))
+        except Exception as error:  # A single bad page must not lose the document.
+            log(f"    página {index + 1} ilegível: {error}")
+            pages.append("")
+    return pages
+
+
+class TextOnly(html.parser.HTMLParser):
+    SKIP = {"script", "style", "nav", "header", "footer", "noscript", "svg", "form", "button"}
+    BLOCK = {"p", "div", "li", "h1", "h2", "h3", "h4", "h5", "h6", "tr", "br", "section", "article", "dd", "dt"}
+
+    def __init__(self) -> None:
+        super().__init__()
+        self.parts: list[str] = []
+        self.skip = 0
+        self.title = ""
+        self._in_title = False
+
+    def handle_starttag(self, tag, attrs):
+        if tag in self.SKIP:
+            self.skip += 1
+        if tag == "title":
+            self._in_title = True
+        if tag in self.BLOCK:
+            self.parts.append("\n")
+        if tag in ("h1", "h2", "h3") and not self.skip:
+            self.parts.append("\n## ")
+
+    def handle_endtag(self, tag):
+        if tag in self.SKIP and self.skip:
+            self.skip -= 1
+        if tag == "title":
+            self._in_title = False
+        if tag in self.BLOCK:
+            self.parts.append("\n")
+
+    def handle_data(self, data):
+        if self._in_title:
+            self.title += data
+        if not self.skip:
+            self.parts.append(data)
+
+    def text(self) -> str:
+        raw = "".join(self.parts)
+        lines = [re.sub(r"\s+", " ", line).strip() for line in raw.split("\n")]
+        out, blank = [], False
+        for line in lines:
+            if not line or line == "##":
+                if not blank:
+                    out.append("")
+                blank = True
+                continue
+            out.append(line)
+            blank = False
+        return "\n".join(out).strip()
+
+
+def html_text(path: Path) -> tuple[str, str]:
+    parser = TextOnly()
+    parser.feed(path.read_text(encoding="utf-8", errors="replace"))
+    return parser.title.strip(), parser.text()
+
+
+# --------------------------------------------------------------------------- chunking
+
+def split_block(text: str) -> list[str]:
+    """Splits text into pieces of at most MAX_CHARS, preferring paragraph, then sentence ends.
+
+    The concatenation of the pieces is exactly the input text.
+    """
+    pieces = []
+    start = 0
+    while len(text) - start > MAX_CHARS:
+        window = text[start:start + MAX_CHARS]
+        cut = max(window.rfind("\n\n"), window.rfind(". "), window.rfind("\n"))
+        if cut < MAX_CHARS // 3:
+            cut = window.rfind(" ")
+        if cut < MAX_CHARS // 3:
+            cut = MAX_CHARS - 1
+        pieces.append(text[start:start + cut + 1])
+        start += cut + 1
+    if start < len(text):
+        pieces.append(text[start:])
+    return [p for p in pieces if p.strip()]
+
+
+class DocumentBuilder:
+    """Builds document text and chunks together so line numbers and excerpts stay exact."""
+
+    def __init__(self) -> None:
+        self.text_parts: list[str] = []
+        self.chunks: list[dict] = []
+        self.line = 1
+
+    def add(self, block: str, page: int | None, section: str | None) -> None:
+        if not block.strip():
+            return
+        for piece in split_block(block):
+            start_line = self.line
+            self.text_parts.append(piece)
+            self.line += piece.count("\n")
+            self.chunks.append({"text": piece, "page": page, "section": section,
+                                "line_start": start_line, "line_end": self.line})
+        self.text_parts.append("\n\n")
+        self.line += 2
+
+    def text(self) -> str:
+        # Drop only the trailing separator so every chunk stays an exact substring.
+        return "".join(self.text_parts[:-1]) + "\n" if self.text_parts else ""
+
+
+def markdown_document(text: str) -> DocumentBuilder:
+    builder = DocumentBuilder()
+    section = None
+    block: list[str] = []
+    for line in text.splitlines():
+        heading = line.strip()
+        if heading.startswith("#") and heading.lstrip("#").strip():
+            builder.add("\n".join(block), None, section)
+            block = []
+            section = heading.lstrip("#").strip()
+        block.append(line)
+    builder.add("\n".join(block), None, section)
+    return builder
+
+
+# --------------------------------------------------------------------------- database
+
+DDL = [
+    "CREATE TABLE documents(id TEXT PRIMARY KEY NOT NULL, title TEXT NOT NULL, origin TEXT, format TEXT NOT NULL, "
+    "sha256 TEXT NOT NULL, raw_bytes BLOB NOT NULL, byte_count INTEGER NOT NULL)",
+    "CREATE TABLE chunks(id INTEGER PRIMARY KEY AUTOINCREMENT, document_id TEXT NOT NULL, ordinal INTEGER NOT NULL, "
+    "title TEXT NOT NULL, content TEXT NOT NULL, section TEXT, page INTEGER, line_start INTEGER NOT NULL, "
+    "line_end INTEGER NOT NULL, FOREIGN KEY(document_id) REFERENCES documents(id), UNIQUE(document_id, ordinal))",
+    "CREATE VIRTUAL TABLE chunk_fts USING fts5(title, content, content='chunks', content_rowid='id', "
+    "tokenize='unicode61 remove_diacritics 2')",
+    "CREATE TRIGGER chunks_ai AFTER INSERT ON chunks BEGIN INSERT INTO chunk_fts(rowid, title, content) "
+    "VALUES(new.id, new.title, new.content); END",
+    "CREATE TRIGGER chunks_ad AFTER DELETE ON chunks BEGIN INSERT INTO chunk_fts(chunk_fts, rowid, title, content) "
+    "VALUES('delete', old.id, old.title, old.content); END",
+    "CREATE TABLE pack_sources(document_id TEXT PRIMARY KEY NOT NULL, entry_id TEXT NOT NULL, category TEXT, "
+    "lang TEXT, license TEXT, source_url TEXT, original_path TEXT, original_sha256 TEXT, page_count INTEGER, "
+    "empty_pages INTEGER)",
+    "CREATE TABLE pack_info(key TEXT PRIMARY KEY NOT NULL, value TEXT NOT NULL)",
+]
+
+
+def insert_document(db: sqlite3.Connection, doc_id: str, title: str, origin: str, fmt: str,
+                    builder: DocumentBuilder) -> int:
+    text = builder.text()
+    for chunk in builder.chunks:
+        if chunk["text"] not in text:
+            raise ValueError(f"trecho não é substring exata de {doc_id}")
+    raw = text.encode("utf-8")
+    db.execute("INSERT INTO documents(id, title, origin, format, sha256, raw_bytes, byte_count) VALUES (?,?,?,?,?,?,?)",
+               (doc_id, title, origin, fmt, sha256_bytes(raw), raw, len(raw)))
+    for ordinal, chunk in enumerate(builder.chunks):
+        db.execute("INSERT INTO chunks(document_id, ordinal, title, content, section, page, line_start, line_end) "
+                   "VALUES (?,?,?,?,?,?,?,?)",
+                   (doc_id, ordinal, title, chunk["text"], chunk["section"], chunk["page"],
+                    chunk["line_start"], chunk["line_end"]))
+    return len(builder.chunks)
+
+
+def slug(value: str) -> str:
+    return re.sub(r"[^a-z0-9]+", "-", value.lower()).strip("-")[:80]
+
+
+def retry_failed_text(library: Path) -> None:
+    """Fetches again, once, any text source that failed earlier (mirror lists may have changed)."""
+    status_path = library / "fetch-status.json"
+    status = json.loads(status_path.read_text(encoding="utf-8"))
+    failed = [e["id"] for e in status["entries"].values()
+              if e.get("status") == "failed" and e.get("kind") in ("pdf", "html", "md-repo", "zim")]
+    if not failed:
+        return
+    log(f"A tentar de novo {len(failed)} fonte(s) de texto: {', '.join(failed)}")
+    subprocess.run([sys.executable, str(Path(__file__).with_name("fetch.py")),
+                    str(Path(__file__).with_name("survival-catalog.json")), str(library), "--only", ",".join(failed)])
+
+
+def build(library: Path, out_root: Path, version: str, sign: bool = True, text_only: bool = False,
+          retry: bool = True, extra: list[Path] | None = None) -> None:
+    if not text_only and retry:
+        retry_failed_text(library)
+        extra_catalog = Path(__file__).with_name("survival-catalog-extra.json")
+        if extra_catalog.is_file():
+            # Extra PT/EN manuals live in their own folder and status file.
+            subprocess.run([sys.executable, str(Path(__file__).with_name("fetch.py")), str(extra_catalog),
+                            str(ROOT / "downloads/library-extra")])
+    status = json.loads((library / "fetch-status.json").read_text(encoding="utf-8"))
+    entries = [e for e in status["entries"].values() if e.get("status") in ("complete", "partial")]
+    for more in extra or []:
+        extra_status = more / "fetch-status.json"
+        if extra_status.is_file():
+            seen = {e["id"] for e in entries}
+            entries += [e for e in json.loads(extra_status.read_text(encoding="utf-8"))["entries"].values()
+                        if e.get("status") in ("complete", "partial") and e["id"] not in seen]
+    text_pack = out_root / f"oracle-survival-library-{version}"
+    zim_pack = out_root / f"oracle-kiwix-library-{version}"
+    work = library / "_pack-work"
+    work.mkdir(parents=True, exist_ok=True)
+    db_path = work / "library.db"
+    if db_path.exists():
+        db_path.unlink()
+    db = sqlite3.connect(str(db_path))
+    db.execute("PRAGMA journal_mode=OFF")
+    db.execute("PRAGMA synchronous=OFF")
+    for statement in DDL:
+        db.execute(statement)
+
+    plan_packages = []
+    zim_packages = []
+    totals = {"documents": 0, "chunks": 0, "pages": 0, "empty_pages": 0}
+    report = []
+
+    if INDEX_DOC.exists():
+        text = INDEX_DOC.read_text(encoding="utf-8")
+        builder = markdown_document(text)
+        n = insert_document(db, "oracle-indice-sobrevivencia", "Oracle — Índice de sobrevivência e reconstrução",
+                            "Índice editorial do Oracle OS (aponta para as fontes do acervo)", "MARKDOWN", builder)
+        db.execute("INSERT INTO pack_sources VALUES (?,?,?,?,?,?,?,?,?,?)",
+                   ("oracle-indice-sobrevivencia", "oracle-index", "indice", "pt", "Oracle OS", None, None, None, None, 0))
+        totals["documents"] += 1
+        totals["chunks"] += n
+
+    if GUIDES_DIR.is_dir():
+        for guide in sorted(GUIDES_DIR.glob("*.md")):
+            text = guide.read_text(encoding="utf-8")
+            heading = next((line[2:].strip() for line in text.splitlines() if line.startswith("# ")), guide.stem)
+            doc_id = "oracle-guia-" + guide.stem
+            n = insert_document(db, doc_id, heading, "Guia Oracle OS (escrito para uso offline; confirme com as fontes do acervo)",
+                                "MARKDOWN", markdown_document(text))
+            lang = "en" if guide.stem.endswith("-en") else "pt"
+            db.execute("INSERT INTO pack_sources VALUES (?,?,?,?,?,?,?,?,?,?)",
+                       (doc_id, "oracle-guias", "guia", lang, "Oracle OS", None, None, None, None, 0))
+            totals["documents"] += 1
+            totals["chunks"] += n
+            log(f"[guia] {heading}")
+
+    for entry in sorted(entries, key=lambda e: e["id"]):
+        kind = entry.get("kind")
+        for number, file_record in enumerate(entry.get("files", []), start=1):
+            path = Path(file_record["path"])
+            if kind == "zim":
+                if path.suffix == ".zim" and path.is_file():
+                    zim_packages.append({"id": entry["id"], "type": "zim",
+                                         "source": os.path.relpath(path, ROOT), "path": f"zim/{path.name}"})
+                continue
+            if kind == "apk":
+                continue
+            many = len(entry["files"]) > 1
+            try:
+                if kind == "pdf" and path.suffix.lower() == ".pdf":
+                    pages = pdf_pages(path)
+                    title = file_record.get("title") or (f"{entry['title']} — {path.stem}" if many else entry["title"])
+                    doc_id = slug(entry["id"] + ("-" + path.stem if many else ""))
+                    builder = DocumentBuilder()
+                    empty = 0
+                    for page_number, page_text in enumerate(pages, start=1):
+                        if len(page_text) < 40:
+                            empty += 1
+                        builder.add(page_text, page_number, None)
+                    if not builder.chunks:
+                        report.append(f"SEM TEXTO (PDF digitalizado?): {path.name}")
+                        continue
+                    original = f"originals/{entry['id']}/{path.name}"
+                    plan_packages.append({"id": f"pdf-{doc_id}", "type": "knowledge",
+                                          "source": os.path.relpath(path, ROOT), "path": original})
+                    n = insert_document(db, doc_id, title, file_record.get("url"), "PLAIN_TEXT", builder)
+                    db.execute("INSERT INTO pack_sources VALUES (?,?,?,?,?,?,?,?,?,?)",
+                               (doc_id, entry["id"], entry.get("category"), entry.get("lang"), entry.get("license"),
+                                file_record.get("url"), original, file_record.get("sha256"), len(pages), empty))
+                    totals["pages"] += len(pages)
+                    totals["empty_pages"] += empty
+                    report.append(f"{title}: {len(pages)} páginas, {n} trechos, {empty} sem texto")
+                elif kind == "html" and path.suffix == ".html":
+                    page_title, text = html_text(path)
+                    if len(text) < 200:
+                        continue
+                    same = not page_title or page_title.lower() in entry["title"].lower()
+                    title = entry["title"] if same else f"{entry['title']} — {page_title}"
+                    doc_id = slug(f"{entry['id']}-{number}-{page_title or path.stem}")
+                    builder = markdown_document(text)
+                    n = insert_document(db, doc_id, title[:500], file_record.get("url"), "MARKDOWN", builder)
+                    db.execute("INSERT INTO pack_sources VALUES (?,?,?,?,?,?,?,?,?,?)",
+                               (doc_id, entry["id"], entry.get("category"), entry.get("lang"), entry.get("license"),
+                                file_record.get("url"), None, file_record.get("sha256"), None, 0))
+                elif kind == "md-repo" and path.is_dir():
+                    for md in sorted(path.rglob("*.md")):
+                        text = md.read_text(encoding="utf-8", errors="replace")
+                        if len(text.strip()) < 200:
+                            continue
+                        name = md.stem.replace("-", " ")
+                        doc_id = slug(f"{entry['id']}-{md.stem}")
+                        builder = markdown_document(text)
+                        n = insert_document(db, doc_id, f"SurvivalManual — {name}", entry["title"], "MARKDOWN", builder)
+                        db.execute("INSERT INTO pack_sources VALUES (?,?,?,?,?,?,?,?,?,?)",
+                                   (doc_id, entry["id"], entry.get("category"), entry.get("lang"), entry.get("license"),
+                                    file_record.get("git"), None, file_record.get("commit"), None, 0))
+                        totals["documents"] += 1
+                        totals["chunks"] += n
+                    continue
+                else:
+                    continue
+                totals["documents"] += 1
+                totals["chunks"] += n
+            except Exception as error:
+                report.append(f"ERRO {path.name}: {error}")
+                log(f"  ERRO {path.name}: {error}")
+        log(f"[{entry['id']}] processado")
+
+    info = {"version": version, "builtAt": datetime.now(timezone.utc).isoformat(), **{k: str(v) for k, v in totals.items()}}
+    db.executemany("INSERT INTO pack_info VALUES (?,?)", info.items())
+    db.execute("INSERT INTO chunk_fts(chunk_fts) VALUES('optimize')")
+    db.execute(f"PRAGMA user_version = {SCHEMA_VERSION}")
+    db.commit()
+    db.execute("VACUUM")
+    db.close()
+    check = sqlite3.connect(str(db_path))
+    assert check.execute("PRAGMA integrity_check").fetchone()[0] == "ok"
+    hits = check.execute("SELECT count(*) FROM chunk_fts WHERE chunk_fts MATCH 'water'").fetchone()[0]
+    check.close()
+    log(f"Base pronta: {db_path.stat().st_size / 1e6:.0f} MB, {totals}, teste 'water': {hits} trechos")
+    (work / "build-report.txt").write_text("\n".join(report) + "\n", encoding="utf-8")
+
+    plan_packages.insert(0, {"id": "survival-library-index", "type": "index",
+                             "source": os.path.relpath(db_path, ROOT), "path": "knowledge/library.db"})
+    plan_packages.append({"id": "library-sources", "type": "license",
+                          "source": os.path.relpath(work / "build-report.txt", ROOT), "path": "licenses/build-report.txt"})
+    if not sign:
+        return
+    for pack, packages, pack_id in ((text_pack, plan_packages, "oracle-survival-library"),
+                                    (zim_pack, [] if text_only else zim_packages, "oracle-kiwix-library")):
+        if not packages:
+            continue
+        if pack.exists():
+            log(f"Pacote já existe, não substituo: {pack.name}")
+            continue
+        plan = {"packId": pack_id, "version": version, "minAndroidApi": 28, "keyId": "oracle-dev-2026", "packages": packages}
+        plan_path = work / f"{pack_id}-plan.json"
+        plan_path.write_text(json.dumps(plan, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+        subprocess.run([sys.executable, str(PACK_BUILDER), "build", "--plan", str(plan_path), "--source-root", str(ROOT),
+                        "--output", str(pack), "--private", str(PRIVATE_KEY)], check=True)
+        log(f"Pacote assinado: {pack} ({len(packages)} ficheiros)")
+
+
+def main() -> int:
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--library", type=Path, default=ROOT / "downloads/library")
+    parser.add_argument("--out", type=Path, default=ROOT / "oracle-ssd")
+    parser.add_argument("--version", default=datetime.now(timezone.utc).strftime("%Y.%m.%d.%H%M"))
+    parser.add_argument("--no-pack", action="store_true", help="só gera a base, sem pacotes assinados")
+    parser.add_argument("--text-only", action="store_true", help="só o pacote de texto (os ZIM ainda a descarregar)")
+    parser.add_argument("--no-retry", action="store_true", help="não volta a tentar fontes falhadas (há um download em curso)")
+    parser.add_argument("--extra-library", type=Path, action="append", default=None,
+                        help="outra pasta de downloads com fetch-status.json (por omissão downloads/library-extra)")
+    args = parser.parse_args()
+    build(args.library.resolve(), args.out.resolve(), args.version, sign=not args.no_pack, text_only=args.text_only,
+          retry=not args.no_retry,
+          extra=[p.resolve() for p in (args.extra_library or [ROOT / "downloads/library-extra", ROOT / "downloads/library-med", ROOT / "downloads/library-corpo", ROOT / "downloads/library-defesa", ROOT / "downloads/library-retry", ROOT / "downloads/library-reconstrucao"])])
+    return 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())

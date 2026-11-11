@@ -1,0 +1,497 @@
+{
+ "schema_name": "Oracle Great Britain Essentials",
+ "schema_description": "Offline roads, settlements, coastline, water, peaks and emergency points for Scotland, England and Wales",
+ "attribution": "© OpenStreetMap contributors (ODbL 1.0)",
+ "sources": {
+  "osm": {
+   "type": "osm",
+   "local_path": "downloads/maps/gb-sources/england-latest.osm.pbf"
+  }
+ },
+ "layers": [
+  {
+   "id": "coastline",
+   "features": [
+    {
+     "geometry": "line",
+     "min_zoom": 4,
+     "include_when": {
+      "natural": "coastline"
+     }
+    }
+   ]
+  },
+  {
+   "id": "boundaries",
+   "features": [
+    {
+     "geometry": "line",
+     "min_zoom": 4,
+     "include_when": {
+      "__all__": {
+       "boundary": "administrative",
+       "admin_level": [
+        "2",
+        "4"
+       ]
+      }
+     },
+     "attributes": [
+      {
+       "key": "admin_level"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "roads",
+   "features": [
+    {
+     "geometry": "line",
+     "min_zoom": 5,
+     "include_when": {
+      "highway": [
+       "motorway",
+       "trunk",
+       "motorway_link",
+       "trunk_link"
+      ]
+     },
+     "attributes": [
+      {
+       "key": "highway"
+      },
+      {
+       "key": "name"
+      },
+      {
+       "key": "ref"
+      }
+     ]
+    },
+    {
+     "geometry": "line",
+     "min_zoom": 7,
+     "include_when": {
+      "highway": [
+       "primary",
+       "primary_link"
+      ]
+     },
+     "attributes": [
+      {
+       "key": "highway"
+      },
+      {
+       "key": "name"
+      },
+      {
+       "key": "ref"
+      }
+     ]
+    },
+    {
+     "geometry": "line",
+     "min_zoom": 10,
+     "include_when": {
+      "highway": [
+       "secondary",
+       "secondary_link",
+       "tertiary",
+       "tertiary_link"
+      ]
+     },
+     "attributes": [
+      {
+       "key": "highway"
+      },
+      {
+       "key": "name"
+      },
+      {
+       "key": "ref"
+      }
+     ]
+    },
+    {
+     "geometry": "line",
+     "min_zoom": 12,
+     "include_when": {
+      "highway": [
+       "residential",
+       "unclassified",
+       "living_street",
+       "service",
+       "road",
+       "pedestrian",
+       "track"
+      ]
+     },
+     "attributes": [
+      {
+       "key": "highway"
+      },
+      {
+       "key": "name"
+      }
+     ]
+    },
+    {
+     "geometry": "line",
+     "min_zoom": 13,
+     "include_when": {
+      "highway": [
+       "path",
+       "footway",
+       "cycleway",
+       "bridleway",
+       "steps"
+      ]
+     },
+     "attributes": [
+      {
+       "key": "highway"
+      },
+      {
+       "key": "name"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "railways",
+   "features": [
+    {
+     "geometry": "line",
+     "min_zoom": 8,
+     "include_when": {
+      "railway": [
+       "rail",
+       "light_rail",
+       "subway",
+       "tram"
+      ]
+     },
+     "attributes": [
+      {
+       "key": "railway"
+      },
+      {
+       "key": "name"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "buildings",
+   "features": [
+    {
+     "geometry": "polygon",
+     "min_zoom": 14,
+     "include_when": {
+      "building": "__any__"
+     },
+     "attributes": [
+      {
+       "key": "building"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "water",
+   "features": [
+    {
+     "geometry": "polygon",
+     "min_zoom": 6,
+     "include_when": {
+      "natural": "water",
+      "landuse": "reservoir"
+     },
+     "attributes": [
+      {
+       "key": "name"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "waterways",
+   "features": [
+    {
+     "geometry": "line",
+     "min_zoom": 8,
+     "include_when": {
+      "waterway": [
+       "river",
+       "canal"
+      ]
+     },
+     "attributes": [
+      {
+       "key": "name"
+      },
+      {
+       "key": "waterway"
+      }
+     ]
+    },
+    {
+     "geometry": "line",
+     "min_zoom": 12,
+     "include_when": {
+      "waterway": [
+       "stream",
+       "drain",
+       "ditch"
+      ]
+     },
+     "attributes": [
+      {
+       "key": "waterway"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "green",
+   "features": [
+    {
+     "geometry": "polygon",
+     "min_zoom": 8,
+     "include_when": {
+      "natural": [
+       "wood",
+       "scrub",
+       "heath",
+       "moor",
+       "grassland",
+       "wetland"
+      ],
+      "landuse": [
+       "forest",
+       "meadow",
+       "farmland",
+       "grass"
+      ],
+      "leisure": [
+       "park",
+       "nature_reserve",
+       "garden"
+      ]
+     },
+     "attributes": [
+      {
+       "key": "natural"
+      },
+      {
+       "key": "landuse"
+      },
+      {
+       "key": "leisure"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "places",
+   "features": [
+    {
+     "geometry": "point",
+     "min_zoom": 4,
+     "include_when": {
+      "place": "city"
+     },
+     "attributes": [
+      {
+       "key": "name"
+      },
+      {
+       "key": "place"
+      }
+     ]
+    },
+    {
+     "geometry": "point",
+     "min_zoom": 7,
+     "include_when": {
+      "place": "town"
+     },
+     "attributes": [
+      {
+       "key": "name"
+      },
+      {
+       "key": "place"
+      }
+     ]
+    },
+    {
+     "geometry": "point",
+     "min_zoom": 10,
+     "include_when": {
+      "place": [
+       "village",
+       "suburb"
+      ]
+     },
+     "attributes": [
+      {
+       "key": "name"
+      },
+      {
+       "key": "place"
+      }
+     ]
+    },
+    {
+     "geometry": "point",
+     "min_zoom": 12,
+     "include_when": {
+      "place": [
+       "hamlet",
+       "neighbourhood",
+       "locality",
+       "isolated_dwelling"
+      ]
+     },
+     "attributes": [
+      {
+       "key": "name"
+      },
+      {
+       "key": "place"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "peaks",
+   "features": [
+    {
+     "geometry": "point",
+     "min_zoom": 10,
+     "include_when": {
+      "natural": [
+       "peak",
+       "saddle"
+      ]
+     },
+     "attributes": [
+      {
+       "key": "name"
+      },
+      {
+       "key": "ele"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "essential_poi",
+   "features": [
+    {
+     "geometry": "point",
+     "min_zoom": 11,
+     "include_when": {
+      "amenity": [
+       "hospital",
+       "clinic",
+       "doctors",
+       "pharmacy",
+       "police",
+       "fire_station",
+       "drinking_water",
+       "shelter",
+       "fuel",
+       "townhall"
+      ],
+      "emergency": [
+       "shelter",
+       "defibrillator",
+       "ambulance_station",
+       "assembly_point",
+       "phone"
+      ],
+      "healthcare": [
+       "hospital",
+       "clinic",
+       "doctor",
+       "pharmacy"
+      ],
+      "man_made": [
+       "water_well",
+       "water_tap"
+      ],
+      "natural": "spring"
+     },
+     "attributes": [
+      {
+       "key": "name"
+      },
+      {
+       "key": "amenity"
+      },
+      {
+       "key": "emergency"
+      },
+      {
+       "key": "healthcare"
+      },
+      {
+       "key": "man_made"
+      },
+      {
+       "key": "natural"
+      }
+     ]
+    },
+    {
+     "geometry": "polygon_point_on_surface",
+     "min_zoom": 12,
+     "include_when": {
+      "amenity": [
+       "hospital",
+       "clinic",
+       "police",
+       "fire_station",
+       "shelter",
+       "townhall"
+      ],
+      "healthcare": [
+       "hospital",
+       "clinic"
+      ],
+      "emergency": [
+       "ambulance_station",
+       "shelter"
+      ]
+     },
+     "attributes": [
+      {
+       "key": "name"
+      },
+      {
+       "key": "amenity"
+      },
+      {
+       "key": "emergency"
+      },
+      {
+       "key": "healthcare"
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}

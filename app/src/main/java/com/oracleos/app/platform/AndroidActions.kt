@@ -14,8 +14,8 @@ class AndroidActions(private val activity: Activity) {
         "Nenhum discador disponível neste aparelho.",
     )
 
-    fun openSms() = launch(
-        Intent(Intent.ACTION_SENDTO, Uri.parse("smsto:")),
+    fun openSms(body: String = "") = launch(
+        Intent(Intent.ACTION_SENDTO, Uri.parse("smsto:")).apply { if (body.isNotBlank()) putExtra("sms_body", body) },
         "Nenhum aplicativo de SMS disponível.",
     )
 
@@ -42,9 +42,9 @@ class AndroidActions(private val activity: Activity) {
         try {
             activity.startActivity(intent)
         } catch (_: ActivityNotFoundException) {
-            Toast.makeText(activity, failure, Toast.LENGTH_LONG).show()
+            Toast.makeText(activity, com.oracleos.app.ui.tr(failure), Toast.LENGTH_LONG).show()
         } catch (_: SecurityException) {
-            Toast.makeText(activity, failure, Toast.LENGTH_LONG).show()
+            Toast.makeText(activity, com.oracleos.app.ui.tr(failure), Toast.LENGTH_LONG).show()
         }
     }
 }

@@ -52,3 +52,27 @@ class DocumentIntegrityException(message: String) : IllegalArgumentException(mes
 class DocumentTooLargeException(maxBytes: Int) : IllegalArgumentException(
     "Document exceeds maximum supported size of $maxBytes bytes",
 )
+
+/** Provenance of a document that came from a signed library pack (table pack_sources). */
+data class PackSourceInfo(
+    val documentId: String,
+    val entryId: String,
+    val category: String?,
+    val language: String?,
+    val license: String?,
+    val sourceUrl: String?,
+    /** Path of the original file inside the pack directory, e.g. originals/x/y.pdf. */
+    val originalPath: String?,
+    val pageCount: Int?,
+)
+
+/** One document as the library index shows it: where it sits (category/work) and how to open it. */
+data class CatalogEntry(
+    val documentId: String,
+    val title: String,
+    val entryId: String?,
+    val category: String?,
+    val language: String?,
+    val pageCount: Int?,
+    val hasOriginalPdf: Boolean,
+)

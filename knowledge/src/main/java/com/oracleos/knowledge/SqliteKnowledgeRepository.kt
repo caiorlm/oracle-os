@@ -220,6 +220,29 @@ class SqliteKnowledgeRepository(
         }
     }
 
+    /** Every document with its category and work, for the library tree. */
+    suspend fun listCatalog(): List<CatalogEntry> = withConnection { db ->
+        val hasTable = db.withStatement(
+            "SELECT 1 FROM sqlite_master WHERE type = 'table' AND name = 'pack_sources'",
+        ) { step() }
+        val sql = if (hasTable) "SELECT d.id, d.title, p.entry_id, p.category, p.lang, p.page_count, p.original_path " +
+            "FROM documents d LEFT JOIN pack_sources p ON p.document_id = d.id ORDER BY d.title"
+            else "SELECT id, title, NULL, NULL, NULL, NULL, NULL FROM documents ORDER BY title"
+        db.withStatement(sql) {
+            buildList {
+                while (step()) {
+                    val original = if (isNull(6)) null else getText(6)
+                    add(CatalogEntry(
+                        documentId = getText(0), title = getText(1),
+                        entryId = if (isNull(2)) null else getText(2), category = if (isNull(3)) null else getText(3),
+                        language = if (isNull(4)) null else getText(4), pageCount = if (isNull(5)) null else getLong(5).toInt(),
+                        hasOriginalPdf = original?.endsWith(".pdf", ignoreCase = true) == true,
+                    ))
+                }
+            }
+        }
+    }
+
     suspend fun removeDocument(documentId: String): Boolean = withConnection { db ->
         db.withStatement("SELECT 1 FROM documents WHERE id = ?") {
             bindText(1, documentId)
@@ -236,6 +259,31 @@ class SqliteKnowledgeRepository(
             }
         }
         true
+    }
+
+    /** Provenance from a pre-indexed pack, or null for user imports and older databases. */
+    suspend fun packSource(documentId: String): PackSourceInfo? = withConnection { db ->
+        val hasTable = db.withStatement(
+            "SELECT 1 FROM sqlite_master WHERE type = 'table' AND name = 'pack_sources'",
+        ) { step() }
+        if (!hasTable) return@withConnection null
+        db.withStatement(
+            "SELECT document_id, entry_id, category, lang, license, source_url, original_path, page_count " +
+                "FROM pack_sources WHERE document_id = ?",
+        ) {
+            bindText(1, documentId)
+            if (!step()) return@withStatement null
+            PackSourceInfo(
+                documentId = getText(0),
+                entryId = getText(1),
+                category = if (isNull(2)) null else getText(2),
+                language = if (isNull(3)) null else getText(3),
+                license = if (isNull(4)) null else getText(4),
+                sourceUrl = if (isNull(5)) null else getText(5),
+                originalPath = if (isNull(6)) null else getText(6),
+                pageCount = if (isNull(7)) null else getLong(7).toInt(),
+            )
+        }
     }
 
     suspend fun close() = withContext(ioDispatcher) {

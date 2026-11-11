@@ -1,8 +1,26 @@
-<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-feature android:name="android.hardware.location.gps" android:required="false" />
     <uses-feature android:name="android.hardware.sensor.compass" android:required="false" />
+
+    <!-- Only to find the Kiwix reader for ZIM collections (Android 11+ package visibility). -->
+    <queries>
+        <package android:name="org.kiwix.kiwixmobile" />
+        <package android:name="org.kiwix.kiwixmobile.standalone" />
+        <package android:name="com.android.fmradio" />
+        <package android:name="com.caf.fmradio" />
+        <package android:name="com.mediatek.fmradio" />
+        <package android:name="com.motorola.fmplayer" />
+        <package android:name="com.miui.fm" />
+        <package android:name="com.sec.android.app.fm" />
+        <package android:name="com.huawei.android.FMRadio" />
+        <package android:name="app.organicmaps" />
+        <package android:name="app.organicmaps.web" />
+        <package android:name="app.organicmaps.beta" />
+    </queries>
 
     <application
         android:name=".OracleApplication"
@@ -10,8 +28,25 @@
         android:label="Oracle OS"
         android:supportsRtl="true"
         android:theme="@style/Theme.Oracle"
-        android:usesCleartextTraffic="false">
+        android:usesCleartextTraffic="false"
+        tools:replace="android:allowBackup,android:label">
         <activity android:name=".feature.maps.OfflineMapActivity" android:exported="false" />
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="com.oracleos.app.files"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/oracle_file_paths" />
+        </provider>
+        <activity android:name=".feature.knowledge.PdfPageActivity" android:exported="false" />
+        <activity android:name=".feature.places.PlacesActivity" android:exported="false" />
+        <activity android:name=".feature.plants.PlantIdActivity" android:exported="false" />
+        <activity android:name=".feature.print.PrintPackActivity" android:exported="false" />
+        <activity android:name=".feature.maps.CompassActivity" android:exported="false" android:screenOrientation="portrait" />
+        <activity android:name=".feature.zim.ZimReaderActivity" android:exported="false"
+            android:configChanges="orientation|screenSize|screenLayout|keyboardHidden" />
         <activity
             android:name=".MainActivity"
             android:exported="true">

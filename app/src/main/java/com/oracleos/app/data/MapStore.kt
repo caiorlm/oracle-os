@@ -11,11 +11,21 @@ import java.nio.file.Files
 import java.nio.file.StandardCopyOption
 import java.security.MessageDigest
 
-/** Imports the pinned London PMTiles archive selected through Android's document picker. */
-class MapStore(context: Context) {
+/**
+ * Offline maps: verified PMTiles from signed packs (Great Britain) and, as a fallback,
+ * the pinned London archive imported through Android's document picker.
+ */
+class MapStore(context: Context, private val packMaps: () -> List<File> = { emptyList() }) {
     private val appContext = context.applicationContext
     private val mapDir = File(appContext.filesDir, "maps")
     private val destination get() = File(mapDir, "greater-london.pmtiles")
+
+    /** Maps to render, best coverage first. A Great Britain pack already includes London. */
+    fun availableMaps(): List<File> {
+        val fromPacks = packMaps()
+        if (fromPacks.isNotEmpty()) return fromPacks
+        return listOfNotNull(londonPath()?.let(::File))
+    }
 
     fun londonPath(): String? = destination.takeIf {
         it.isFile && it.length() == LONDON_BYTES && hasPmtilesHeader(it)

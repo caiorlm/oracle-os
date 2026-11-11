@@ -1,0 +1,837 @@
+{
+ "entries": [
+  {
+   "id": "msf-clinical-guidelines",
+   "title": "MSF — Clinical guidelines: diagnosis and treatment manual",
+   "category": "saude",
+   "kind": "pdf",
+   "priority": 1,
+   "license": "MSF (uso não comercial)",
+   "lang": "en",
+   "resolver": "url",
+   "urls": [
+    "https://medicalguidelines.msf.org/sites/default/files/2026-05/guideline-170-en.pdf",
+    "https://medicalguidelines.msf.org/sites/default/files/pdf/guideline-170-en.pdf"
+   ],
+   "filename": "MSF-Clinical-Guidelines.pdf"
+  },
+  {
+   "id": "msf-essential-drugs",
+   "title": "MSF — Essential drugs: practical guidelines",
+   "category": "saude",
+   "kind": "pdf",
+   "priority": 1,
+   "license": "MSF (uso não comercial)",
+   "lang": "en",
+   "resolver": "url",
+   "urls": [
+    "https://medicalguidelines.msf.org/sites/default/files/pdf/guideline-339-en.pdf"
+   ],
+   "filename": "MSF-Essential-Drugs.pdf"
+  },
+  {
+   "id": "msf-obstetric-newborn",
+   "title": "MSF — Essential obstetric and newborn care",
+   "category": "saude",
+   "kind": "pdf",
+   "priority": 1,
+   "license": "MSF (uso não comercial)",
+   "lang": "en",
+   "resolver": "url",
+   "urls": [
+    "https://medicalguidelines.msf.org/sites/default/files/pdf/guideline-449-en.pdf"
+   ],
+   "filename": "MSF-Obstetric-Newborn-Care.pdf"
+  },
+  {
+   "id": "msf-cholera",
+   "title": "MSF — Management of a cholera epidemic",
+   "category": "saude",
+   "kind": "pdf",
+   "priority": 1,
+   "license": "MSF (uso não comercial)",
+   "lang": "en",
+   "resolver": "url",
+   "urls": [
+    "https://medicalguidelines.msf.org/sites/default/files/pdf/guideline-800-en.pdf"
+   ],
+   "filename": "MSF-Cholera-Epidemic.pdf"
+  },
+  {
+   "id": "msf-public-health-engineering",
+   "title": "MSF — Public health engineering in precarious situations",
+   "category": "agua-saneamento",
+   "kind": "pdf",
+   "priority": 1,
+   "license": "MSF (uso não comercial)",
+   "lang": "en",
+   "resolver": "url",
+   "urls": [
+    "https://medicalguidelines.msf.org/sites/default/files/2022-06/Public_health_engineering_2010.pdf"
+   ],
+   "filename": "MSF-Public-Health-Engineering.pdf"
+  },
+  {
+   "id": "icrc-first-aid-conflict",
+   "title": "ICRC — First aid in armed conflicts and other situations of violence",
+   "category": "primeiros-socorros",
+   "kind": "pdf",
+   "priority": 1,
+   "license": "ICRC",
+   "lang": "en",
+   "resolver": "url",
+   "urls": [
+    "https://www.icrc.org/en/doc/assets/files/other/icrc-002-0870.pdf"
+   ],
+   "filename": "ICRC-First-Aid-Armed-Conflicts.pdf"
+  },
+  {
+   "id": "icrc-war-surgery-1",
+   "title": "ICRC — War surgery, volume 1 (working with limited resources)",
+   "category": "saude",
+   "kind": "pdf",
+   "priority": 1,
+   "license": "ICRC",
+   "lang": "en",
+   "resolver": "url",
+   "urls": [
+    "https://www.icrc.org/en/doc/assets/files/other/icrc-002-0973.pdf",
+    "https://icrc.org/eng/assets/files/other/icrc_002_0973.pdf"
+   ],
+   "filename": "ICRC-War-Surgery-Vol1.pdf"
+  },
+  {
+   "id": "who-pfa-en",
+   "title": "WHO — Psychological first aid: guide for field workers",
+   "category": "saude-mental",
+   "kind": "pdf",
+   "priority": 1,
+   "license": "WHO",
+   "lang": "en",
+   "resolver": "url",
+   "urls": [
+    "https://mhpsshub.org/wp-content/uploads/2018/10/9789241548205_eng.pdf",
+    "https://psychiatry.uw.edu/wp-content/uploads/2020/04/1.-WHO_PFA_2011.pdf"
+   ],
+   "filename": "WHO-Psychological-First-Aid.pdf"
+  },
+  {
+   "id": "who-pfa-pt",
+   "title": "OMS — Primeiros cuidados psicológicos: guia para trabalhadores de campo",
+   "category": "saude-mental",
+   "kind": "pdf",
+   "priority": 1,
+   "license": "OMS/OPAS",
+   "lang": "pt",
+   "resolver": "url",
+   "urls": [
+    "https://www.cosemssp.org.br/wp-content/uploads/2020/03/GUIA_PCP_portugues_WEB.pdf"
+   ],
+   "filename": "OMS-Primeiros-Cuidados-Psicologicos.pdf"
+  },
+  {
+   "id": "who-mhgap",
+   "title": "WHO — mhGAP Intervention Guide 2.0 (saúde mental sem especialista)",
+   "category": "saude-mental",
+   "kind": "pdf",
+   "priority": 1,
+   "license": "CC BY-NC-SA 3.0 IGO",
+   "lang": "en",
+   "resolver": "url",
+   "urls": [
+    "https://www.afro.who.int/sites/default/files/2017-06/9789241549790-eng.pdf"
+   ],
+   "filename": "WHO-mhGAP-Intervention-Guide.pdf"
+  },
+  {
+   "id": "who-surgical-district",
+   "title": "WHO — Surgical care at the district hospital",
+   "category": "saude",
+   "kind": "pdf",
+   "priority": 1,
+   "license": "WHO",
+   "lang": "en",
+   "resolver": "url",
+   "urls": [
+    "https://iris.who.int/bitstream/handle/10665/42539/9241545755.pdf",
+    "https://apps.who.int/iris/bitstream/handle/10665/42539/9241545755.pdf",
+    "https://apps.who.int/iris/bitstream/10665/42539/1/9241545755.pdf",
+    "https://iris.who.int/bitstream/handle/10665/42539/9241545755.pdf?sequence=1"
+   ],
+   "filename": "WHO-Surgical-Care-District-Hospital.pdf"
+  },
+  {
+   "id": "who-pocket-book-children",
+   "title": "WHO — Pocket book of hospital care for children (2013)",
+   "category": "saude",
+   "kind": "pdf",
+   "priority": 1,
+   "license": "CC BY-NC-SA 3.0 IGO",
+   "lang": "en",
+   "resolver": "url",
+   "urls": [
+    "https://iris.who.int/bitstream/handle/10665/81170/9789241548373_eng.pdf",
+    "https://apps.who.int/iris/bitstream/handle/10665/81170/9789241548373_eng.pdf",
+    "https://apps.who.int/iris/bitstream/10665/81170/1/9789241548373_eng.pdf",
+    "https://iris.who.int/bitstream/handle/10665/81170/9789241548373_eng.pdf?sequence=1"
+   ],
+   "filename": "WHO-Pocket-Book-Children.pdf"
+  },
+  {
+   "id": "hesperian-where-women",
+   "title": "Hesperian — Where Women Have No Doctor",
+   "category": "saude",
+   "kind": "pdf",
+   "priority": 1,
+   "license": "Hesperian (uso pessoal/sem fins lucrativos)",
+   "lang": "en",
+   "resolver": "url",
+   "urls": [
+    "https://hesperian.org/wp-content/uploads/pdf/en_wwhnd_2024/en_wwhnd_2024_ob.pdf",
+    "https://hesperian.org/wp-content/uploads/pdf/en_wwhnd_2023/en_wwhnd_2023_ob.pdf"
+   ],
+   "filename": "Hesperian-Where-Women-Have-No-Doctor.pdf"
+  },
+  {
+   "id": "hesperian-dentist",
+   "title": "Hesperian — Where There Is No Dentist",
+   "category": "saude",
+   "kind": "pdf",
+   "priority": 1,
+   "license": "Hesperian (uso pessoal/sem fins lucrativos)",
+   "lang": "en",
+   "resolver": "url",
+   "urls": [
+    "https://hesperian.org/wp-content/uploads/pdf/en_dent_2023/en_dent_2023_ob.pdf",
+    "https://hesperian.org/wp-content/uploads/pdf/en_dent_2022/en_dent_2022_ob.pdf"
+   ],
+   "filename": "Hesperian-Where-There-Is-No-Dentist.pdf"
+  },
+  {
+   "id": "army-first-aid",
+   "title": "US Army TC 4-02.1 — First Aid",
+   "category": "primeiros-socorros",
+   "kind": "pdf",
+   "priority": 1,
+   "license": "Domínio público (EUA)",
+   "lang": "en",
+   "resolver": "url",
+   "urls": [
+    "https://ciehub.info/ref/TC/4-02x1_2018.pdf",
+    "https://irp.fas.org/doddir/milmed/first.pdf"
+   ],
+   "filename": "US-Army-First-Aid.pdf"
+  },
+  {
+   "id": "samu-sp-sbv",
+   "title": "SAMU 192 São Paulo — Manual de Suporte Básico de Vida (2026)",
+   "category": "primeiros-socorros",
+   "kind": "pdf",
+   "priority": 1,
+   "license": "Prefeitura de São Paulo",
+   "lang": "pt",
+   "resolver": "url",
+   "urls": [
+    "https://prefeitura.sp.gov.br/documents/d/saude/manual-sbv-sbv-e-2026-atualizado-10-03-2026-pdf-1"
+   ],
+   "filename": "SAMU-SP-Suporte-Basico-de-Vida.pdf"
+  },
+  {
+   "id": "primeiros-socorros-leigos-pt",
+   "title": "Manual de Primeiros Socorros para Leigos",
+   "category": "primeiros-socorros",
+   "kind": "pdf",
+   "priority": 1,
+   "license": "UniSCED (Moçambique)",
+   "lang": "pt",
+   "resolver": "url",
+   "urls": [
+    "https://biblioteca.unisced.edu.mz/bitstream/123456789/3701/1/Manual%20de%20Primeiros%20Socorros%20para%20Leigos.pdf"
+   ],
+   "filename": "Manual-Primeiros-Socorros-Leigos.pdf"
+  },
+  {
+   "id": "ufmg-primeiros-socorros",
+   "title": "UFMG — Apostila de Primeiros Socorros",
+   "category": "primeiros-socorros",
+   "kind": "pdf",
+   "priority": 1,
+   "license": "UFMG",
+   "lang": "pt",
+   "resolver": "url",
+   "urls": [
+    "https://www.ufmg.br/prorh/wp-content/uploads/2021/10/Apostila-de-Primeiros-Socorros-DAST.pdf"
+   ],
+   "filename": "UFMG-Primeiros-Socorros.pdf"
+  },
+  {
+   "id": "albergaria-primeiros-socorros",
+   "title": "Município de Albergaria-a-Velha — Manual de primeiros socorros (Portugal)",
+   "category": "primeiros-socorros",
+   "kind": "pdf",
+   "priority": 1,
+   "license": "CM Albergaria-a-Velha",
+   "lang": "pt",
+   "resolver": "url",
+   "urls": [
+    "https://www.cm-albergaria.pt/albergaria/uploads/writer_file/document/6842/manual_primeiros_socorros.pdf"
+   ],
+   "filename": "Albergaria-Manual-Primeiros-Socorros.pdf"
+  },
+  {
+   "id": "erg-2024",
+   "title": "PHMSA — Emergency Response Guidebook 2024 (produtos perigosos)",
+   "category": "resgate",
+   "kind": "pdf",
+   "priority": 1,
+   "license": "Domínio público (EUA)",
+   "lang": "en",
+   "resolver": "url",
+   "urls": [
+    "https://www.phmsa.dot.gov/sites/phmsa.dot.gov/files/2024-04/ERG2024-Eng-Web-a.pdf"
+   ],
+   "filename": "ERG-2024.pdf"
+  },
+  {
+   "id": "usar-field-guide",
+   "title": "US National Urban Search & Rescue — Field Operations Guide",
+   "category": "resgate",
+   "kind": "pdf",
+   "priority": 1,
+   "license": "Domínio público (EUA)",
+   "lang": "en",
+   "resolver": "url",
+   "urls": [
+    "https://dco.uscg.mil/Portals/9/CG-5R/nsarc/Nat.UrbanSAR_fog25sept2003.pdf"
+   ],
+   "filename": "US-Urban-SAR-Field-Operations-Guide.pdf"
+  },
+  {
+   "id": "insarag-vol2-b",
+   "title": "INSARAG Guidelines vol. II, manual B — Operações de busca e salvamento urbano",
+   "category": "resgate",
+   "kind": "pdf",
+   "priority": 1,
+   "license": "UN OCHA INSARAG",
+   "lang": "en",
+   "resolver": "url",
+   "urls": [
+    "https://learnkenya.pcpm.org.pl/wp-content/uploads/2020/07/INSARAG-Guidelines-Vol-II-Man-B.pdf"
+   ],
+   "filename": "INSARAG-Vol2-Manual-B-Operations.pdf"
+  },
+  {
+   "id": "insarag-vol2-c",
+   "title": "INSARAG Guidelines vol. II, manual C — Classificação e equipas",
+   "category": "resgate",
+   "kind": "pdf",
+   "priority": 1,
+   "license": "UN OCHA INSARAG",
+   "lang": "en",
+   "resolver": "url",
+   "urls": [
+    "https://disaster.nepalarmy.mil.np/page/upload/images/pages/INSARAG20Guidelines20Vol20II2C20Man20C.pdf"
+   ],
+   "filename": "INSARAG-Vol2-Manual-C.pdf"
+  },
+  {
+   "id": "nwcg-irpg",
+   "title": "NWCG — Incident Response Pocket Guide (incêndios e incidentes)",
+   "category": "resgate",
+   "kind": "pdf",
+   "priority": 1,
+   "license": "Domínio público (EUA)",
+   "lang": "en",
+   "resolver": "url",
+   "urls": [
+    "https://gacc.nifc.gov/gbcc/dispatch/ut-ubc/site-files/IRPG.pdf",
+    "https://www.firehero.org/wp-content/uploads/2021/11/pms461.pdf"
+   ],
+   "filename": "NWCG-Incident-Response-Pocket-Guide.pdf"
+  },
+  {
+   "id": "mdwiki",
+   "title": "MDWiki — enciclopédia médica (WikiProjectMed)",
+   "category": "saude",
+   "kind": "zim",
+   "priority": 2,
+   "license": "CC BY-SA 4.0",
+   "lang": "en",
+   "resolver": "kiwix",
+   "kiwix_dir": "other",
+   "kiwix_prefix": "mdwiki_en_all_maxi_",
+   "size": 2200000000
+  },
+  {
+   "id": "zimgit-medicine",
+   "title": "Biblioteca médica essencial (zimgit)",
+   "category": "saude",
+   "kind": "zim",
+   "priority": 2,
+   "license": "Vários (livres)",
+   "lang": "en",
+   "resolver": "kiwix",
+   "kiwix_dir": "other",
+   "kiwix_prefix": "zimgit-medicine_en_",
+   "size": 70000000
+  },
+  {
+   "id": "zimgit-post-disaster",
+   "title": "Recursos pós-desastre (zimgit)",
+   "category": "resgate",
+   "kind": "zim",
+   "priority": 2,
+   "license": "Vários (livres)",
+   "lang": "en",
+   "resolver": "kiwix",
+   "kiwix_dir": "other",
+   "kiwix_prefix": "zimgit-post-disaster_en_",
+   "size": 645000000
+  },
+  {
+   "id": "zimgit-water",
+   "title": "Água — tratamento e fontes (zimgit)",
+   "category": "agua-saneamento",
+   "kind": "zim",
+   "priority": 2,
+   "license": "Vários (livres)",
+   "lang": "en",
+   "resolver": "kiwix",
+   "kiwix_dir": "other",
+   "kiwix_prefix": "zimgit-water_en_",
+   "size": 21000000
+  },
+  {
+   "id": "zimgit-food",
+   "title": "Preparação de alimentos (zimgit)",
+   "category": "alimentacao",
+   "kind": "zim",
+   "priority": 2,
+   "license": "Vários (livres)",
+   "lang": "en",
+   "resolver": "kiwix",
+   "kiwix_dir": "other",
+   "kiwix_prefix": "zimgit-food-preparation_en_",
+   "size": 98000000
+  },
+  {
+   "id": "zimgit-knots",
+   "title": "Nós e cordas (zimgit)",
+   "category": "resgate",
+   "kind": "zim",
+   "priority": 2,
+   "license": "Vários (livres)",
+   "lang": "en",
+   "resolver": "kiwix",
+   "kiwix_dir": "other",
+   "kiwix_prefix": "zimgit-knots_en_",
+   "size": 28000000
+  },
+  {
+   "id": "fas-military-medicine",
+   "title": "Medicina militar e de campanha (FAS)",
+   "category": "saude",
+   "kind": "zim",
+   "priority": 2,
+   "license": "Domínio público (EUA)",
+   "lang": "en",
+   "resolver": "kiwix",
+   "kiwix_dir": "zimit",
+   "kiwix_prefix": "irp.fas.org_en_military-medicine_",
+   "size": 65000000
+  },
+  {
+   "id": "nhs-medicines",
+   "title": "NHS — guia de medicamentos",
+   "category": "saude",
+   "kind": "zim",
+   "priority": 2,
+   "license": "Open Government Licence",
+   "lang": "en",
+   "resolver": "kiwix",
+   "kiwix_dir": "zimit",
+   "kiwix_prefix": "nhs.uk_en_medicines_",
+   "size": 16000000
+  },
+  {
+   "id": "medlineplus",
+   "title": "MedlinePlus — enciclopédia de saúde (NIH)",
+   "category": "saude",
+   "kind": "zim",
+   "priority": 2,
+   "license": "Domínio público (EUA)",
+   "lang": "en",
+   "resolver": "kiwix",
+   "kiwix_dir": "zimit",
+   "kiwix_prefix": "medlineplus.gov_en_all_",
+   "size": 1900000000
+  },
+  {
+   "id": "cdc-travel-health",
+   "title": "CDC — saúde do viajante e doenças (Yellow Book)",
+   "category": "saude",
+   "kind": "zim",
+   "priority": 2,
+   "license": "Domínio público (EUA)",
+   "lang": "en",
+   "resolver": "kiwix",
+   "kiwix_dir": "zimit",
+   "kiwix_prefix": "wwwnc.cdc.gov_en_all_",
+   "size": 180000000
+  },
+  {
+   "id": "army-survival-fm3-05-70",
+   "title": "US Army FM 3-05.70 — Survival (ilustrado)",
+   "category": "sobrevivencia",
+   "kind": "pdf",
+   "priority": 1,
+   "license": "Domínio público (EUA)",
+   "lang": "en",
+   "resolver": "url",
+   "urls": [
+    "https://www.sjsu.edu/people/michelle.hager/docs/fm_21-76_us_army_survival_manual_2006.pdf",
+    "https://northernbush.com/wp-content/downloads/woodcraft/US-Army-Survival-Manual.pdf",
+    "https://biotech.law.lsu.edu/blaw/DOD/fm3-05-70.pdf"
+   ],
+   "filename": "US-Army-FM3-05-70-Survival.pdf"
+  },
+  {
+   "id": "army-survival-fm21-76-1957",
+   "title": "US Army FM 21-76 — Survival (1957, ilustrado)",
+   "category": "sobrevivencia",
+   "kind": "pdf",
+   "priority": 1,
+   "license": "Domínio público (EUA)",
+   "lang": "en",
+   "resolver": "url",
+   "urls": [
+    "https://archive.org/download/FM21-76Survival1957/FM21-76Survival1957.pdf"
+   ],
+   "filename": "US-Army-FM21-76-Survival-1957.pdf"
+  },
+  {
+   "id": "multiservice-survival",
+   "title": "Multi-Service Survival Manual (ATP 3-50.21)",
+   "category": "sobrevivencia",
+   "kind": "pdf",
+   "priority": 1,
+   "license": "Domínio público (EUA)",
+   "lang": "en",
+   "resolver": "url",
+   "urls": [
+    "https://rmp.nc.gov/LCF/Publications/AL_Resources/Survival/Multi%20Service%20Survival%20Manual.pdf"
+   ],
+   "filename": "Multi-Service-Survival-Manual.pdf"
+  },
+  {
+   "id": "usmc-survival",
+   "title": "US Marine Corps MCRP 3-02F — Survival",
+   "category": "sobrevivencia",
+   "kind": "pdf",
+   "priority": 1,
+   "license": "Domínio público (EUA)",
+   "lang": "en",
+   "resolver": "url",
+   "urls": [
+    "https://archive.org/download/MManuals/UsMarineCorps-Survival-Mcrp3-02f.pdf"
+   ],
+   "filename": "USMC-Survival-MCRP3-02F.pdf"
+  },
+  {
+   "id": "army-mountaineering",
+   "title": "US Army FM 3-97.61 — Military Mountaineering (cordas, nós, ancoragens, resgate)",
+   "category": "cordas",
+   "kind": "pdf",
+   "priority": 1,
+   "license": "Domínio público (EUA)",
+   "lang": "en",
+   "resolver": "url",
+   "urls": [
+    "https://archive.org/download/MManuals/Fm3-97UsArmyMilitaryMountaineering2002.pdf"
+   ],
+   "filename": "US-Army-Military-Mountaineering.pdf"
+  },
+  {
+   "id": "army-mountaineering-tc",
+   "title": "US Army TC 3-97.61 — Military Mountaineering (2012)",
+   "category": "cordas",
+   "kind": "pdf",
+   "priority": 1,
+   "license": "Domínio público (EUA)",
+   "lang": "en",
+   "resolver": "url",
+   "urls": [
+    "https://irp.fas.org/doddir/army/tc3-97-61.pdf"
+   ],
+   "filename": "US-Army-TC3-97-61-Mountaineering.pdf"
+  },
+  {
+   "id": "verrill-knots",
+   "title": "Verrill — Knots, Splices and Rope Work (1917, ilustrado)",
+   "category": "cordas",
+   "kind": "html",
+   "priority": 1,
+   "license": "Domínio público",
+   "lang": "en",
+   "resolver": "html_pages",
+   "pages": [
+    "https://www.gutenberg.org/cache/epub/13510/pg13510-images.html"
+   ]
+  },
+  {
+   "id": "army-land-navigation",
+   "title": "US Army FM 3-25.26 — Map Reading and Land Navigation (ilustrado)",
+   "category": "navegacao",
+   "kind": "pdf",
+   "priority": 1,
+   "license": "Domínio público (EUA)",
+   "lang": "en",
+   "resolver": "url",
+   "urls": [
+    "https://archive.org/download/MManuals/Fm3-25.26MapReadingAndLandNavigation.pdf"
+   ],
+   "filename": "US-Army-FM3-25-26-Land-Navigation.pdf"
+  },
+  {
+   "id": "army-land-navigation-tc",
+   "title": "US Army TC 3-25.26 — Map Reading and Land Navigation (2013)",
+   "category": "navegacao",
+   "kind": "pdf",
+   "priority": 1,
+   "license": "Domínio público (EUA)",
+   "lang": "en",
+   "resolver": "url",
+   "urls": [
+    "https://armyrotc.mst.edu/media/academic/armyrotc/documents/manualsadpadrpfmetc/TC%203-25.26.pdf"
+   ],
+   "filename": "US-Army-TC3-25-26-Land-Navigation.pdf"
+  },
+  {
+   "id": "os-map-reading",
+   "title": "Ordnance Survey — Map reading made easy (Reino Unido)",
+   "category": "navegacao",
+   "kind": "pdf",
+   "priority": 1,
+   "license": "Ordnance Survey",
+   "lang": "en",
+   "resolver": "url",
+   "urls": [
+    "https://www.ordnancesurvey.co.uk/documents/resources/map-reading-made-easy.pdf"
+   ],
+   "filename": "OS-Map-Reading-Made-Easy.pdf"
+  },
+  {
+   "id": "os-map-reading-advanced",
+   "title": "Ordnance Survey — Map reading (avançado)",
+   "category": "navegacao",
+   "kind": "pdf",
+   "priority": 1,
+   "license": "Ordnance Survey",
+   "lang": "en",
+   "resolver": "url",
+   "urls": [
+    "https://www.ordnancesurvey.co.uk/documents/resources/map-reading.pdf"
+   ],
+   "filename": "OS-Map-Reading.pdf"
+  },
+  {
+   "id": "bowditch-part1",
+   "title": "Bowditch — American Practical Navigator, parte 1: fundamentos",
+   "category": "navegacao",
+   "kind": "pdf",
+   "priority": 1,
+   "license": "Domínio público (EUA)",
+   "lang": "en",
+   "resolver": "url",
+   "urls": [
+    "https://thenauticalalmanac.com/2017_Bowditch-_American_Practical_Navigator/Volume-_1/03-%20Part%201-%20Fundamentals/Part%201-%20Fundamentals.pdf"
+   ],
+   "filename": "Bowditch-Part1-Fundamentals.pdf"
+  },
+  {
+   "id": "uscg-boat-crew",
+   "title": "US Coast Guard — Boat Crew Seamanship Manual",
+   "category": "agua-mar",
+   "kind": "pdf",
+   "priority": 1,
+   "license": "Domínio público (EUA)",
+   "lang": "en",
+   "resolver": "url",
+   "urls": [
+    "https://webarchive.library.unt.edu/web/20121030100950/http://www.uscg.mil/directives/cim/16000-16999/CIM_16114_5C.pdf"
+   ],
+   "filename": "USCG-Boat-Crew-Seamanship-Manual.pdf"
+  },
+  {
+   "id": "uscga-seamanship",
+   "title": "USCG Auxiliary — Seamanship fundamentals",
+   "category": "agua-mar",
+   "kind": "pdf",
+   "priority": 1,
+   "license": "Domínio público (EUA)",
+   "lang": "en",
+   "resolver": "url",
+   "urls": [
+    "https://www.uscga-district-7.org/pdf/operations/seamanship_fundamentals_dec_2017.pdf"
+   ],
+   "filename": "USCGA-Seamanship-Fundamentals.pdf"
+  },
+  {
+   "id": "uscga-rescue-survival",
+   "title": "USCG Auxiliary — Rescue and survival (água)",
+   "category": "agua-mar",
+   "kind": "pdf",
+   "priority": 1,
+   "license": "Domínio público (EUA)",
+   "lang": "en",
+   "resolver": "url",
+   "urls": [
+    "https://www.uscga-district-7.org/pdf/operations/rescue_and_survival_dec_2017.pdf"
+   ],
+   "filename": "USCGA-Rescue-and-Survival.pdf"
+  },
+  {
+   "id": "uscga-boat-operations",
+   "title": "USCG Auxiliary — Boat operations",
+   "category": "agua-mar",
+   "kind": "pdf",
+   "priority": 1,
+   "license": "Domínio público (EUA)",
+   "lang": "en",
+   "resolver": "url",
+   "urls": [
+    "https://www.uscga-district-7.org/pdf/operations/boat_operations_dec_2017.pdf"
+   ],
+   "filename": "USCGA-Boat-Operations.pdf"
+  },
+  {
+   "id": "nws-rip-currents",
+   "title": "NOAA/NWS — Rip currents: break the grip of the rip",
+   "category": "agua-mar",
+   "kind": "pdf",
+   "priority": 1,
+   "license": "Domínio público (EUA)",
+   "lang": "en",
+   "resolver": "url",
+   "urls": [
+    "https://www.weather.gov/media/mlb/marine/rip_current_brochure.pdf",
+    "https://w2.weather.gov/media/owlie/rip_brochure_51419b.pdf"
+   ],
+   "filename": "NOAA-Rip-Currents.pdf"
+  },
+  {
+   "id": "sobrasa-emergencias-aquaticas",
+   "title": "SOBRASA — Manual de emergências aquáticas (afogamento e salvamento)",
+   "category": "agua-mar",
+   "kind": "pdf",
+   "priority": 1,
+   "license": "SOBRASA",
+   "lang": "pt",
+   "resolver": "url",
+   "urls": [
+    "https://www.sobrasa.org/new_sobrasa/arquivos/baixar/Manual_de_emergencias_aquaticas.pdf",
+    "https://www.defesacivil.pr.gov.br/sites/defesa-civil/arquivos_restritos/files/documento/2018-12/Manual_emerg_aquaticas_2012_curso_dinamico.pdf"
+   ],
+   "filename": "SOBRASA-Emergencias-Aquaticas.pdf"
+  },
+  {
+   "id": "ufpb-afogamento",
+   "title": "UFPB — Afogamento: conceitos gerais e primeiros socorros (cartilha)",
+   "category": "agua-mar",
+   "kind": "pdf",
+   "priority": 1,
+   "license": "UFPB",
+   "lang": "pt",
+   "resolver": "url",
+   "urls": [
+    "https://www.ccta.ufpb.br/editoraccta/contents/titulos/saude/afogamento-conceitos-gerais-e-condutas-de-primeiros-socorros/final-cartilha-afogamento.pdf/@@download/file/FINAL%20CARTILHA%20AFOGAMENTO.pdf"
+   ],
+   "filename": "UFPB-Cartilha-Afogamento.pdf"
+  },
+  {
+   "id": "sobrasa-naufragio",
+   "title": "SOBRASA — Recomendação em caso de naufrágio",
+   "category": "agua-mar",
+   "kind": "pdf",
+   "priority": 1,
+   "license": "SOBRASA",
+   "lang": "pt",
+   "resolver": "url",
+   "urls": [
+    "https://sobrasa.org/wp-content/uploads/2024/05/NAUFRAGIO-RECOMENDACAO.pdf"
+   ],
+   "filename": "SOBRASA-Naufragio.pdf"
+  },
+  {
+   "id": "fao-fishermans-workbook",
+   "title": "FAO — Fisherman's workbook (ilustrado: nós, redes, anzóis, artes de pesca)",
+   "category": "pesca",
+   "kind": "pdf",
+   "priority": 1,
+   "license": "FAO",
+   "lang": "en",
+   "resolver": "url",
+   "urls": [
+    "https://www.fao.org/3/ah827e/ah827e.pdf",
+    "https://fao.org/docrep/pdf/010/ah827e/ah827e00.pdf"
+   ],
+   "filename": "FAO-Fishermans-Workbook.pdf"
+  },
+  {
+   "id": "fao-fishing-x2590",
+   "title": "FAO Training Series — técnicas de pesca (ilustrado)",
+   "category": "pesca",
+   "kind": "pdf",
+   "priority": 1,
+   "license": "FAO",
+   "lang": "en",
+   "resolver": "url",
+   "urls": [
+    "https://www.fao.org/3/x2590e/x2590e.pdf",
+    "https://www.fao.org/4/X2590E/X2590E.pdf"
+   ],
+   "filename": "FAO-Training-Fishing-x2590e.pdf"
+  },
+  {
+   "id": "fao-fishing-x6935",
+   "title": "FAO Training Series — artes de pesca (ilustrado)",
+   "category": "pesca",
+   "kind": "pdf",
+   "priority": 1,
+   "license": "FAO",
+   "lang": "en",
+   "resolver": "url",
+   "urls": [
+    "https://www.fao.org/3/x6935e/x6935e.pdf",
+    "https://www.fao.org/4/x6935e/x6935e.pdf"
+   ],
+   "filename": "FAO-Training-Fishing-x6935e.pdf"
+  },
+  {
+   "id": "gutenberg-agriculture",
+   "title": "Project Gutenberg — Agricultura, pesca e caça (LCC S)",
+   "category": "reconstrucao",
+   "kind": "zim",
+   "priority": 4,
+   "license": "Domínio público (EUA)",
+   "lang": "en",
+   "resolver": "kiwix",
+   "kiwix_dir": "gutenberg",
+   "kiwix_prefix": "gutenberg_en_lcc-s_",
+   "size": 3000000000
+  },
+  {
+   "id": "gutenberg-naval",
+   "title": "Project Gutenberg — Ciência naval e marinharia (LCC V)",
+   "category": "agua-mar",
+   "kind": "zim",
+   "priority": 4,
+   "license": "Domínio público (EUA)",
+   "lang": "en",
+   "resolver": "kiwix",
+   "kiwix_dir": "gutenberg",
+   "kiwix_prefix": "gutenberg_en_lcc-v_",
+   "size": 800000000
+  }
+ ]
+}

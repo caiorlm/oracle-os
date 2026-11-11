@@ -1,0 +1,30 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-feature android:name="android.hardware.location.gps" android:required="false" />
+    <uses-feature android:name="android.hardware.sensor.compass" android:required="false" />
+
+    <!-- Only to find the Kiwix reader for ZIM collections (Android 11+ package visibility). -->
+    <queries>
+        <package android:name="org.kiwix.kiwixmobile" />
+    </queries>
+
+    <application
+        android:name=".OracleApplication"
+        android:allowBackup="false"
+        android:label="Oracle OS"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.Oracle"
+        android:usesCleartextTraffic="false">
+        <activity android:name=".feature.maps.OfflineMapActivity" android:exported="false" />
+        <activity android:name=".feature.knowledge.PdfPageActivity" android:exported="false" />
+        <activity
+            android:name=".MainActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+</manifest>

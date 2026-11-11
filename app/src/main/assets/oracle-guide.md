@@ -4,11 +4,11 @@ Este guia está incluído no aplicativo e pode ser aberto sem internet. Ele desc
 
 ## Assistente e biblioteca
 
-O Assistente pesquisa os documentos armazenados no aparelho e mostra trechos com título e origem. Sem modelo ativado, a resposta é pesquisa documental direta. Se o modelo Lite estiver importado, houver memória suficiente e o usuário o ativar, o Assistente gera uma síntese local; os trechos exibidos são fontes recuperadas e não garantem cada afirmação gerada. Use a aba Biblioteca para importar arquivos TXT ou Markdown e ler o documento completo. A página de origem só é mostrada quando foi fornecida no momento da importação.
+O Assistente pesquisa os documentos armazenados no aparelho e mostra trechos com título e origem. Sem modelo ativado, a resposta é pesquisa documental direta. Se o modelo Lite estiver importado, houver memória suficiente e o usuário o ativar, o Assistente gera uma síntese local; os trechos exibidos são fontes recuperadas e não garantem cada afirmação gerada. O acervo de sobrevivência vem num pacote assinado: manuais humanitários, primeiros socorros, água e saneamento, preparação para emergências no Reino Unido e na Escócia, medicina, agricultura, energia e livros de ciência. Cada resultado indica a página e abre o PDF original nessa página. As grandes coleções (Wikipédia, WikEM, iFixit e outras) abrem no aplicativo Kiwix. Use a aba Acervo também para importar arquivos TXT ou Markdown seus. A página de origem só é mostrada quando foi fornecida no momento da importação.
 
 ## Localização
 
-A aba Mapa mostra coordenadas recebidas do Android e, quando disponível, o rumo da bússola. O primeiro uso requer permissão de localização. A posição GPS pode funcionar sem internet e sem qualquer pacote de mapa. Um pacote PMTiles é necessário apenas para desenhar ruas e outros elementos de um mapa offline; nesta versão há um pacote opcional de Londres. Nem GPS nem mapas offline informam condições atuais de estradas, perigos ou cobertura de rede.
+A aba Mapa mostra coordenadas recebidas do Android e, quando disponível, o rumo da bússola. O primeiro uso requer permissão de localização. A posição GPS pode funcionar sem internet e sem qualquer pacote de mapa; sem internet, o primeiro sinal pode demorar alguns minutos ao ar livre. O pacote de mapa da Grã-Bretanha (Escócia, Inglaterra e País de Gales) desenha estradas, localidades, linha de costa, rios, picos e pontos essenciais como hospitais, farmácias, polícia, bombeiros, abrigos e água, e mostra a sua posição com o círculo de precisão. Abre centrado em Glasgow quando ainda não há sinal. No mapa, o botão + guarda a posição atual como ponto. Nem GPS nem mapas offline informam condições atuais de estradas, perigos ou cobertura de rede.
 
 ## Comunicação e emergência
 

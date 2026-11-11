@@ -1,0 +1,32 @@
+{
+ "entries": [
+  {
+   "id": "goat-manual-novascotia",
+   "title": "Goat Manual (Nova Scotia) — criação de cabras, saúde e maneio",
+   "category": "animais",
+   "kind": "pdf",
+   "priority": 1,
+   "license": "Governo da Nova Escócia (uso educativo)",
+   "lang": "en",
+   "resolver": "url",
+   "urls": [
+    "https://novascotia.ca/thinkfarm/documents/Manual-Goat.pdf"
+   ],
+   "filename": "NovaScotia-Goat-Manual.pdf"
+  },
+  {
+   "id": "goat-production-vust",
+   "title": "Goat Production Manual (VUST 2023) — produção e saúde de cabras",
+   "category": "animais",
+   "kind": "pdf",
+   "priority": 1,
+   "license": "VUST (uso educativo)",
+   "lang": "en",
+   "resolver": "url",
+   "urls": [
+    "https://vust.ac.ug/wp-content/uploads/2024/07/GOAT-PRODUCTION-MANUAL-APRIL-2023-1.pdf"
+   ],
+   "filename": "VUST-Goat-Production-Manual-2023.pdf"
+  }
+ ]
+}

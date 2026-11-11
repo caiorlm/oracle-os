@@ -1,0 +1,115 @@
+{
+ "entries": [
+  {
+   "id": "army-combatives-tc",
+   "title": "US Army TC 3-25.150 — Combatives (2017): luta no chão estilo jiu-jitsu, clinch, golpes, defesa pessoal; ilustrado",
+   "category": "defesa-pessoal",
+   "kind": "pdf",
+   "priority": 1,
+   "license": "Domínio público (EUA)",
+   "lang": "en",
+   "resolver": "url",
+   "urls": [
+    "https://www.armywriter.com/TC3-25-150-combatives.pdf"
+   ],
+   "filename": "US-Army-TC3-25-150-Combatives-2017.pdf"
+  },
+  {
+   "id": "army-combatives-fm",
+   "title": "US Army FM 3-25.150 — Combatives (2002): base em jiu-jitsu brasileiro, boxe e luta; ilustrado",
+   "category": "defesa-pessoal",
+   "kind": "pdf",
+   "priority": 1,
+   "license": "Domínio público (EUA)",
+   "lang": "en",
+   "resolver": "url",
+   "urls": [
+    "https://archive.org/download/MManuals/Fm3-25.150Combatives.pdf",
+    "https://webarchive.library.unt.edu/web/20130217015544/http:/www.25idl.army.mil/PT/fm3_25x150.pdf"
+   ],
+   "filename": "US-Army-FM3-25-150-Combatives-2002.pdf"
+  },
+  {
+   "id": "mcmap-manual",
+   "title": "USMC MCRP 3-02B — Marine Corps Martial Arts Program (golpes, quedas, imobilizações; ilustrado)",
+   "category": "defesa-pessoal",
+   "kind": "pdf",
+   "priority": 1,
+   "license": "Domínio público (EUA)",
+   "lang": "en",
+   "resolver": "url",
+   "urls": [
+    "https://archive.org/download/MManuals/UsMarinesMcmapMarineCorpsMartialArts2002.pdf"
+   ],
+   "filename": "USMC-MCMAP-Martial-Arts.pdf"
+  },
+  {
+   "id": "mcmap-tan",
+   "title": "USMC MCMAP — cinto castanho-claro (fundamentos: postura, quedas, socos, chutes, estrangulamentos; ilustrado)",
+   "category": "defesa-pessoal",
+   "kind": "pdf",
+   "priority": 1,
+   "license": "Domínio público (EUA)",
+   "lang": "en",
+   "resolver": "url",
+   "urls": [
+    "https://www.fitness.marines.mil/Portals/211/Docs/Tan%20Belt.pdf"
+   ],
+   "filename": "USMC-MCMAP-Tan-Belt.pdf"
+  },
+  {
+   "id": "mcmap-gray",
+   "title": "USMC MCMAP — cinto cinzento (ilustrado)",
+   "category": "defesa-pessoal",
+   "kind": "pdf",
+   "priority": 1,
+   "license": "Domínio público (EUA)",
+   "lang": "en",
+   "resolver": "url",
+   "urls": [
+    "https://www.fitness.marines.mil/Portals/211/Docs/Gray%20Belt.pdf"
+   ],
+   "filename": "USMC-MCMAP-Gray-Belt.pdf"
+  },
+  {
+   "id": "mcmap-green",
+   "title": "USMC MCMAP — cinto verde (ilustrado)",
+   "category": "defesa-pessoal",
+   "kind": "pdf",
+   "priority": 1,
+   "license": "Domínio público (EUA)",
+   "lang": "en",
+   "resolver": "url",
+   "urls": [
+    "https://www.fitness.marines.mil/Portals/211/Docs/Green%20Belt.pdf"
+   ],
+   "filename": "USMC-MCMAP-Green-Belt.pdf"
+  },
+  {
+   "id": "knuckles-gloves",
+   "title": "Bohun Lynch — Knuckles and Gloves (boxe clássico)",
+   "category": "defesa-pessoal",
+   "kind": "html",
+   "priority": 1,
+   "license": "Domínio público",
+   "lang": "en",
+   "resolver": "html_pages",
+   "pages": [
+    "https://www.gutenberg.org/cache/epub/57329/pg57329-images.html"
+   ]
+  },
+  {
+   "id": "broadsword-singlestick",
+   "title": "Broad-Sword and Single-Stick (bastão e defesa, ilustrado)",
+   "category": "defesa-pessoal",
+   "kind": "html",
+   "priority": 1,
+   "license": "Domínio público",
+   "lang": "en",
+   "resolver": "html_pages",
+   "pages": [
+    "https://www.gutenberg.org/cache/epub/31214/pg31214-images.html"
+   ]
+  }
+ ]
+}

@@ -3,6 +3,7 @@ package com.oracleos.app.feature.knowledge
 import android.database.Cursor
 import android.net.Uri
 import android.provider.OpenableColumns
+import android.widget.Toast
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.layout.Arrangement
@@ -13,12 +14,15 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
-import androidx.compose.material3.Text
+import com.oracleos.app.ui.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -29,44 +33,66 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import com.oracleos.app.OracleApplication
+import com.oracleos.app.data.InstalledPack
+import com.oracleos.app.data.KiwixCollection
 import com.oracleos.app.ui.OracleButton
 import com.oracleos.app.ui.OracleCard
+import com.oracleos.app.ui.OracleDanger
 import com.oracleos.app.ui.OracleHeader
 import com.oracleos.app.ui.OracleOutlineButton
 import com.oracleos.app.ui.OracleTextMuted
+import com.oracleos.app.ui.OracleWarning
 import com.oracleos.knowledge.DocumentFormat
 import com.oracleos.knowledge.DocumentImportMetadata
 import com.oracleos.knowledge.DocumentSearchHit
 import com.oracleos.knowledge.DocumentSummary
 import com.oracleos.knowledge.StoredDocument
 import kotlinx.coroutines.launch
+import java.util.Locale
 
 @Composable
 fun KnowledgeScreen() {
     val context = LocalContext.current
     val app = context.applicationContext as OracleApplication
     val repository = app.knowledgeEngine
+    val packState by app.packStore.state.collectAsState()
     val scope = rememberCoroutineScope()
-    var documents by remember { mutableStateOf(emptyList<DocumentSummary>()) }
+    var userDocuments by remember { mutableStateOf(emptyList<DocumentSummary>()) }
+    var packDocuments by remember { mutableStateOf(emptyList<DocumentSummary>()) }
     var hits by remember { mutableStateOf(emptyList<DocumentSearchHit>()) }
-    var selected by remember { mutableStateOf<StoredDocument?>(null) }
+    var selected by remember { mutableStateOf<Pair<StoredDocument, Int?>?>(null) }
     var query by remember { mutableStateOf("") }
     var busy by remember { mutableStateOf(false) }
     var error by remember { mutableStateOf<String?>(null) }
+    var showPackDocuments by remember { mutableStateOf(false) }
+    var view by androidx.compose.runtime.saveable.rememberSaveable { mutableStateOf("indice") }
+    var catalog by remember { mutableStateOf(emptyList<com.oracleos.knowledge.CatalogEntry>()) }
+    var expanded by androidx.compose.runtime.saveable.rememberSaveable { mutableStateOf(setOf<String>()) }
+    var filter by androidx.compose.runtime.saveable.rememberSaveable { mutableStateOf("") }
 
     suspend fun refresh() {
-        documents = repository.listDocuments()
-        hits = if (query.isBlank()) emptyList() else repository.searchHits(query)
+        userDocuments = repository.listUserDocuments()
+        packDocuments = repository.listDocuments().drop(userDocuments.size)
+        catalog = repository.catalog()
+        hits = if (query.isBlank()) emptyList() else repository.searchHits(query, 20)
+    }
+
+    /** Opens the cited page of the original PDF when the pack has it, otherwise the stored text. */
+    suspend fun openSource(documentId: String, page: Int?, lineStart: Int?) {
+        openCitedSource(context, documentId, page)?.let { selected = it to lineStart }
     }
 
     LaunchedEffect(Unit) {
+        app.packStore.refresh()
         try {
             app.ensureCoreGuide()
             refresh()
         } catch (exception: Exception) {
-            error = exception.message ?: "Não foi possível abrir a biblioteca."
+            error = exception.message ?: "Não foi possível abrir o acervo."
         }
     }
+    // Pack documents become searchable as soon as verification attaches them.
+    LaunchedEffect(packState.packs.count { it.ready }) { runCatching { refresh() } }
 
     val picker = rememberLauncherForActivityResult(ActivityResultContracts.OpenDocument()) { uri: Uri? ->
         if (uri != null) {
@@ -88,18 +114,61 @@ fun KnowledgeScreen() {
         }
     }
 
-    if (selected != null) {
-        DocumentReader(selected!!, onBack = { selected = null })
+    selected?.let { (document, line) ->
+        DocumentReader(document, line, onBack = { selected = null })
         return
     }
 
     Column(Modifier.fillMaxSize().padding(horizontal = 20.dp)) {
-        OracleHeader("Biblioteca", "Fontes locais com texto original")
+        OracleHeader("Acervo", "Sobrevivência, saúde, água, energia e reconstrução — offline")
+        OracleOutlineButton("✿ Identificar planta pela foto", { com.oracleos.app.feature.plants.PlantIdActivity.open(context) },
+            modifier = Modifier.padding(bottom = 8.dp))
+        Row(Modifier.fillMaxWidth().padding(bottom = 8.dp), horizontalArrangement = Arrangement.spacedBy(6.dp)) {
+            listOf("indice" to "Índice", "pesquisa" to "Pesquisa", "enciclopedias" to "Enciclopédias").forEach { (key, label) ->
+                if (view == key) OracleButton(label, { view = key }) else OracleOutlineButton(label, { view = key })
+            }
+        }
+        if (view == "indice") {
+            OutlinedTextField(value = filter, onValueChange = { filter = it }, singleLine = true,
+                label = { Text("Filtrar o índice por título") }, modifier = Modifier.fillMaxWidth())
+            val rows = remember(catalog, expanded, filter) { buildLibraryRows(context, catalog, expanded, filter) }
+            LazyColumn(Modifier.weight(1f).padding(top = 8.dp)) {
+                item {
+                    Text("${catalog.size} documentos · toque numa área para abrir; toque num documento para ler (PDF com ilustrações ou texto).",
+                        color = OracleTextMuted, style = MaterialTheme.typography.bodySmall)
+                }
+                treeItems(rows,
+                    onToggle = { key -> expanded = if (key in expanded) expanded.filterNot { it == key || it.startsWith("$key/") }.toSet() else expanded + key },
+                    onOpenDoc = { entry -> scope.launch { openSource(entry.documentId, if (entry.hasOriginalPdf) 1 else null, null) } },
+                    onOpenZim = { })
+                item { Spacer24() }
+            }
+            return@Column
+        }
+        if (view == "enciclopedias") {
+            val zimRows = remember(packState.kiwix, expanded) { buildZimRows(packState.kiwix, expanded) }
+            LazyColumn(Modifier.weight(1f).padding(top = 4.dp)) {
+                item {
+                    Text("${packState.kiwix.count { it.onPhone }} enciclopédias no telefone · abrem no leitor integrado, sem internet.",
+                        color = OracleTextMuted, style = MaterialTheme.typography.bodySmall)
+                }
+                treeItems(zimRows,
+                    onToggle = { key -> expanded = if (key in expanded) expanded - key else expanded + key },
+                    onOpenDoc = { },
+                    onOpenZim = { collection ->
+                        val own = context.getExternalFilesDir(null)?.let { java.io.File(it, "kiwix/${collection.fileName}") }
+                        if (own != null && own.isFile) com.oracleos.app.feature.zim.ZimReaderActivity.open(context, own, collection.title)
+                        else Toast.makeText(context, com.oracleos.app.ui.tr("Coleção não encontrada neste telefone."), Toast.LENGTH_LONG).show()
+                    })
+                item { Spacer24() }
+            }
+            return@Column
+        }
         Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
             OutlinedTextField(
                 value = query,
                 onValueChange = { query = it },
-                label = { Text("Pesquisar documentos") },
+                label = { Text("Pesquisar (ex.: water, bleeding, abrigo)") },
                 singleLine = true,
                 modifier = Modifier.weight(1f),
             )
@@ -113,52 +182,176 @@ fun KnowledgeScreen() {
                 }
             })
         }
-        OracleOutlineButton(
-            "Importar TXT ou Markdown",
-            onClick = { picker.launch(arrayOf("text/plain", "text/markdown", "application/octet-stream")) },
-            modifier = Modifier.padding(top = 12.dp, bottom = 12.dp),
-        )
-        if (busy) CircularProgressIndicator(Modifier.padding(bottom = 12.dp))
+        if (busy) com.oracleos.app.ui.OracleLoading("A pesquisar no acervo", Modifier.padding(top = 12.dp))
         if (error != null) Text(error!!, color = MaterialTheme.colorScheme.error)
-        LazyColumn(modifier = Modifier.weight(1f), verticalArrangement = Arrangement.spacedBy(12.dp)) {
+        LazyColumn(modifier = Modifier.weight(1f).padding(top = 12.dp), verticalArrangement = Arrangement.spacedBy(12.dp)) {
             if (query.isNotBlank()) {
                 item { Text("Resultados (${hits.size})", fontWeight = FontWeight.Bold) }
                 items(hits) { hit ->
                     OracleCard(modifier = Modifier.fillMaxWidth(), onClick = {
-                        scope.launch { selected = repository.getDocument(hit.reference.documentId) }
+                        scope.launch { openSource(hit.reference.documentId, hit.reference.page, hit.lineStart) }
                     }) {
                         Text(hit.reference.title, fontWeight = FontWeight.SemiBold)
                         Text(hit.reference.excerpt, color = OracleTextMuted)
-                        val location = listOfNotNull(hit.reference.section, hit.reference.page?.let { "p. $it" }).joinToString(" • ")
+                        val location = listOfNotNull(hit.reference.section, hit.reference.page?.let { "página $it" }).joinToString(" • ")
                         if (location.isNotBlank()) Text(location, color = OracleTextMuted, style = MaterialTheme.typography.bodySmall)
                     }
                 }
             }
-            item { Text("Documentos (${documents.size})", fontWeight = FontWeight.Bold, modifier = Modifier.padding(top = 8.dp)) }
-            items(documents) { document ->
-                OracleCard(modifier = Modifier.fillMaxWidth(), onClick = {
-                    scope.launch { selected = repository.getDocument(document.documentId) }
-                }) {
+            item { PackSummary(packState.packs, packState.busy, packState.progress?.let { it.path to (if (it.total > 0) it.done.toFloat() / it.total else 0f) },
+                packState.message, onVerify = { app.packStore.refresh(force = true) }) }
+            if (packState.kiwix.isNotEmpty()) {
+                item { Text("Coleções Kiwix (${packState.kiwix.count { it.onPhone }} no telefone)", fontWeight = FontWeight.Bold) }
+                item {
+                    OracleCard(modifier = Modifier.fillMaxWidth(), accent = OracleWarning) {
+                        Text("Leitor integrado", fontWeight = FontWeight.SemiBold)
+                        Text("Toque em \"Abrir\" para ler dentro do Oracle, sem internet e sem permissões. \"Abrir no Kiwix\" é opcional; se o Kiwix pedir acesso, toque abaixo.",
+                            color = OracleTextMuted, style = MaterialTheme.typography.bodySmall)
+                        OracleOutlineButton("Dar acesso aos arquivos ao Kiwix", {
+                            if (!app.openKiwixFileAccess()) Toast.makeText(context, com.oracleos.app.ui.tr("Instale o Kiwix para abrir esta coleção."), Toast.LENGTH_LONG).show()
+                        })
+                    }
+                }
+                items(packState.kiwix) { collection ->
+                    KiwixCard(collection, onRead = {
+                        val own = context.getExternalFilesDir(null)?.let { java.io.File(it, "kiwix/${collection.fileName}") }
+                        if (own != null && own.isFile) com.oracleos.app.feature.zim.ZimReaderActivity.open(context, own, collection.title)
+                        else Toast.makeText(context, com.oracleos.app.ui.tr("Coleção não encontrada neste telefone."), Toast.LENGTH_LONG).show()
+                    }, onOpen = {
+                        if (!app.openKiwix(collection.fileName)) Toast.makeText(context, com.oracleos.app.ui.tr("Instale o Kiwix para abrir esta coleção."), Toast.LENGTH_LONG).show()
+                    })
+                }
+            }
+            item {
+                Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween) {
+                    Text("Documentos do acervo (${packDocuments.size})", fontWeight = FontWeight.Bold, modifier = Modifier.padding(top = 12.dp))
+                    if (packDocuments.isNotEmpty()) {
+                        OracleOutlineButton(if (showPackDocuments) "Ocultar" else "Mostrar", { showPackDocuments = !showPackDocuments })
+                    }
+                }
+            }
+            if (showPackDocuments) {
+                items(packDocuments) { document ->
+                    OracleCard(modifier = Modifier.fillMaxWidth(), onClick = { scope.launch { openSource(document.documentId, 1, null) } }) {
+                        Text(document.title, fontWeight = FontWeight.SemiBold)
+                        Text(document.origin ?: "Pacote assinado", color = OracleTextMuted, style = MaterialTheme.typography.bodySmall)
+                    }
+                }
+            }
+            item {
+                Text("Os meus documentos (${userDocuments.size})", fontWeight = FontWeight.Bold, modifier = Modifier.padding(top = 8.dp))
+                OracleOutlineButton(
+                    "Importar TXT ou Markdown",
+                    onClick = { picker.launch(arrayOf("text/plain", "text/markdown", "application/octet-stream")) },
+                    modifier = Modifier.padding(top = 8.dp),
+                )
+            }
+            items(userDocuments) { document ->
+                OracleCard(modifier = Modifier.fillMaxWidth(), onClick = { scope.launch { openSource(document.documentId, null, null) } }) {
                     Text(document.title, fontWeight = FontWeight.SemiBold)
                     Text(document.origin ?: "Importado neste aparelho", color = OracleTextMuted, style = MaterialTheme.typography.bodySmall)
                     Text("${document.byteCount} bytes • ${document.format.name.lowercase()}", color = OracleTextMuted, style = MaterialTheme.typography.labelSmall)
                 }
             }
-            item { Text("A importação copia o texto para a biblioteca local. PDF e OCR entrarão em versões posteriores.", color = OracleTextMuted, style = MaterialTheme.typography.bodySmall, modifier = Modifier.padding(bottom = 20.dp)) }
+            item {
+                Text("Cada resultado mostra a fonte e a página. Em saúde, eletricidade, química ou estruturas, leia o contexto completo antes de agir.",
+                    color = OracleTextMuted, style = MaterialTheme.typography.bodySmall, modifier = Modifier.padding(bottom = 20.dp))
+            }
         }
     }
 }
 
 @Composable
-private fun DocumentReader(document: StoredDocument, onBack: () -> Unit) {
+private fun PackSummary(
+    packs: List<InstalledPack>,
+    busy: Boolean,
+    progress: Pair<String, Float>?,
+    message: String?,
+    onVerify: () -> Unit,
+) {
+    OracleCard(modifier = Modifier.fillMaxWidth()) {
+        Text("PACOTES OFFLINE", style = MaterialTheme.typography.labelMedium, color = MaterialTheme.colorScheme.primary)
+        if (packs.isEmpty() && !busy) Text(message ?: "Nenhum pacote instalado.", color = OracleTextMuted)
+        packs.forEach { pack ->
+            val verified = pack.files.count { it.verified }
+            val needed = pack.files.count { it.present && it.type != "zim" }
+            val color = when {
+                pack.error != null -> OracleDanger
+                pack.ready -> MaterialTheme.colorScheme.primary
+                else -> OracleWarning
+            }
+            Text("${pack.packId} ${pack.version}", fontWeight = FontWeight.SemiBold, color = color)
+            Text(pack.error ?: "Assinatura válida · $verified/$needed ficheiros verificados · ${formatBytes(pack.totalBytes)}",
+                color = OracleTextMuted, style = MaterialTheme.typography.bodySmall)
+        }
+        if (progress != null) {
+            Text("A verificar ${progress.first}", color = OracleTextMuted, style = MaterialTheme.typography.bodySmall)
+            LinearProgressIndicator(progress = { progress.second }, modifier = Modifier.fillMaxWidth())
+        } else if (busy) {
+            Text("A verificar pacotes…", color = OracleTextMuted)
+        }
+        if (!busy) OracleOutlineButton("Procurar pacotes novos", onVerify)
+    }
+}
+
+@Composable
+private fun KiwixCard(collection: KiwixCollection, onRead: () -> Unit, onOpen: () -> Unit) {
+    OracleCard(modifier = Modifier.fillMaxWidth()) {
+        Text(collection.title, fontWeight = FontWeight.SemiBold)
+        val status = when {
+            collection.verifiedOnPhone -> "No telefone · SHA-256 confirmado"
+            collection.onPhone -> "No telefone"
+            else -> "Só no SSD/Mac (sem espaço no telefone)"
+        }
+        Text("${formatBytes(collection.bytes)} · $status", color = OracleTextMuted, style = MaterialTheme.typography.bodySmall)
+        if (collection.onPhone) {
+            androidx.compose.foundation.layout.Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                OracleButton("Abrir", onRead)
+                OracleOutlineButton("Abrir no Kiwix", onOpen)
+            }
+        }
+    }
+}
+
+/** Reads long documents paragraph by paragraph and starts near the cited line. */
+@Composable
+internal fun DocumentReader(document: StoredDocument, line: Int?, onBack: () -> Unit, excerpt: String? = null) {
+    val paragraphs = remember(document) { document.text.split("\n\n").filter { it.isNotBlank() } }
+    val startIndex = remember(document, line, excerpt) {
+        val probe = excerpt?.trim()?.take(60)?.takeIf { it.length >= 12 }
+        val byExcerpt = probe?.let { p -> paragraphs.indexOfFirst { it.contains(p) } }?.takeIf { it >= 0 }
+        if (byExcerpt != null) byExcerpt else if (line == null) 0 else {
+            var currentLine = 1
+            var found = 0
+            for ((index, paragraph) in paragraphs.withIndex()) {
+                if (currentLine >= line) { found = index; break }
+                currentLine += paragraph.count { it == '\n' } + 2
+                found = index
+            }
+            found
+        }
+    }
+    val listState = rememberLazyListState(initialFirstVisibleItemIndex = (startIndex + 2).coerceAtMost(paragraphs.size + 1))
     LazyColumn(
+        state = listState,
         modifier = Modifier.fillMaxSize().padding(horizontal = 20.dp),
-        verticalArrangement = Arrangement.spacedBy(12.dp),
+        verticalArrangement = Arrangement.spacedBy(10.dp),
     ) {
         item { OracleHeader(document.summary.title, document.summary.origin ?: "Documento local") }
-        item { OracleOutlineButton("Voltar à biblioteca", onBack) }
-        item { Text(document.text, modifier = Modifier.padding(bottom = 24.dp)) }
+        item { OracleOutlineButton("Voltar ao acervo", onBack) }
+        item { AiSummary(document) }
+        items(paragraphs) { paragraph -> Text(paragraph) }
+        item { Spacer24() }
     }
+}
+
+@Composable
+private fun Spacer24() = Column(Modifier.padding(bottom = 24.dp)) {}
+
+private fun formatBytes(bytes: Long): String = when {
+    bytes >= 1_000_000_000L -> String.format(Locale.ROOT, "%.1f GB", bytes / 1e9)
+    bytes >= 1_000_000L -> String.format(Locale.ROOT, "%.0f MB", bytes / 1e6)
+    else -> String.format(Locale.ROOT, "%.0f KB", bytes / 1e3)
 }
 
 private fun displayName(cursor: Cursor?): String? = cursor?.use {
@@ -166,4 +359,27 @@ private fun displayName(cursor: Cursor?): String? = cursor?.use {
         val index = it.getColumnIndex(OpenableColumns.DISPLAY_NAME)
         if (index >= 0) it.getString(index) else null
     } else null
+}
+
+/** Optional: a short practical summary by the local AI, from the start of the document. */
+@Composable
+private fun AiSummary(document: StoredDocument) {
+    val app = LocalContext.current.applicationContext as OracleApplication
+    val scope = rememberCoroutineScope()
+    var text by remember(document) { mutableStateOf("") }
+    var busy by remember(document) { mutableStateOf(false) }
+    if (text.isBlank() && !busy) {
+        OracleOutlineButton("Resumir com a IA", {
+            if (!app.controller.localActive) { text = "Ative a IA local na aba IA para um resumo."; return@OracleOutlineButton }
+            busy = true
+            scope.launch {
+                text = try {
+                    app.controller.summarizeDocument(document.summary.title, document.text.take(3_200)) { token -> text += token }
+                } catch (e: Exception) { e.message ?: "Falha na IA local." }
+                busy = false
+            }
+        })
+    }
+    if (busy && text.isBlank()) com.oracleos.app.ui.OracleLoading("A IA está a escrever")
+    if (text.isNotBlank()) OracleCard(Modifier.fillMaxWidth()) { Text(text) }
 }

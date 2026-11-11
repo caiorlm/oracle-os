@@ -15,3 +15,9 @@ third_party/llama.cpp/
 oracle-ssd/
 logs/
 phone-*.png
+
+# backups locais e PDFs de terceiros (ficam no tar de backup, não no git)
+companion/fontes/*.tar
+companion/fontes/*-falhou/
+dist/impressao/manuais/
+_to_delete/

@@ -1,0 +1,76 @@
+{
+ "entries": [
+  {
+   "id": "msf-clinical-guidelines-v2",
+   "title": "MSF — Clinical guidelines: diagnosis and treatment manual",
+   "category": "saude",
+   "kind": "pdf",
+   "priority": 1,
+   "license": "MSF (uso não comercial)",
+   "lang": "en",
+   "resolver": "url",
+   "urls": [
+    "https://medicalguidelines.msf.org/sites/default/files/pdf/guideline-170-en.pdf",
+    "https://medicalguidelines.msf.org/sites/default/files/2026-05/guideline-170-en.pdf"
+   ],
+   "filename": "MSF-Clinical-Guidelines-v2.pdf"
+  },
+  {
+   "id": "primeiros-socorros-leigos-pt",
+   "title": "Manual de Primeiros Socorros (Unicesumar)",
+   "category": "primeiros-socorros",
+   "kind": "pdf",
+   "priority": 1,
+   "license": "Unicesumar",
+   "lang": "pt",
+   "resolver": "url",
+   "urls": [
+    "https://www.unicesumar.edu.br/biblioteca/wp-content/uploads/sites/50/2019/06/ManualdePrimeirosSocorros_02.pdf"
+   ],
+   "filename": "Manual-Primeiros-Socorros-Unicesumar.pdf"
+  },
+  {
+   "id": "ponta-grossa-primeiros-socorros",
+   "title": "Manual de Primeiros Socorros (SME Ponta Grossa)",
+   "category": "primeiros-socorros",
+   "kind": "pdf",
+   "priority": 1,
+   "license": "Prefeitura de Ponta Grossa",
+   "lang": "pt",
+   "resolver": "url",
+   "urls": [
+    "https://sme.pontagrossa.pr.gov.br/wp-content/uploads/2025/10/Manual-de-Primeiros-Socorros-SME.pdf"
+   ],
+   "filename": "Manual-Primeiros-Socorros-Ponta-Grossa.pdf"
+  },
+  {
+   "id": "army-survival-fm3-05-70",
+   "title": "US Army FM 21-76 / FM 3-05.70 — Survival (ilustrado)",
+   "category": "sobrevivencia",
+   "kind": "pdf",
+   "priority": 1,
+   "license": "Domínio público (EUA)",
+   "lang": "en",
+   "resolver": "url",
+   "urls": [
+    "https://www.sjsu.edu/people/michelle.hager/docs/fm_21-76_us_army_survival_manual_2006.pdf",
+    "https://northernbush.com/wp-content/downloads/woodcraft/US-Army-Survival-Manual.pdf"
+   ],
+   "filename": "US-Army-Survival-Manual-2006.pdf"
+  },
+  {
+   "id": "practical-masonry",
+   "title": "Practical Masonry (alvenaria de pedra, ilustrado)",
+   "category": "construcao",
+   "kind": "pdf",
+   "priority": 1,
+   "license": "Domínio público",
+   "lang": "en",
+   "resolver": "url",
+   "urls": [
+    "https://archive.org/download/practicalmasonry00shaw/practicalmasonry00shaw.pdf"
+   ],
+   "filename": "Practical-Masonry.pdf"
+  }
+ ]
+}

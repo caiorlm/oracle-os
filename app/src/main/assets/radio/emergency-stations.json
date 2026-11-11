@@ -1,0 +1,1127 @@
+{
+  "updated": "2026-11-09",
+  "note": "Frequências verificadas em fontes públicas em novembro de 2026. Mudam com o tempo e com a região: confirme no Wikipedia offline (Kiwix) procurando o emissor mais próximo.",
+  "countries": [
+    {
+      "country": "Reino Unido — Escócia (Glasgow)",
+      "authority": "Em emergência nacional, o governo pode pedir à BBC que transmita avisos; a BBC Radio 4 é indicada como emissora nacional em emergência. Na Escócia, ouça também a BBC Radio Scotland.",
+      "stations": [
+        {
+          "name": "BBC Radio Scotland",
+          "band": "FM",
+          "freq": "94.3 MHz",
+          "where": "Emissor Black Hill (Glasgow e Central Belt)",
+          "primary": true
+        },
+        {
+          "name": "BBC Radio 4",
+          "band": "FM",
+          "freq": "95.8 MHz",
+          "where": "Emissor Black Hill",
+          "primary": true
+        },
+        {
+          "name": "BBC Radio Scotland",
+          "band": "AM (MW)",
+          "freq": "810 kHz",
+          "where": "Emissor Westerglen, cobre grande parte da Escócia — precisa de rádio AM",
+          "primary": true
+        },
+        {
+          "name": "BBC Radio 2",
+          "band": "FM",
+          "freq": "89.9 MHz",
+          "where": "Emissor Black Hill"
+        },
+        {
+          "name": "BBC Radio nan Gàidheal",
+          "band": "FM",
+          "freq": "104.7 MHz",
+          "where": "Emissor Black Hill"
+        },
+        {
+          "name": "Clyde 1",
+          "band": "FM",
+          "freq": "102.5 MHz",
+          "where": "Rádio local de Glasgow"
+        }
+      ],
+      "warning": "A BBC Radio 4 em onda longa (198 kHz) foi desligada em 27 de junho de 2026.",
+      "numbers": "999 ou 112 · 101 polícia não urgente · 111 saúde não urgente · 105 corte de energia",
+      "alerts": "Emergency Alerts (telemóvel)"
+    },
+    {
+      "country": "Portugal",
+      "authority": "Serviço público: Antena 1 (RTP). Em catástrofe, siga as indicações da Proteção Civil (ANEPC) difundidas pela rádio.",
+      "stations": [
+        {
+          "name": "Antena 1",
+          "band": "FM",
+          "freq": "94.9 MHz",
+          "where": "Coimbra",
+          "primary": true
+        },
+        {
+          "name": "Antena 1",
+          "band": "FM",
+          "freq": "97.6 MHz",
+          "where": "Faro"
+        },
+        {
+          "name": "Antena 1",
+          "band": "AM (MW)",
+          "freq": "630 kHz",
+          "where": "Coimbra — precisa de rádio AM"
+        },
+        {
+          "name": "Antena 1",
+          "band": "AM (MW)",
+          "freq": "666 kHz",
+          "where": "Bragança, Covilhã, Valença, Vila Real, Viseu — precisa de rádio AM"
+        }
+      ],
+      "warning": "Lisboa e Porto: frequência da Antena 1 não confirmada aqui; procure \"Antena 1 (Portugal)\" no Wikipedia offline.",
+      "numbers": "112 · 117 incêndio florestal · 144 emergência social · SNS 24 808 24 24 24"
+    },
+    {
+      "country": "Irlanda",
+      "region": "Europa",
+      "authority": "Proteção civil: Civil Defence Ireland; Office of Emergency Planning — gov.ie · Rádio pública: RTÉ (RTÉ Radio 1)",
+      "numbers": "112 ou 999 (também por SMS para 112)",
+      "alerts": "",
+      "stations": [
+        {
+          "name": "RTÉ (RTÉ Radio 1)",
+          "band": "FM / AM",
+          "freq": "ver região",
+          "where": "Frequência muda por região — procure o emissor no Wikipedia offline",
+          "primary": true
+        }
+      ]
+    },
+    {
+      "country": "Espanha",
+      "region": "Europa",
+      "authority": "Proteção civil: Dirección General de Protección Civil y Emergencias (proteccioncivil.es) · Rádio pública: RTVE (RNE Radio Nacional)",
+      "numbers": "112 · 091 Polícia Nacional · 062 Guardia Civil · 061 ambulância · 080 bombeiros",
+      "alerts": "ES-Alert",
+      "stations": [
+        {
+          "name": "RTVE (RNE Radio Nacional)",
+          "band": "FM / AM",
+          "freq": "ver região",
+          "where": "Frequência muda por região — procure o emissor no Wikipedia offline",
+          "primary": true
+        }
+      ]
+    },
+    {
+      "country": "França",
+      "region": "Europa",
+      "authority": "Proteção civil: Sécurité civile — Ministère de l'Intérieur · Rádio pública: Radio France (France Inter, ici)",
+      "numbers": "112 · 15 SAMU · 17 polícia · 18 bombeiros · 114 por SMS (surdos)",
+      "alerts": "FR-Alert",
+      "stations": [
+        {
+          "name": "Radio France (France Inter, ici)",
+          "band": "FM / AM",
+          "freq": "ver região",
+          "where": "Frequência muda por região — procure o emissor no Wikipedia offline",
+          "primary": true
+        }
+      ]
+    },
+    {
+      "country": "Bélgica",
+      "region": "Europa",
+      "authority": "Proteção civil: Centre de Crise National (crisiscentrum.be) · Rádio pública: VRT (Radio 1) / RTBF (La Première)",
+      "numbers": "112 · 101 polícia",
+      "alerts": "BE-Alert",
+      "stations": [
+        {
+          "name": "VRT (Radio 1) / RTBF (La Première)",
+          "band": "FM / AM",
+          "freq": "ver região",
+          "where": "Frequência muda por região — procure o emissor no Wikipedia offline",
+          "primary": true
+        }
+      ]
+    },
+    {
+      "country": "Países Baixos",
+      "region": "Europa",
+      "authority": "Proteção civil: Veiligheidsregio / NCTV (crisis.nl) · Rádio pública: NOS/NPO (NPO Radio 1)",
+      "numbers": "112 · 0900 8844 polícia não urgente",
+      "alerts": "NL-Alert",
+      "stations": [
+        {
+          "name": "NOS/NPO (NPO Radio 1)",
+          "band": "FM / AM",
+          "freq": "ver região",
+          "where": "Frequência muda por região — procure o emissor no Wikipedia offline",
+          "primary": true
+        }
+      ]
+    },
+    {
+      "country": "Luxemburgo",
+      "region": "Europa",
+      "authority": "Proteção civil: CGDIS — Corps grand-ducal d'incendie et de secours · Rádio pública: Média de Service Public 100,7",
+      "numbers": "112 · 113 polícia",
+      "alerts": "LU-Alert",
+      "stations": [
+        {
+          "name": "Média de Service Public 100,7",
+          "band": "FM / AM",
+          "freq": "ver região",
+          "where": "Frequência muda por região — procure o emissor no Wikipedia offline",
+          "primary": true
+        }
+      ]
+    },
+    {
+      "country": "Alemanha",
+      "region": "Europa",
+      "authority": "Proteção civil: BBK — Bundesamt für Bevölkerungsschutz und Katastrophenhilfe; THW · Rádio pública: ARD (rádios regionais) e Deutschlandfunk",
+      "numbers": "112 bombeiros e ambulância · 110 polícia · 116 117 médico não urgente",
+      "alerts": "Cell Broadcast DE-Alert; app NINA",
+      "stations": [
+        {
+          "name": "ARD (rádios regionais) e Deutschlandfunk",
+          "band": "FM / AM",
+          "freq": "ver região",
+          "where": "Frequência muda por região — procure o emissor no Wikipedia offline",
+          "primary": true
+        }
+      ]
+    },
+    {
+      "country": "Áustria",
+      "region": "Europa",
+      "authority": "Proteção civil: Zivilschutz — Bundesministerium für Inneres · Rádio pública: ORF (Ö1, Ö3, rádios regionais)",
+      "numbers": "112 · 133 polícia · 144 ambulância · 122 bombeiros · 140 resgate de montanha",
+      "alerts": "AT-Alert",
+      "stations": [
+        {
+          "name": "ORF (Ö1, Ö3, rádios regionais)",
+          "band": "FM / AM",
+          "freq": "ver região",
+          "where": "Frequência muda por região — procure o emissor no Wikipedia offline",
+          "primary": true
+        }
+      ]
+    },
+    {
+      "country": "Suíça",
+      "region": "Europa",
+      "authority": "Proteção civil: OFPP/BABS — Office fédéral de la protection de la population · Rádio pública: SRG SSR (SRF, RTS, RSI)",
+      "numbers": "117 polícia · 144 ambulância · 118 bombeiros · 145 intoxicações (112 encaminhado)",
+      "alerts": "Alertswiss (app) e sirenes",
+      "stations": [
+        {
+          "name": "SRG SSR (SRF, RTS, RSI)",
+          "band": "FM / AM",
+          "freq": "ver região",
+          "where": "Frequência muda por região — procure o emissor no Wikipedia offline",
+          "primary": true
+        }
+      ]
+    },
+    {
+      "country": "Liechtenstein",
+      "region": "Europa",
+      "authority": "Ouça as rádios nacionais e locais.",
+      "numbers": "117 polícia · 144 ambulância · 118 bombeiros",
+      "alerts": "",
+      "stations": []
+    },
+    {
+      "country": "Mónaco",
+      "region": "Europa",
+      "authority": "Rádio pública: GRMC",
+      "numbers": "112 · 17 polícia · 18 bombeiros",
+      "alerts": "",
+      "stations": [
+        {
+          "name": "GRMC",
+          "band": "FM / AM",
+          "freq": "ver região",
+          "where": "Frequência muda por região — procure o emissor no Wikipedia offline",
+          "primary": true
+        }
+      ]
+    },
+    {
+      "country": "Andorra",
+      "region": "Europa",
+      "authority": "Rádio pública: RTVA",
+      "numbers": "110 polícia · 116 ambulância · 118 bombeiros · 112 resgate de montanha",
+      "alerts": "",
+      "stations": [
+        {
+          "name": "RTVA",
+          "band": "FM / AM",
+          "freq": "ver região",
+          "where": "Frequência muda por região — procure o emissor no Wikipedia offline",
+          "primary": true
+        }
+      ]
+    },
+    {
+      "country": "Itália",
+      "region": "Europa",
+      "authority": "Proteção civil: Dipartimento della Protezione Civile · Rádio pública: RAI (Radio 1)",
+      "numbers": "112 (113, 115 e 118 encaminham para o 112)",
+      "alerts": "IT-Alert",
+      "stations": [
+        {
+          "name": "RAI (Radio 1)",
+          "band": "FM / AM",
+          "freq": "ver região",
+          "where": "Frequência muda por região — procure o emissor no Wikipedia offline",
+          "primary": true
+        }
+      ]
+    },
+    {
+      "country": "Malta",
+      "region": "Europa",
+      "authority": "Rádio pública: PBS",
+      "numbers": "112",
+      "alerts": "",
+      "stations": [
+        {
+          "name": "PBS",
+          "band": "FM / AM",
+          "freq": "ver região",
+          "where": "Frequência muda por região — procure o emissor no Wikipedia offline",
+          "primary": true
+        }
+      ]
+    },
+    {
+      "country": "San Marino",
+      "region": "Europa",
+      "authority": "Proteção civil: Servizio di Protezione Civile · Rádio pública: San Marino RTV",
+      "numbers": "112 ou 113 · 118 ambulância · 115 bombeiros",
+      "alerts": "",
+      "stations": [
+        {
+          "name": "San Marino RTV",
+          "band": "FM / AM",
+          "freq": "ver região",
+          "where": "Frequência muda por região — procure o emissor no Wikipedia offline",
+          "primary": true
+        }
+      ]
+    },
+    {
+      "country": "Vaticano",
+      "region": "Europa",
+      "authority": "Rádio pública: Radio Vaticana",
+      "numbers": "112",
+      "alerts": "",
+      "stations": [
+        {
+          "name": "Radio Vaticana",
+          "band": "FM / AM",
+          "freq": "ver região",
+          "where": "Frequência muda por região — procure o emissor no Wikipedia offline",
+          "primary": true
+        }
+      ]
+    },
+    {
+      "country": "Grécia",
+      "region": "Europa",
+      "authority": "Proteção civil: Secretaria-Geral da Proteção Civil (civilprotection.gov.gr) · Rádio pública: ERT",
+      "numbers": "112 · 100 polícia · 166 ambulância · 199 bombeiros · 108 guarda costeira",
+      "alerts": "112 alerts (GR-Alert)",
+      "stations": [
+        {
+          "name": "ERT",
+          "band": "FM / AM",
+          "freq": "ver região",
+          "where": "Frequência muda por região — procure o emissor no Wikipedia offline",
+          "primary": true
+        }
+      ]
+    },
+    {
+      "country": "Chipre",
+      "region": "Europa",
+      "authority": "Proteção civil: Cyprus Civil Defence · Rádio pública: CyBC",
+      "numbers": "112 ou 199",
+      "alerts": "",
+      "stations": [
+        {
+          "name": "CyBC",
+          "band": "FM / AM",
+          "freq": "ver região",
+          "where": "Frequência muda por região — procure o emissor no Wikipedia offline",
+          "primary": true
+        }
+      ]
+    },
+    {
+      "country": "Suécia",
+      "region": "Europa",
+      "authority": "Proteção civil: MCF — Myndigheten för civilt försvar (antiga MSB); brochura \"Om krisen eller kriget kommer\" · Rádio pública: Sveriges Radio (P4)",
+      "numbers": "112 · 114 14 polícia não urgente · 1177 saúde",
+      "alerts": "SE-Alert e sinal \"Hesa Fredrik\" (VMA)",
+      "stations": [
+        {
+          "name": "Sveriges Radio (P4)",
+          "band": "FM / AM",
+          "freq": "ver região",
+          "where": "Frequência muda por região — procure o emissor no Wikipedia offline",
+          "primary": true
+        }
+      ]
+    },
+    {
+      "country": "Noruega",
+      "region": "Europa",
+      "authority": "Proteção civil: DSB — Direktoratet for samfunnssikkerhet og beredskap (sikkerhverdag.no) · Rádio pública: NRK (P1)",
+      "numbers": "112 polícia · 113 ambulância · 110 bombeiros",
+      "alerts": "Nødvarsel",
+      "stations": [
+        {
+          "name": "NRK (P1)",
+          "band": "FM / AM",
+          "freq": "ver região",
+          "where": "Frequência muda por região — procure o emissor no Wikipedia offline",
+          "primary": true
+        }
+      ]
+    },
+    {
+      "country": "Dinamarca",
+      "region": "Europa",
+      "authority": "Proteção civil: Beredskabsstyrelsen (DEMA) · Rádio pública: DR (P1, P4)",
+      "numbers": "112 · 114 polícia não urgente",
+      "alerts": "S!RENEN",
+      "stations": [
+        {
+          "name": "DR (P1, P4)",
+          "band": "FM / AM",
+          "freq": "ver região",
+          "where": "Frequência muda por região — procure o emissor no Wikipedia offline",
+          "primary": true
+        }
+      ]
+    },
+    {
+      "country": "Finlândia",
+      "region": "Europa",
+      "authority": "Proteção civil: Ministério do Interior; campanha \"72 horas\" (72tuntia.fi) · Rádio pública: Yle (Yle Radio Suomi)",
+      "numbers": "112 · 116 117 aconselhamento médico",
+      "alerts": "alertas de emergência (rádio, TV, app 112 Suomi)",
+      "stations": [
+        {
+          "name": "Yle (Yle Radio Suomi)",
+          "band": "FM / AM",
+          "freq": "ver região",
+          "where": "Frequência muda por região — procure o emissor no Wikipedia offline",
+          "primary": true
+        }
+      ]
+    },
+    {
+      "country": "Islândia",
+      "region": "Europa",
+      "authority": "Proteção civil: Almannavarnir (Defesa Civil) · Rádio pública: RÚV",
+      "numbers": "112",
+      "alerts": "",
+      "stations": [
+        {
+          "name": "RÚV",
+          "band": "FM / AM",
+          "freq": "ver região",
+          "where": "Frequência muda por região — procure o emissor no Wikipedia offline",
+          "primary": true
+        }
+      ]
+    },
+    {
+      "country": "Estónia",
+      "region": "Europa",
+      "authority": "Proteção civil: Päästeamet (Rescue Board) · Rádio pública: ERR (Vikerraadio)",
+      "numbers": "112",
+      "alerts": "cell broadcast (em desenvolvimento)",
+      "stations": [
+        {
+          "name": "ERR (Vikerraadio)",
+          "band": "FM / AM",
+          "freq": "ver região",
+          "where": "Frequência muda por região — procure o emissor no Wikipedia offline",
+          "primary": true
+        }
+      ]
+    },
+    {
+      "country": "Letónia",
+      "region": "Europa",
+      "authority": "Proteção civil: VUGD (Serviço de Bombeiros e Salvamento) · Rádio pública: LSM / Latvijas Radio",
+      "numbers": "112 · 110 polícia · 113 ambulância",
+      "alerts": "LV-ALERT",
+      "stations": [
+        {
+          "name": "LSM / Latvijas Radio",
+          "band": "FM / AM",
+          "freq": "ver região",
+          "where": "Frequência muda por região — procure o emissor no Wikipedia offline",
+          "primary": true
+        }
+      ]
+    },
+    {
+      "country": "Lituânia",
+      "region": "Europa",
+      "authority": "Proteção civil: PAGD (Departamento de Bombeiros e Salvamento) · Rádio pública: LRT",
+      "numbers": "112",
+      "alerts": "LT-Alert",
+      "stations": [
+        {
+          "name": "LRT",
+          "band": "FM / AM",
+          "freq": "ver região",
+          "where": "Frequência muda por região — procure o emissor no Wikipedia offline",
+          "primary": true
+        }
+      ]
+    },
+    {
+      "country": "Polónia",
+      "region": "Europa",
+      "authority": "Proteção civil: RCB — Rządowe Centrum Bezpieczeństwa · Rádio pública: Polskie Radio",
+      "numbers": "112 · 997 polícia · 999 ambulância · 998 bombeiros",
+      "alerts": "Alert RCB (SMS)",
+      "stations": [
+        {
+          "name": "Polskie Radio",
+          "band": "FM / AM",
+          "freq": "ver região",
+          "where": "Frequência muda por região — procure o emissor no Wikipedia offline",
+          "primary": true
+        }
+      ]
+    },
+    {
+      "country": "Chéquia",
+      "region": "Europa",
+      "authority": "Proteção civil: HZS ČR — Corpo de Bombeiros e Salvamento · Rádio pública: Český rozhlas (Radiožurnál)",
+      "numbers": "112 · 158 polícia · 155 ambulância · 150 bombeiros",
+      "alerts": "sirenes e cell broadcast (em implementação)",
+      "stations": [
+        {
+          "name": "Český rozhlas (Radiožurnál)",
+          "band": "FM / AM",
+          "freq": "ver região",
+          "where": "Frequência muda por região — procure o emissor no Wikipedia offline",
+          "primary": true
+        }
+      ]
+    },
+    {
+      "country": "Eslováquia",
+      "region": "Europa",
+      "authority": "Rádio pública: STVR (Slovenský rozhlas)",
+      "numbers": "112 · 158 polícia · 155 ambulância · 150 bombeiros",
+      "alerts": "",
+      "stations": [
+        {
+          "name": "STVR (Slovenský rozhlas)",
+          "band": "FM / AM",
+          "freq": "ver região",
+          "where": "Frequência muda por região — procure o emissor no Wikipedia offline",
+          "primary": true
+        }
+      ]
+    },
+    {
+      "country": "Hungria",
+      "region": "Europa",
+      "authority": "Proteção civil: OKF — Direção-Geral de Gestão de Catástrofes · Rádio pública: MTVA (Kossuth Rádió)",
+      "numbers": "112 · 107 polícia · 104 ambulância · 105 bombeiros",
+      "alerts": "",
+      "stations": [
+        {
+          "name": "MTVA (Kossuth Rádió)",
+          "band": "FM / AM",
+          "freq": "ver região",
+          "where": "Frequência muda por região — procure o emissor no Wikipedia offline",
+          "primary": true
+        }
+      ]
+    },
+    {
+      "country": "Eslovénia",
+      "region": "Europa",
+      "authority": "Proteção civil: URSZR — Administração de Proteção Civil · Rádio pública: RTV Slovenija (Radio Slovenija)",
+      "numbers": "112 ambulância e bombeiros · 113 polícia",
+      "alerts": "",
+      "stations": [
+        {
+          "name": "RTV Slovenija (Radio Slovenija)",
+          "band": "FM / AM",
+          "freq": "ver região",
+          "where": "Frequência muda por região — procure o emissor no Wikipedia offline",
+          "primary": true
+        }
+      ]
+    },
+    {
+      "country": "Croácia",
+      "region": "Europa",
+      "authority": "Proteção civil: Ravnateljstvo civilne zaštite · Rádio pública: HRT (HR 1)",
+      "numbers": "112 · 192 polícia · 194 ambulância · 193 bombeiros · 195 resgate marítimo",
+      "alerts": "",
+      "stations": [
+        {
+          "name": "HRT (HR 1)",
+          "band": "FM / AM",
+          "freq": "ver região",
+          "where": "Frequência muda por região — procure o emissor no Wikipedia offline",
+          "primary": true
+        }
+      ]
+    },
+    {
+      "country": "Bósnia e Herzegovina",
+      "region": "Europa",
+      "authority": "Rádio pública: BHRT",
+      "numbers": "122 polícia · 124 ambulância · 123 bombeiros · 121 proteção civil",
+      "alerts": "",
+      "stations": [
+        {
+          "name": "BHRT",
+          "band": "FM / AM",
+          "freq": "ver região",
+          "where": "Frequência muda por região — procure o emissor no Wikipedia offline",
+          "primary": true
+        }
+      ]
+    },
+    {
+      "country": "Sérvia",
+      "region": "Europa",
+      "authority": "Rádio pública: RTS (Radio Beograd)",
+      "numbers": "112 ou 192 polícia · 194 ambulância · 193 bombeiros · 1985 proteção civil",
+      "alerts": "",
+      "stations": [
+        {
+          "name": "RTS (Radio Beograd)",
+          "band": "FM / AM",
+          "freq": "ver região",
+          "where": "Frequência muda por região — procure o emissor no Wikipedia offline",
+          "primary": true
+        }
+      ]
+    },
+    {
+      "country": "Montenegro",
+      "region": "Europa",
+      "authority": "Rádio pública: RTCG",
+      "numbers": "112 · 122 polícia · 124 ambulância · 123 bombeiros",
+      "alerts": "",
+      "stations": [
+        {
+          "name": "RTCG",
+          "band": "FM / AM",
+          "freq": "ver região",
+          "where": "Frequência muda por região — procure o emissor no Wikipedia offline",
+          "primary": true
+        }
+      ]
+    },
+    {
+      "country": "Kosovo",
+      "region": "Europa",
+      "authority": "Ouça as rádios nacionais e locais.",
+      "numbers": "192 polícia · 194 ambulância · 193 bombeiros",
+      "alerts": "",
+      "stations": []
+    },
+    {
+      "country": "Macedónia do Norte",
+      "region": "Europa",
+      "authority": "Rádio pública: MKRTV",
+      "numbers": "112 · 192 polícia · 194 ambulância · 193 bombeiros",
+      "alerts": "",
+      "stations": [
+        {
+          "name": "MKRTV",
+          "band": "FM / AM",
+          "freq": "ver região",
+          "where": "Frequência muda por região — procure o emissor no Wikipedia offline",
+          "primary": true
+        }
+      ]
+    },
+    {
+      "country": "Albânia",
+      "region": "Europa",
+      "authority": "Proteção civil: Agência Nacional de Proteção Civil · Rádio pública: RTSH",
+      "numbers": "129 polícia · 127 ambulância · 128 bombeiros",
+      "alerts": "",
+      "stations": [
+        {
+          "name": "RTSH",
+          "band": "FM / AM",
+          "freq": "ver região",
+          "where": "Frequência muda por região — procure o emissor no Wikipedia offline",
+          "primary": true
+        }
+      ]
+    },
+    {
+      "country": "Bulgária",
+      "region": "Europa",
+      "authority": "Rádio pública: BNR",
+      "numbers": "112",
+      "alerts": "BG-ALERT",
+      "stations": [
+        {
+          "name": "BNR",
+          "band": "FM / AM",
+          "freq": "ver região",
+          "where": "Frequência muda por região — procure o emissor no Wikipedia offline",
+          "primary": true
+        }
+      ]
+    },
+    {
+      "country": "Roménia",
+      "region": "Europa",
+      "authority": "Proteção civil: IGSU — Inspetoratul General pentru Situații de Urgență · Rádio pública: Radio România (SRR)",
+      "numbers": "112",
+      "alerts": "RO-ALERT",
+      "stations": [
+        {
+          "name": "Radio România (SRR)",
+          "band": "FM / AM",
+          "freq": "ver região",
+          "where": "Frequência muda por região — procure o emissor no Wikipedia offline",
+          "primary": true
+        }
+      ]
+    },
+    {
+      "country": "Moldávia",
+      "region": "Europa",
+      "authority": "Rádio pública: Teleradio-Moldova",
+      "numbers": "112",
+      "alerts": "",
+      "stations": [
+        {
+          "name": "Teleradio-Moldova",
+          "band": "FM / AM",
+          "freq": "ver região",
+          "where": "Frequência muda por região — procure o emissor no Wikipedia offline",
+          "primary": true
+        }
+      ]
+    },
+    {
+      "country": "Ucrânia",
+      "region": "Europa",
+      "authority": "Proteção civil: DSNS — Serviço Estatal de Emergência · Rádio pública: Suspilne (Ukrainske Radio)",
+      "numbers": "112 · 101 bombeiros · 102 polícia · 103 ambulância · 104 gás",
+      "alerts": "sirenes de ataque aéreo e app \"Air Alert\" (Повітряна тривога)",
+      "stations": [
+        {
+          "name": "Suspilne (Ukrainske Radio)",
+          "band": "FM / AM",
+          "freq": "ver região",
+          "where": "Frequência muda por região — procure o emissor no Wikipedia offline",
+          "primary": true
+        }
+      ]
+    },
+    {
+      "country": "Bielorrússia",
+      "region": "Europa",
+      "authority": "Ouça as rádios nacionais e locais.",
+      "numbers": "101 bombeiros · 102 polícia · 103 ambulância",
+      "alerts": "",
+      "stations": []
+    },
+    {
+      "country": "Rússia",
+      "region": "Europa",
+      "authority": "Proteção civil: MChS (Ministério das Situações de Emergência)",
+      "numbers": "112 · 101 bombeiros · 102 polícia · 103 ambulância",
+      "alerts": "",
+      "stations": []
+    },
+    {
+      "country": "Turquia",
+      "region": "Europa",
+      "authority": "Proteção civil: AFAD · Rádio pública: TRT",
+      "numbers": "112",
+      "alerts": "UYARSİS",
+      "stations": [
+        {
+          "name": "TRT",
+          "band": "FM / AM",
+          "freq": "ver região",
+          "where": "Frequência muda por região — procure o emissor no Wikipedia offline",
+          "primary": true
+        }
+      ]
+    },
+    {
+      "country": "Geórgia",
+      "region": "Europa",
+      "authority": "Rádio pública: GPB",
+      "numbers": "112",
+      "alerts": "",
+      "stations": [
+        {
+          "name": "GPB",
+          "band": "FM / AM",
+          "freq": "ver região",
+          "where": "Frequência muda por região — procure o emissor no Wikipedia offline",
+          "primary": true
+        }
+      ]
+    },
+    {
+      "country": "Arménia",
+      "region": "Europa",
+      "authority": "Rádio pública: Rádio Pública da Arménia",
+      "numbers": "112 ou 911",
+      "alerts": "",
+      "stations": [
+        {
+          "name": "Rádio Pública da Arménia",
+          "band": "FM / AM",
+          "freq": "ver região",
+          "where": "Frequência muda por região — procure o emissor no Wikipedia offline",
+          "primary": true
+        }
+      ]
+    },
+    {
+      "country": "Azerbaijão",
+      "region": "Europa",
+      "authority": "Rádio pública: İctimai",
+      "numbers": "112",
+      "alerts": "",
+      "stations": [
+        {
+          "name": "İctimai",
+          "band": "FM / AM",
+          "freq": "ver região",
+          "where": "Frequência muda por região — procure o emissor no Wikipedia offline",
+          "primary": true
+        }
+      ]
+    },
+    {
+      "country": "Estados Unidos",
+      "region": "América do Norte",
+      "authority": "Proteção civil: FEMA (ready.gov) · Rádio pública: rádios locais EAS e estações públicas (NPR)",
+      "numbers": "911 · 988 crise e suicídio · 211 serviços sociais",
+      "alerts": "Wireless Emergency Alerts; Emergency Alert System; NOAA Weather Radio (162,400–162,550 MHz)",
+      "stations": [
+        {
+          "name": "rádios locais EAS e estações públicas (NPR)",
+          "band": "FM / AM",
+          "freq": "ver região",
+          "where": "Frequência muda por região — procure o emissor no Wikipedia offline",
+          "primary": true
+        }
+      ]
+    },
+    {
+      "country": "Canadá",
+      "region": "América do Norte",
+      "authority": "Proteção civil: Public Safety Canada (getprepared.gc.ca) · Rádio pública: CBC / Radio-Canada",
+      "numbers": "911 · 988 crise e suicídio · 211",
+      "alerts": "Alert Ready / En Alerte",
+      "stations": [
+        {
+          "name": "CBC / Radio-Canada",
+          "band": "FM / AM",
+          "freq": "ver região",
+          "where": "Frequência muda por região — procure o emissor no Wikipedia offline",
+          "primary": true
+        }
+      ]
+    },
+    {
+      "country": "México",
+      "region": "América do Norte",
+      "authority": "Proteção civil: Coordinación Nacional de Protección Civil / CENAPRED · Rádio pública: IMER e Radio Educación",
+      "numbers": "911 · 089 denúncia anónima",
+      "alerts": "SASMEX (alerta sísmico) e cell broadcast em testes",
+      "stations": [
+        {
+          "name": "IMER e Radio Educación",
+          "band": "FM / AM",
+          "freq": "ver região",
+          "where": "Frequência muda por região — procure o emissor no Wikipedia offline",
+          "primary": true
+        }
+      ]
+    },
+    {
+      "country": "Brasil",
+      "region": "América Latina",
+      "authority": "Proteção civil: Defesa Civil — Secretaria Nacional de Proteção e Defesa Civil (gov.br/mdr) · Rádio pública: EBC (Rádio Nacional)",
+      "numbers": "190 polícia · 192 SAMU · 193 bombeiros · 199 Defesa Civil · 188 CVV",
+      "alerts": "Defesa Civil Alerta (cell broadcast) e SMS 40199",
+      "stations": [
+        {
+          "name": "EBC (Rádio Nacional)",
+          "band": "FM / AM",
+          "freq": "ver região",
+          "where": "Frequência muda por região — procure o emissor no Wikipedia offline",
+          "primary": true
+        }
+      ]
+    },
+    {
+      "country": "Argentina",
+      "region": "América Latina",
+      "authority": "Proteção civil: SINAGIR · Rádio pública: Radio Nacional (RTA)",
+      "numbers": "911 · 101 polícia · 107 ambulância · 100 bombeiros",
+      "alerts": "",
+      "stations": [
+        {
+          "name": "Radio Nacional (RTA)",
+          "band": "FM / AM",
+          "freq": "ver região",
+          "where": "Frequência muda por região — procure o emissor no Wikipedia offline",
+          "primary": true
+        }
+      ]
+    },
+    {
+      "country": "Chile",
+      "region": "América Latina",
+      "authority": "Proteção civil: SENAPRED",
+      "numbers": "133 polícia · 131 ambulância · 132 bombeiros",
+      "alerts": "SAE — Sistema de Alerta de Emergencias",
+      "stations": []
+    },
+    {
+      "country": "Uruguai",
+      "region": "América Latina",
+      "authority": "Proteção civil: SINAE · Rádio pública: Radio Uruguay",
+      "numbers": "911 · 105 ambulância · 104 bombeiros",
+      "alerts": "",
+      "stations": [
+        {
+          "name": "Radio Uruguay",
+          "band": "FM / AM",
+          "freq": "ver região",
+          "where": "Frequência muda por região — procure o emissor no Wikipedia offline",
+          "primary": true
+        }
+      ]
+    },
+    {
+      "country": "Paraguai",
+      "region": "América Latina",
+      "authority": "Proteção civil: SEN — Secretaría de Emergencia Nacional · Rádio pública: Radio Nacional del Paraguay",
+      "numbers": "911 · 141 ambulância · 132 bombeiros",
+      "alerts": "",
+      "stations": [
+        {
+          "name": "Radio Nacional del Paraguay",
+          "band": "FM / AM",
+          "freq": "ver região",
+          "where": "Frequência muda por região — procure o emissor no Wikipedia offline",
+          "primary": true
+        }
+      ]
+    },
+    {
+      "country": "Bolívia",
+      "region": "América Latina",
+      "authority": "Proteção civil: VIDECI — Viceministerio de Defensa Civil",
+      "numbers": "911 · 110 polícia · 118 ambulância · 119 bombeiros",
+      "alerts": "",
+      "stations": []
+    },
+    {
+      "country": "Peru",
+      "region": "América Latina",
+      "authority": "Proteção civil: INDECI · Rádio pública: Radio Nacional del Perú (IRTP)",
+      "numbers": "911 · 105 polícia · 106 SAMU · 116 bombeiros · 115 defesa civil",
+      "alerts": "",
+      "stations": [
+        {
+          "name": "Radio Nacional del Perú (IRTP)",
+          "band": "FM / AM",
+          "freq": "ver região",
+          "where": "Frequência muda por região — procure o emissor no Wikipedia offline",
+          "primary": true
+        }
+      ]
+    },
+    {
+      "country": "Equador",
+      "region": "América Latina",
+      "authority": "Proteção civil: SNGR — Secretaría Nacional de Gestión de Riesgos · Rádio pública: Radio Pública del Ecuador",
+      "numbers": "911",
+      "alerts": "",
+      "stations": [
+        {
+          "name": "Radio Pública del Ecuador",
+          "band": "FM / AM",
+          "freq": "ver região",
+          "where": "Frequência muda por região — procure o emissor no Wikipedia offline",
+          "primary": true
+        }
+      ]
+    },
+    {
+      "country": "Colômbia",
+      "region": "América Latina",
+      "authority": "Proteção civil: UNGRD · Rádio pública: RTVC (Radio Nacional de Colombia)",
+      "numbers": "123 · 112 polícia · 125 ambulância · 119 bombeiros",
+      "alerts": "",
+      "stations": [
+        {
+          "name": "RTVC (Radio Nacional de Colombia)",
+          "band": "FM / AM",
+          "freq": "ver região",
+          "where": "Frequência muda por região — procure o emissor no Wikipedia offline",
+          "primary": true
+        }
+      ]
+    },
+    {
+      "country": "Venezuela",
+      "region": "América Latina",
+      "authority": "Proteção civil: Protección Civil · Rádio pública: RNV",
+      "numbers": "911 · 171",
+      "alerts": "",
+      "stations": [
+        {
+          "name": "RNV",
+          "band": "FM / AM",
+          "freq": "ver região",
+          "where": "Frequência muda por região — procure o emissor no Wikipedia offline",
+          "primary": true
+        }
+      ]
+    },
+    {
+      "country": "Panamá",
+      "region": "América Latina",
+      "authority": "Proteção civil: SINAPROC",
+      "numbers": "911 · 104 polícia · 103 bombeiros",
+      "alerts": "",
+      "stations": []
+    },
+    {
+      "country": "Costa Rica",
+      "region": "América Latina",
+      "authority": "Proteção civil: CNE — Comisión Nacional de Emergencias · Rádio pública: Radio Nacional (SINART)",
+      "numbers": "911",
+      "alerts": "",
+      "stations": [
+        {
+          "name": "Radio Nacional (SINART)",
+          "band": "FM / AM",
+          "freq": "ver região",
+          "where": "Frequência muda por região — procure o emissor no Wikipedia offline",
+          "primary": true
+        }
+      ]
+    },
+    {
+      "country": "Nicarágua",
+      "region": "América Latina",
+      "authority": "Proteção civil: SINAPRED",
+      "numbers": "118 polícia · 128 ambulância · 115 bombeiros",
+      "alerts": "",
+      "stations": []
+    },
+    {
+      "country": "Honduras",
+      "region": "América Latina",
+      "authority": "Proteção civil: COPECO",
+      "numbers": "911",
+      "alerts": "",
+      "stations": []
+    },
+    {
+      "country": "El Salvador",
+      "region": "América Latina",
+      "authority": "Proteção civil: Protección Civil",
+      "numbers": "911 · 132 ambulância · 913 bombeiros",
+      "alerts": "",
+      "stations": []
+    },
+    {
+      "country": "Guatemala",
+      "region": "América Latina",
+      "authority": "Proteção civil: CONRED",
+      "numbers": "110 polícia · 122 bombeiros/ambulância · 125 Cruz Vermelha · 119 CONRED",
+      "alerts": "",
+      "stations": []
+    },
+    {
+      "country": "Belize",
+      "region": "América Latina",
+      "authority": "Proteção civil: NEMO",
+      "numbers": "911",
+      "alerts": "",
+      "stations": []
+    },
+    {
+      "country": "Cuba",
+      "region": "América Latina",
+      "authority": "Proteção civil: Defensa Civil · Rádio pública: Radio Rebelde / Radio Reloj",
+      "numbers": "106 polícia · 104 ambulância · 105 bombeiros",
+      "alerts": "",
+      "stations": [
+        {
+          "name": "Radio Rebelde / Radio Reloj",
+          "band": "FM / AM",
+          "freq": "ver região",
+          "where": "Frequência muda por região — procure o emissor no Wikipedia offline",
+          "primary": true
+        }
+      ]
+    },
+    {
+      "country": "República Dominicana",
+      "region": "América Latina",
+      "authority": "Proteção civil: COE — Centro de Operaciones de Emergencia",
+      "numbers": "911",
+      "alerts": "",
+      "stations": []
+    },
+    {
+      "country": "Haiti",
+      "region": "América Latina",
+      "authority": "Ouça as rádios nacionais e locais.",
+      "numbers": "114 polícia · 116 ambulância · 115 bombeiros",
+      "alerts": "",
+      "stations": []
+    },
+    {
+      "country": "Jamaica",
+      "region": "América Latina",
+      "authority": "Proteção civil: ODPEM",
+      "numbers": "119 polícia · 110 ambulância e bombeiros",
+      "alerts": "",
+      "stations": []
+    },
+    {
+      "country": "Trindade e Tobago",
+      "region": "América Latina",
+      "authority": "Proteção civil: ODPM",
+      "numbers": "999 ou 911 · 811 ambulância · 990 bombeiros",
+      "alerts": "",
+      "stations": []
+    }
+  ]
+}

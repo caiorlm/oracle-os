@@ -1,0 +1,8 @@
+ORACLE OS — Pacote de impressão / Print pack
+
+Oracle-Impressao-PT.pdf  todos os guias em português, por ordem de prioridade, + calendário perpétuo
+Oracle-Print-EN.pdf      all guides in English, priority order, + perpetual calendar
+guias-pt/ guides-en/     um PDF por guia / one PDF per guide
+manuais/                 manuais completos essenciais / essential full manuals
+
+Imprima em A4, frente e verso. Guarde seco, em 2 locais. / Print A4 double-sided. Keep dry, in 2 places.

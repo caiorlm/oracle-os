@@ -24,7 +24,13 @@ object SearchQuery {
         .take(MAX_TERMS)
         .toList()
 
-    fun fts5Expression(query: String): String = tokens(query).joinToString(" OR ") { "\"$it\"*" }
+    fun fts5Expression(query: String): String = tokens(query).joinToString(" OR ") { "\"${stem(it)}\"*" }
+
+    /**
+     * Light stemming for Portuguese and English: long words lose their last two letters, so
+     * "purificar" also finds "purificação" and "contaminated" finds "contamination".
+     */
+    fun stem(token: String): String = if (token.length >= 8) token.dropLast(2) else token
 }
 
 data class TextChunk(
@@ -120,10 +126,13 @@ object SearchRanking {
         if (tokens.isEmpty()) return 0.0
         val title = SearchQuery.fold(candidate.title)
         val body = SearchQuery.fold(candidate.text)
-        val matched = tokens.count { it in title || it in body }.toDouble() / tokens.size
-        val titleMatches = tokens.count { it in title }.toDouble() / tokens.size
+        val stems = tokens.map { SearchQuery.stem(it) }
+        val matched = stems.count { it in title || it in body }.toDouble() / tokens.size
+        val titleMatches = stems.count { it in title }.toDouble() / tokens.size
+        // Oracle's own guides are written for these questions; prefer them when they match.
+        val guideBonus = if (candidate.documentId.startsWith("oracle-guia-") && matched > 0) 2.0 else 0.0
         val bm25Bonus = (-candidate.bm25).coerceIn(0.0, 5.0)
-        return matched * 10.0 + titleMatches * 3.0 + bm25Bonus
+        return matched * 10.0 + titleMatches * 3.0 + bm25Bonus + guideBonus
     }
 
     fun order(tokens: List<String>, candidates: List<Candidate>): List<Candidate> = candidates

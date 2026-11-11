@@ -1,0 +1,827 @@
+{
+ "entries": [
+  {
+   "id": "hesperian-midwives",
+   "title": "Hesperian — A Book for Midwives (parto, gravidez, recém-nascido)",
+   "category": "saude",
+   "kind": "pdf",
+   "priority": 1,
+   "license": "Hesperian (uso pessoal/sem fins lucrativos)",
+   "lang": "en",
+   "resolver": "series",
+   "pattern": "https://hesperian.org/wp-content/uploads/pdf/en_midw_2026/en_midw_2026_{part}.pdf",
+   "parts": [
+    "fm",
+    "01",
+    "02",
+    "03",
+    "04",
+    "05",
+    "06",
+    "07",
+    "08",
+    "09",
+    "10",
+    "11",
+    "12",
+    "13",
+    "14",
+    "15",
+    "16",
+    "17",
+    "18",
+    "19",
+    "20",
+    "21",
+    "22",
+    "23",
+    "24",
+    "25",
+    "gloss",
+    "indx"
+   ]
+  },
+  {
+   "id": "culpeper-herbal",
+   "title": "Culpeper — The Complete Herbal (plantas medicinais históricas; confirmar doses e perigos)",
+   "category": "saude",
+   "kind": "html",
+   "priority": 1,
+   "license": "Domínio público",
+   "lang": "en",
+   "resolver": "html_pages",
+   "pages": [
+    "https://www.gutenberg.org/cache/epub/49513/pg49513-images.html"
+   ]
+  },
+  {
+   "id": "fao-seed-community",
+   "title": "FAO — Sementes: produção e conservação para comunidades",
+   "category": "agricultura",
+   "kind": "pdf",
+   "priority": 1,
+   "license": "FAO",
+   "lang": "en",
+   "resolver": "url",
+   "urls": [
+    "https://www.fao.org/3/a-i3987e.pdf"
+   ],
+   "filename": "FAO-Seeds-a-i3987e.pdf"
+  },
+  {
+   "id": "fao-seed-inspectors",
+   "title": "FAO — Seed production and handling manual (produtores comunitários)",
+   "category": "agricultura",
+   "kind": "pdf",
+   "priority": 1,
+   "license": "FAO",
+   "lang": "en",
+   "resolver": "url",
+   "urls": [
+    "https://www.fao.org/3/ca1082en/CA1082EN.pdf",
+    "https://openknowledge.fao.org/handle/20.500.14283/ca1082en"
+   ],
+   "filename": "FAO-Seed-Production-Manual.pdf"
+  },
+  {
+   "id": "home-vegetable-gardening",
+   "title": "Home Vegetable Gardening (horta completa)",
+   "category": "agricultura",
+   "kind": "html",
+   "priority": 1,
+   "license": "Domínio público",
+   "lang": "en",
+   "resolver": "html_pages",
+   "pages": [
+    "https://www.gutenberg.org/cache/epub/7123/pg7123-images.html"
+   ]
+  },
+  {
+   "id": "vegetable-garden-what-when",
+   "title": "The Vegetable Garden: What, When, and How to Plant",
+   "category": "agricultura",
+   "kind": "html",
+   "priority": 1,
+   "license": "Domínio público",
+   "lang": "en",
+   "resolver": "html_pages",
+   "pages": [
+    "https://www.gutenberg.org/cache/epub/43531/pg43531-images.html"
+   ]
+  },
+  {
+   "id": "war-gardens",
+   "title": "War Gardens — guia de bolso da horta em tempo de crise",
+   "category": "agricultura",
+   "kind": "html",
+   "priority": 1,
+   "license": "Domínio público",
+   "lang": "en",
+   "resolver": "html_pages",
+   "pages": [
+    "https://www.gutenberg.org/cache/epub/63013/pg63013-images.html"
+   ]
+  },
+  {
+   "id": "ten-acres-enough",
+   "title": "Ten Acres Enough (quinta pequena autossuficiente, 1864)",
+   "category": "agricultura",
+   "kind": "html",
+   "priority": 1,
+   "license": "Domínio público",
+   "lang": "en",
+   "resolver": "html_pages",
+   "pages": [
+    "https://www.gutenberg.org/cache/epub/48753/pg48753-images.html"
+   ]
+  },
+  {
+   "id": "cvm-goats",
+   "title": "CVM — Raising Healthy Goats (cabras, ilustrado)",
+   "category": "animais",
+   "kind": "pdf",
+   "priority": 1,
+   "license": "Christian Veterinary Mission",
+   "lang": "en",
+   "resolver": "url",
+   "urls": [
+    "https://cvm.org/Files/Documents/Books/Book%20PDF's/download_Raising%20Health%20Goats.pdf",
+    "https://cvm.org/Files/Documents/Books/Book%20PDF's/download_Raising%20Healthy%20Goats.pdf"
+   ],
+   "filename": "CVM-Raising-Healthy-Goats.pdf"
+  },
+  {
+   "id": "cvm-rabbits",
+   "title": "CVM — Raising Healthy Rabbits (coelhos, ilustrado)",
+   "category": "animais",
+   "kind": "pdf",
+   "priority": 1,
+   "license": "Christian Veterinary Mission",
+   "lang": "en",
+   "resolver": "url",
+   "urls": [
+    "https://cvm.org/Files/Documents/Books/Book%20PDF's/download_Raising%20Healthy%20Rabbits.pdf"
+   ],
+   "filename": "CVM-Raising-Healthy-Rabbits.pdf"
+  },
+  {
+   "id": "cvm-poultry",
+   "title": "CVM — Raising Healthy Poultry (galinhas, ilustrado)",
+   "category": "animais",
+   "kind": "pdf",
+   "priority": 1,
+   "license": "Christian Veterinary Mission",
+   "lang": "en",
+   "resolver": "url",
+   "urls": [
+    "https://cvm.org/Files/Documents/Books/Book%20PDF's/download_Raising%20Healthy%20Poultry.pdf"
+   ],
+   "filename": "CVM-Raising-Healthy-Poultry.pdf"
+  },
+  {
+   "id": "cvm-pigs",
+   "title": "CVM — Raising Healthy Pigs (porcos, ilustrado)",
+   "category": "animais",
+   "kind": "pdf",
+   "priority": 1,
+   "license": "Christian Veterinary Mission",
+   "lang": "en",
+   "resolver": "url",
+   "urls": [
+    "https://cvm.org/Files/Documents/Books/Book%20PDF's/download_Raising%20Healthy%20Pigs.pdf"
+   ],
+   "filename": "CVM-Raising-Healthy-Pigs.pdf"
+  },
+  {
+   "id": "cvm-sheep",
+   "title": "CVM — Raising Healthy Sheep (ovelhas, ilustrado)",
+   "category": "animais",
+   "kind": "pdf",
+   "priority": 1,
+   "license": "Christian Veterinary Mission",
+   "lang": "en",
+   "resolver": "url",
+   "urls": [
+    "https://cvm.org/Files/Documents/Books/Book%20PDF's/download_Raising%20Healthy%20Sheep.pdf"
+   ],
+   "filename": "CVM-Raising-Healthy-Sheep.pdf"
+  },
+  {
+   "id": "cvm-cattle",
+   "title": "CVM — Raising Healthy Cattle (vacas, ilustrado)",
+   "category": "animais",
+   "kind": "pdf",
+   "priority": 1,
+   "license": "Christian Veterinary Mission",
+   "lang": "en",
+   "resolver": "url",
+   "urls": [
+    "https://cvm.org/Files/Documents/Books/Book%20PDF's/download_Raising%20Healthy%20Cattle.pdf"
+   ],
+   "filename": "CVM-Raising-Healthy-Cattle.pdf"
+  },
+  {
+   "id": "cvm-drugs",
+   "title": "CVM — Drugs and their usage (medicamentos veterinários)",
+   "category": "animais",
+   "kind": "pdf",
+   "priority": 1,
+   "license": "Christian Veterinary Mission",
+   "lang": "en",
+   "resolver": "url",
+   "urls": [
+    "https://cvm.org/Files/Documents/Books/Book%20PDF's/download_Drugs%20and%20their%20usage.pdf"
+   ],
+   "filename": "CVM-Drugs-and-their-usage.pdf"
+  },
+  {
+   "id": "peace-corps-beekeeping",
+   "title": "Peace Corps — Small-scale beekeeping (apicultura, ilustrado)",
+   "category": "animais",
+   "kind": "pdf",
+   "priority": 1,
+   "license": "Domínio público (EUA)",
+   "lang": "en",
+   "resolver": "url",
+   "urls": [
+    "https://www.apiservices.biz/documents/articles-en/small_scale_beekeeping.pdf"
+   ],
+   "filename": "Peace-Corps-Small-Scale-Beekeeping.pdf"
+  },
+  {
+   "id": "fao-beekeeping",
+   "title": "FAO — Apicultura para o desenvolvimento rural",
+   "category": "animais",
+   "kind": "pdf",
+   "priority": 1,
+   "license": "FAO",
+   "lang": "en",
+   "resolver": "url",
+   "urls": [
+    "https://fao.org/docrep/018/aq076e/aq076e00.pdf"
+   ],
+   "filename": "FAO-Beekeeping.pdf"
+  },
+  {
+   "id": "langstroth-bees",
+   "title": "Langstroth — The Hive and the Honey-Bee (apicultura clássica)",
+   "category": "animais",
+   "kind": "html",
+   "priority": 1,
+   "license": "Domínio público",
+   "lang": "en",
+   "resolver": "html_pages",
+   "pages": [
+    "https://www.gutenberg.org/cache/epub/24583/pg24583-images.html"
+   ]
+  },
+  {
+   "id": "poultry-piper",
+   "title": "Poultry — guia prático (galinhas, patos, perus)",
+   "category": "animais",
+   "kind": "html",
+   "priority": 1,
+   "license": "Domínio público",
+   "lang": "en",
+   "resolver": "html_pages",
+   "pages": [
+    "https://www.gutenberg.org/cache/epub/38606/pg38606-images.html"
+   ]
+  },
+  {
+   "id": "sheep-swine-poultry",
+   "title": "Sheep, Swine, and Poultry (criação e doenças)",
+   "category": "animais",
+   "kind": "html",
+   "priority": 1,
+   "license": "Domínio público",
+   "lang": "en",
+   "resolver": "html_pages",
+   "pages": [
+    "https://www.gutenberg.org/cache/epub/39205/pg39205-images.html"
+   ]
+  },
+  {
+   "id": "pratt-livestock",
+   "title": "Pratt's Practical Pointers on the Care of Livestock and Poultry",
+   "category": "animais",
+   "kind": "html",
+   "priority": 1,
+   "license": "Domínio público",
+   "lang": "en",
+   "resolver": "html_pages",
+   "pages": [
+    "https://www.gutenberg.org/cache/epub/16744/pg16744-images.html"
+   ]
+  },
+  {
+   "id": "domestic-animals",
+   "title": "Domestic Animals — criação e tratamento",
+   "category": "animais",
+   "kind": "html",
+   "priority": 1,
+   "license": "Domínio público",
+   "lang": "en",
+   "resolver": "html_pages",
+   "pages": [
+    "https://www.gutenberg.org/cache/epub/34175/pg34175-images.html"
+   ]
+  },
+  {
+   "id": "bread-treatise",
+   "title": "A Treatise on Bread and Bread-making",
+   "category": "alimentacao",
+   "kind": "html",
+   "priority": 1,
+   "license": "Domínio público",
+   "lang": "en",
+   "resolver": "html_pages",
+   "pages": [
+    "https://www.gutenberg.org/cache/epub/66331/pg66331-images.html"
+   ]
+  },
+  {
+   "id": "war-time-breads",
+   "title": "War-Time Breads and Cakes (pão com pouco trigo)",
+   "category": "alimentacao",
+   "kind": "html",
+   "priority": 1,
+   "license": "Domínio público",
+   "lang": "en",
+   "resolver": "html_pages",
+   "pages": [
+    "https://www.gutenberg.org/cache/epub/58621/pg58621-images.html"
+   ]
+  },
+  {
+   "id": "cheese-handbook",
+   "title": "Hand-book on cheese making",
+   "category": "alimentacao",
+   "kind": "html",
+   "priority": 1,
+   "license": "Domínio público",
+   "lang": "en",
+   "resolver": "html_pages",
+   "pages": [
+    "https://www.gutenberg.org/cache/epub/70813/pg70813-images.html"
+   ]
+  },
+  {
+   "id": "book-of-cheese",
+   "title": "The Book of Cheese (Thom & Fisk)",
+   "category": "alimentacao",
+   "kind": "html",
+   "priority": 1,
+   "license": "Domínio público",
+   "lang": "en",
+   "resolver": "html_pages",
+   "pages": [
+    "https://www.gutenberg.org/cache/epub/40318/pg40318-images.html"
+   ]
+  },
+  {
+   "id": "trapping-gibson",
+   "title": "Gibson — Camp Life in the Woods and the Tricks of Trapping and Trap Making (ilustrado)",
+   "category": "caca",
+   "kind": "html",
+   "priority": 1,
+   "license": "Domínio público",
+   "lang": "en",
+   "resolver": "html_pages",
+   "pages": [
+    "https://www.gutenberg.org/cache/epub/17093/pg17093-images.html"
+   ]
+  },
+  {
+   "id": "camp-lore-beard",
+   "title": "Beard — The Book of Camp-Lore and Woodcraft",
+   "category": "caca",
+   "kind": "html",
+   "priority": 1,
+   "license": "Domínio público",
+   "lang": "en",
+   "resolver": "html_pages",
+   "pages": [
+    "https://www.gutenberg.org/cache/epub/44215/pg44215-images.html"
+   ]
+  },
+  {
+   "id": "forge-work",
+   "title": "Ilgen — Forge Work (ferraria)",
+   "category": "oficios",
+   "kind": "html",
+   "priority": 1,
+   "license": "Domínio público",
+   "lang": "en",
+   "resolver": "html_pages",
+   "pages": [
+    "https://www.gutenberg.org/cache/epub/53854/pg53854-images.html"
+   ]
+  },
+  {
+   "id": "practical-forging",
+   "title": "Googerty — Practical Forging and Art Smithing",
+   "category": "oficios",
+   "kind": "html",
+   "priority": 1,
+   "license": "Domínio público",
+   "lang": "en",
+   "resolver": "html_pages",
+   "pages": [
+    "https://www.gutenberg.org/cache/epub/69488/pg69488-images.html"
+   ]
+  },
+  {
+   "id": "potters-craft",
+   "title": "Binns — The Potter's Craft (olaria e fornos)",
+   "category": "oficios",
+   "kind": "html",
+   "priority": 1,
+   "license": "Domínio público",
+   "lang": "en",
+   "resolver": "html_pages",
+   "pages": [
+    "https://www.gutenberg.org/cache/epub/40411/pg40411-images.html"
+   ]
+  },
+  {
+   "id": "pottery-cox",
+   "title": "Cox — Pottery for Artists, Craftsmen & Teachers",
+   "category": "oficios",
+   "kind": "html",
+   "priority": 1,
+   "license": "Domínio público",
+   "lang": "en",
+   "resolver": "html_pages",
+   "pages": [
+    "https://www.gutenberg.org/cache/epub/38248/pg38248-images.html"
+   ]
+  },
+  {
+   "id": "how-to-make-pottery",
+   "title": "White — How to Make Pottery",
+   "category": "oficios",
+   "kind": "html",
+   "priority": 1,
+   "license": "Domínio público",
+   "lang": "en",
+   "resolver": "html_pages",
+   "pages": [
+    "https://www.gutenberg.org/cache/epub/64281/pg64281-images.html"
+   ]
+  },
+  {
+   "id": "woodwork-joints",
+   "title": "Fairham — Woodwork Joints (encaixes de carpintaria)",
+   "category": "oficios",
+   "kind": "html",
+   "priority": 1,
+   "license": "Domínio público",
+   "lang": "en",
+   "resolver": "html_pages",
+   "pages": [
+    "https://www.gutenberg.org/cache/epub/21531/pg21531-images.html"
+   ]
+  },
+  {
+   "id": "carpentry-woodwork",
+   "title": "Foster — Carpentry and Woodwork",
+   "category": "oficios",
+   "kind": "html",
+   "priority": 1,
+   "license": "Domínio público",
+   "lang": "en",
+   "resolver": "html_pages",
+   "pages": [
+    "https://www.gutenberg.org/cache/epub/43574/pg43574-images.html"
+   ]
+  },
+  {
+   "id": "rustic-carpentry",
+   "title": "Hasluck — Rustic Carpentry",
+   "category": "oficios",
+   "kind": "html",
+   "priority": 1,
+   "license": "Domínio público",
+   "lang": "en",
+   "resolver": "html_pages",
+   "pages": [
+    "https://www.gutenberg.org/cache/epub/41668/pg41668-images.html"
+   ]
+  },
+  {
+   "id": "woodwork-course",
+   "title": "Ross — Elementary Course in Woodwork",
+   "category": "oficios",
+   "kind": "html",
+   "priority": 1,
+   "license": "Domínio público",
+   "lang": "en",
+   "resolver": "html_pages",
+   "pages": [
+    "https://www.gutenberg.org/cache/epub/66616/pg66616-images.html"
+   ]
+  },
+  {
+   "id": "things-to-make",
+   "title": "Williams — Things To Make (oficina, ilustrado)",
+   "category": "oficios",
+   "kind": "html",
+   "priority": 1,
+   "license": "Domínio público",
+   "lang": "en",
+   "resolver": "html_pages",
+   "pages": [
+    "https://www.gutenberg.org/cache/epub/14664/pg14664-images.html"
+   ]
+  },
+  {
+   "id": "hand-loom-weaving",
+   "title": "Todd — Hand-Loom Weaving (tear manual)",
+   "category": "textil-couro",
+   "kind": "html",
+   "priority": 1,
+   "license": "Domínio público",
+   "lang": "en",
+   "resolver": "html_pages",
+   "pages": [
+    "https://www.gutenberg.org/cache/epub/31630/pg31630-images.html"
+   ]
+  },
+  {
+   "id": "textiles-dooley",
+   "title": "Dooley — Textiles (fibras, fiação, tecelagem)",
+   "category": "textil-couro",
+   "kind": "html",
+   "priority": 1,
+   "license": "Domínio público",
+   "lang": "en",
+   "resolver": "html_pages",
+   "pages": [
+    "https://www.gutenberg.org/cache/epub/24077/pg24077-images.html"
+   ]
+  },
+  {
+   "id": "textiles-clothing",
+   "title": "Watson — Textiles and Clothing (costura)",
+   "category": "textil-couro",
+   "kind": "html",
+   "priority": 1,
+   "license": "Domínio público",
+   "lang": "en",
+   "resolver": "html_pages",
+   "pages": [
+    "https://www.gutenberg.org/cache/epub/21534/pg21534-images.html"
+   ]
+  },
+  {
+   "id": "vegetable-dyes",
+   "title": "Mairet — Vegetable Dyes (tingir com plantas)",
+   "category": "textil-couro",
+   "kind": "html",
+   "priority": 1,
+   "license": "Domínio público",
+   "lang": "en",
+   "resolver": "html_pages",
+   "pages": [
+    "https://www.gutenberg.org/cache/epub/24076/pg24076-images.html"
+   ]
+  },
+  {
+   "id": "tanning-procter",
+   "title": "Procter — A Text-book of Tanning (curtir peles)",
+   "category": "textil-couro",
+   "kind": "html",
+   "priority": 1,
+   "license": "Domínio público",
+   "lang": "en",
+   "resolver": "html_pages",
+   "pages": [
+    "https://www.gutenberg.org/cache/epub/56601/pg56601-images.html"
+   ]
+  },
+  {
+   "id": "leather-adcock",
+   "title": "Adcock — Leather: from the raw material to the finished product",
+   "category": "textil-couro",
+   "kind": "html",
+   "priority": 1,
+   "license": "Domínio público",
+   "lang": "en",
+   "resolver": "html_pages",
+   "pages": [
+    "https://www.gutenberg.org/cache/epub/43377/pg43377-images.html"
+   ]
+  },
+  {
+   "id": "soap-making-manual",
+   "title": "Thomssen — Soap-Making Manual (sabão)",
+   "category": "quimica-basica",
+   "kind": "html",
+   "priority": 1,
+   "license": "Domínio público",
+   "lang": "en",
+   "resolver": "html_pages",
+   "pages": [
+    "https://www.gutenberg.org/cache/epub/34114/pg34114-images.html"
+   ]
+  },
+  {
+   "id": "soap-manufacture",
+   "title": "Simmons & Appleton — Handbook of Soap Manufacture",
+   "category": "quimica-basica",
+   "kind": "html",
+   "priority": 1,
+   "license": "Domínio público",
+   "lang": "en",
+   "resolver": "html_pages",
+   "pages": [
+    "https://www.gutenberg.org/cache/epub/21724/pg21724-images.html"
+   ]
+  },
+  {
+   "id": "shelters-shacks",
+   "title": "Beard — Shelters, Shacks and Shanties (abrigos e cabanas, ilustrado)",
+   "category": "construcao",
+   "kind": "html",
+   "priority": 1,
+   "license": "Domínio público",
+   "lang": "en",
+   "resolver": "html_pages",
+   "pages": [
+    "https://www.gutenberg.org/cache/epub/28255/pg28255-images.html"
+   ]
+  },
+  {
+   "id": "useful-arts-dwellings",
+   "title": "The Useful Arts Employed in the Construction of Dwelling Houses",
+   "category": "construcao",
+   "kind": "html",
+   "priority": 1,
+   "license": "Domínio público",
+   "lang": "en",
+   "resolver": "html_pages",
+   "pages": [
+    "https://www.gutenberg.org/cache/epub/67636/pg67636-images.html"
+   ]
+  },
+  {
+   "id": "science-brickmaking",
+   "title": "Harris — The Science of Brickmaking (tijolo)",
+   "category": "construcao",
+   "kind": "html",
+   "priority": 1,
+   "license": "Domínio público",
+   "lang": "en",
+   "resolver": "html_pages",
+   "pages": [
+    "https://www.gutenberg.org/cache/epub/60550/pg60550-images.html"
+   ]
+  },
+  {
+   "id": "concrete-home-farm",
+   "title": "Concrete Construction for the Home and the Farm",
+   "category": "construcao",
+   "kind": "html",
+   "priority": 1,
+   "license": "Domínio público",
+   "lang": "en",
+   "resolver": "html_pages",
+   "pages": [
+    "https://www.gutenberg.org/cache/epub/62312/pg62312-images.html"
+   ]
+  },
+  {
+   "id": "electricity-farm",
+   "title": "Anderson — Electricity for the Farm (roda de água e dínamo)",
+   "category": "energia",
+   "kind": "html",
+   "priority": 1,
+   "license": "Domínio público",
+   "lang": "en",
+   "resolver": "html_pages",
+   "pages": [
+    "https://www.gutenberg.org/cache/epub/27257/pg27257-images.html"
+   ]
+  },
+  {
+   "id": "windmills-shelton",
+   "title": "Shelton — Windmills, Picturesque and Historic (moinhos de vento)",
+   "category": "energia",
+   "kind": "html",
+   "priority": 1,
+   "license": "Domínio público",
+   "lang": "en",
+   "resolver": "html_pages",
+   "pages": [
+    "https://www.gutenberg.org/cache/epub/54075/pg54075-images.html"
+   ]
+  },
+  {
+   "id": "boy-scouts-1911",
+   "title": "Boy Scouts Handbook 1911 (sinais, Morse, semáforo, mateiro, primeiros socorros)",
+   "category": "comunicacao",
+   "kind": "html",
+   "priority": 1,
+   "license": "Domínio público",
+   "lang": "en",
+   "resolver": "html_pages",
+   "pages": [
+    "https://www.gutenberg.org/cache/epub/29558/pg29558-images.html"
+   ]
+  },
+  {
+   "id": "weather-proverbs",
+   "title": "Dunwoody — Weather Proverbs (prever o tempo)",
+   "category": "tempo-calendario",
+   "kind": "html",
+   "priority": 1,
+   "license": "Domínio público",
+   "lang": "en",
+   "resolver": "html_pages",
+   "pages": [
+    "https://www.gutenberg.org/cache/epub/74916/pg74916-images.html"
+   ]
+  },
+  {
+   "id": "weather-lore",
+   "title": "Wright — A Medley of Weather Lore",
+   "category": "tempo-calendario",
+   "kind": "html",
+   "priority": 1,
+   "license": "Domínio público",
+   "lang": "en",
+   "resolver": "html_pages",
+   "pages": [
+    "https://www.gutenberg.org/cache/epub/46338/pg46338-images.html"
+   ]
+  },
+  {
+   "id": "shepherd-banbury",
+   "title": "The Shepherd of Banbury's Rules to Judge the Weather",
+   "category": "tempo-calendario",
+   "kind": "html",
+   "priority": 1,
+   "license": "Domínio público",
+   "lang": "en",
+   "resolver": "html_pages",
+   "pages": [
+    "https://www.gutenberg.org/cache/epub/24163/pg24163-images.html"
+   ]
+  },
+  {
+   "id": "gilbert-weather",
+   "title": "Gilbert — Weather Bureau (meteorologia simples)",
+   "category": "tempo-calendario",
+   "kind": "html",
+   "priority": 1,
+   "license": "Domínio público",
+   "lang": "en",
+   "resolver": "html_pages",
+   "pages": [
+    "https://www.gutenberg.org/cache/epub/67391/pg67391-images.html"
+   ]
+  },
+  {
+   "id": "mcguffey-primer",
+   "title": "McGuffey's Eclectic Primer (aprender a ler, ilustrado)",
+   "category": "educacao",
+   "kind": "pdf",
+   "priority": 1,
+   "license": "Domínio público",
+   "lang": "en",
+   "resolver": "url",
+   "urls": [
+    "https://www.gutenberg.org/files/14642/14642-pdf.pdf"
+   ],
+   "filename": "McGuffey-Primer.pdf"
+  },
+  {
+   "id": "mcguffey-first-reader",
+   "title": "McGuffey's First Eclectic Reader (leitura, ilustrado)",
+   "category": "educacao",
+   "kind": "pdf",
+   "priority": 1,
+   "license": "Domínio público",
+   "lang": "en",
+   "resolver": "url",
+   "urls": [
+    "https://Gutenberg.org/files/14640/14640-pdf.pdf"
+   ],
+   "filename": "McGuffey-First-Reader.pdf"
+  },
+  {
+   "id": "roberts-rules",
+   "title": "Robert's Rules of Order (reuniões e decisões em grupo)",
+   "category": "sociedade",
+   "kind": "html",
+   "priority": 1,
+   "license": "Domínio público",
+   "lang": "en",
+   "resolver": "html_pages",
+   "pages": [
+    "https://www.gutenberg.org/cache/epub/9097/pg9097-images.html"
+   ]
+  }
+ ]
+}

@@ -1,0 +1,239 @@
+{
+  "entries": [
+    {
+      "id": "anepc-sismos",
+      "title": "ANEPC (Portugal) — Sismos: prepare-se e proteja-se",
+      "category": "protecao-civil",
+      "kind": "pdf",
+      "priority": 1,
+      "license": "Autoridade Nacional de Emergência e Proteção Civil",
+      "lang": "pt",
+      "resolver": "url",
+      "urls": [
+        "https://prociv.gov.pt/media/ovjbpe1c/sismos-prepare-se-e-proteja-se.pdf"
+      ]
+    },
+    {
+      "id": "mcid-cartilha-riscos",
+      "title": "Ministério das Cidades (Brasil) — Cartilha de prevenção de riscos",
+      "category": "protecao-civil",
+      "kind": "pdf",
+      "priority": 1,
+      "license": "Governo Federal do Brasil",
+      "lang": "pt",
+      "resolver": "url",
+      "urls": [
+        "https://www.gov.br/cidades/pt-br/assuntos/publicacoes/arquivos/arquivos/CARTILHAPREVENCAORISCOSMCID.pdf"
+      ]
+    },
+    {
+      "id": "funasa-manual-saneamento",
+      "title": "Funasa — Manual de Saneamento (5.ª edição, 2019): água, esgoto, lixo, higiene",
+      "category": "agua-saneamento",
+      "kind": "pdf",
+      "priority": 1,
+      "license": "Fundação Nacional de Saúde (Brasil)",
+      "lang": "pt",
+      "resolver": "url",
+      "urls": [
+        "https://lacen.saude.pr.gov.br/sites/lacen/arquivos_restritos/files/documento/2025-09/manual_de_saneamento_funasa_5_edicao_2019.pdf"
+      ]
+    },
+    {
+      "id": "hesperian-saude-ambiental-pt",
+      "title": "Hesperian — Guia Comunitário de Saúde Ambiental (português)",
+      "category": "agua-saneamento",
+      "kind": "pdf",
+      "priority": 1,
+      "license": "Hesperian Health Guides",
+      "lang": "pt",
+      "resolver": "url",
+      "urls": [
+        "https://hesperian.org/wp-content/uploads/pdf/pt_cgeh_2013/pt_cgeh_2013_ob.pdf"
+      ]
+    },
+    {
+      "id": "sobrasa-abc-primeiros-socorros",
+      "title": "SOBRASA — ABC dos Primeiros Socorros",
+      "category": "saude",
+      "kind": "pdf",
+      "priority": 1,
+      "license": "Sociedade Brasileira de Salvamento Aquático",
+      "lang": "pt",
+      "resolver": "url",
+      "urls": [
+        "https://sobrasa.org/dowloads/Primeiros_socorros/manual_ABC_dos_Primeiros_Socorros.pdf"
+      ]
+    },
+    {
+      "id": "imt-primeiros-socorros",
+      "title": "IMT (Portugal) — Manual de Emergência e Primeiros Socorros",
+      "category": "saude",
+      "kind": "pdf",
+      "priority": 1,
+      "license": "Instituto da Mobilidade e dos Transportes",
+      "lang": "pt",
+      "resolver": "url",
+      "urls": [
+        "https://www.imt-ip.pt/wp-content/uploads/IMTT/Portugues/TransportesRodoviarios/Documents/Manuais%20Forma%C3%A7%C3%A3o%20Inicial%20Motoristas/Manual_Emergencia_Primeiros_Socorros_FIA.pdf"
+      ]
+    },
+    {
+      "id": "mcf-crisis-or-war-en",
+      "title": "Sweden (MSB/MCF) — In case of crisis or war (leaflet, EU Civil Protection Knowledge Network)",
+      "category": "protecao-civil",
+      "kind": "pdf",
+      "priority": 1,
+      "license": "Swedish Civil Contingencies Agency",
+      "lang": "en",
+      "resolver": "url",
+      "urls": [
+        "https://civil-protection-knowledge-network.europa.eu/system/files/2025-11/sweden_leaflet-1.pdf"
+      ]
+    },
+    {
+      "id": "dsb-self-preparedness-en",
+      "title": "Norway (DSB) — Self-preparedness (English)",
+      "category": "protecao-civil",
+      "kind": "pdf",
+      "priority": 1,
+      "license": "Norwegian Directorate for Civil Protection",
+      "lang": "en",
+      "resolver": "url",
+      "urls": [
+        "https://civil-protection-knowledge-network.europa.eu/system/files/2025-11/norway_leaflet.pdf",
+        "https://prep.statsforvalteren.no/siteassets/fm-vestland/samfunnstryggleik-og-beredskap/beredskap/eigenberedskap/brosjyrer/dsb-emergency-preparedness---leaflet-in-english.pdf"
+      ]
+    },
+    {
+      "id": "finland-72h-en",
+      "title": "Finland — 72 hours preparedness (background information, English)",
+      "category": "protecao-civil",
+      "kind": "pdf",
+      "priority": 1,
+      "license": "72tuntia.fi / Finnish National Rescue Association",
+      "lang": "en",
+      "resolver": "url",
+      "urls": [
+        "https://72tuntia.fi/wp-content/uploads/2022/12/72-hours-Instructor-background-information-12_2022.pdf"
+      ]
+    },
+    {
+      "id": "arrl-ares-field-manual",
+      "title": "ARRL — ARES Field Resources Manual (emergency amateur radio)",
+      "category": "comunicacao",
+      "kind": "pdf",
+      "priority": 1,
+      "license": "ARRL",
+      "lang": "en",
+      "resolver": "url",
+      "urls": [
+        "https://arrl.org/files/file/Public%20Service/ARES/ARESFieldResourcesManual_rev10-2019.pdf"
+      ]
+    },
+    {
+      "id": "usda-canning-intro",
+      "title": "USDA Complete Guide to Home Canning (2015) — Introduction",
+      "category": "alimentacao",
+      "kind": "pdf",
+      "priority": 1,
+      "license": "USDA (public domain)",
+      "lang": "en",
+      "resolver": "url",
+      "urls": [
+        "https://nchfp.uga.edu/papers/guide/INTRO_HomeCanrev0715.pdf"
+      ]
+    },
+    {
+      "id": "usda-canning-guide01",
+      "title": "USDA Complete Guide to Home Canning (2015) — 1 Principles of Home Canning",
+      "category": "alimentacao",
+      "kind": "pdf",
+      "priority": 1,
+      "license": "USDA (public domain)",
+      "lang": "en",
+      "resolver": "url",
+      "urls": [
+        "https://nchfp.uga.edu/papers/guide/GUIDE01_HomeCan_rev0715.pdf"
+      ]
+    },
+    {
+      "id": "usda-canning-guide02",
+      "title": "USDA Complete Guide to Home Canning (2015) — 2 Fruit and Fruit Products",
+      "category": "alimentacao",
+      "kind": "pdf",
+      "priority": 1,
+      "license": "USDA (public domain)",
+      "lang": "en",
+      "resolver": "url",
+      "urls": [
+        "https://nchfp.uga.edu/papers/guide/GUIDE02_HomeCan_rev0715.pdf"
+      ]
+    },
+    {
+      "id": "usda-canning-guide03",
+      "title": "USDA Complete Guide to Home Canning (2015) — 3 Tomatoes",
+      "category": "alimentacao",
+      "kind": "pdf",
+      "priority": 1,
+      "license": "USDA (public domain)",
+      "lang": "en",
+      "resolver": "url",
+      "urls": [
+        "https://nchfp.uga.edu/papers/guide/GUIDE03_HomeCan_rev0715.pdf"
+      ]
+    },
+    {
+      "id": "usda-canning-guide04",
+      "title": "USDA Complete Guide to Home Canning (2015) — 4 Vegetables",
+      "category": "alimentacao",
+      "kind": "pdf",
+      "priority": 1,
+      "license": "USDA (public domain)",
+      "lang": "en",
+      "resolver": "url",
+      "urls": [
+        "https://nchfp.uga.edu/papers/guide/GUIDE04_HomeCan_rev0715.pdf"
+      ]
+    },
+    {
+      "id": "usda-canning-guide05",
+      "title": "USDA Complete Guide to Home Canning (2015) — 5 Poultry, Red Meats and Seafoods",
+      "category": "alimentacao",
+      "kind": "pdf",
+      "priority": 1,
+      "license": "USDA (public domain)",
+      "lang": "en",
+      "resolver": "url",
+      "urls": [
+        "https://nchfp.uga.edu/papers/guide/GUIDE05_HomeCan_rev0715.pdf"
+      ]
+    },
+    {
+      "id": "usda-canning-guide06",
+      "title": "USDA Complete Guide to Home Canning (2015) — 6 Fermented Foods and Pickled Vegetables",
+      "category": "alimentacao",
+      "kind": "pdf",
+      "priority": 1,
+      "license": "USDA (public domain)",
+      "lang": "en",
+      "resolver": "url",
+      "urls": [
+        "https://nchfp.uga.edu/papers/guide/GUIDE06_HomeCan_rev0715.pdf"
+      ]
+    },
+    {
+      "id": "usda-canning-guide07",
+      "title": "USDA Complete Guide to Home Canning (2015) — 7 Jams and Jellies",
+      "category": "alimentacao",
+      "kind": "pdf",
+      "priority": 1,
+      "license": "USDA (public domain)",
+      "lang": "en",
+      "resolver": "url",
+      "urls": [
+        "https://nchfp.uga.edu/papers/guide/GUIDE07_HomeCan_rev0715.pdf"
+      ]
+    }
+  ]
+}

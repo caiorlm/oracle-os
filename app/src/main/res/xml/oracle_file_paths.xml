@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Only the Kiwix collections folder inside Oracle's own storage is shared, read-only, with Kiwix. -->
+<paths>
+    <external-files-path name="kiwix" path="kiwix/" />
+    <!-- Plant photos taken by the camera app for identification (temporary). -->
+    <cache-path name="photos" path="photos/" />
+</paths>

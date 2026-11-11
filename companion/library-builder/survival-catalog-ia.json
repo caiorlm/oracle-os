@@ -1,0 +1,72 @@
+{
+  "entries": [
+    {
+      "id": "qwen35-2b-q4km",
+      "title": "Qwen3.5 2B Q4_K_M",
+      "category": "modelos",
+      "kind": "gguf",
+      "priority": 1,
+      "license": "Apache-2.0 (Qwen3.5)",
+      "lang": "multi",
+      "resolver": "url",
+      "urls": [
+        "https://huggingface.co/unsloth/Qwen3.5-2B-GGUF/resolve/main/Qwen3.5-2B-Q4_K_M.gguf"
+      ],
+      "filename": "Qwen3.5-2B-Q4_K_M.gguf",
+      "size": 1280835840,
+      "sha256": "aaf42c8b7c3cab2bf3d69c355048d4a0ee9973d48f16c731c0520ee914699223",
+      "minRamMb": 3072
+    },
+    {
+      "id": "qwen35-4b-q4km",
+      "title": "Qwen3.5 4B Q4_K_M",
+      "category": "modelos",
+      "kind": "gguf",
+      "priority": 1,
+      "license": "Apache-2.0 (Qwen3.5)",
+      "lang": "multi",
+      "resolver": "url",
+      "urls": [
+        "https://huggingface.co/unsloth/Qwen3.5-4B-GGUF/resolve/main/Qwen3.5-4B-Q4_K_M.gguf"
+      ],
+      "filename": "Qwen3.5-4B-Q4_K_M.gguf",
+      "size": 2740937888,
+      "sha256": "00fe7986ff5f6b463e62455821146049db6f9313603938a70800d1fb69ef11a4",
+      "minRamMb": 4608
+    },
+    {
+      "id": "qwen35-9b-q3km",
+      "title": "Qwen3.5 9B Q3_K_M",
+      "category": "modelos",
+      "kind": "gguf",
+      "priority": 1,
+      "license": "Apache-2.0 (Qwen3.5)",
+      "lang": "multi",
+      "resolver": "url",
+      "urls": [
+        "https://huggingface.co/unsloth/Qwen3.5-9B-GGUF/resolve/main/Qwen3.5-9B-Q3_K_M.gguf"
+      ],
+      "filename": "Qwen3.5-9B-Q3_K_M.gguf",
+      "size": 4673643744,
+      "sha256": "8fed90306e4f019e2bf35f3766470b7bc59ea1a9dae00f5ceb20b43cb5514393",
+      "minRamMb": 6656
+    },
+    {
+      "id": "qwen35-9b-q4km",
+      "title": "Qwen3.5 9B Q4_K_M",
+      "category": "modelos",
+      "kind": "gguf",
+      "priority": 1,
+      "license": "Apache-2.0 (Qwen3.5)",
+      "lang": "multi",
+      "resolver": "url",
+      "urls": [
+        "https://huggingface.co/unsloth/Qwen3.5-9B-GGUF/resolve/main/Qwen3.5-9B-Q4_K_M.gguf"
+      ],
+      "filename": "Qwen3.5-9B-Q4_K_M.gguf",
+      "size": 5680522464,
+      "sha256": "03b74727a860a56338e042c4420bb3f04b2fec5734175f4cb9fa853daf52b7e8",
+      "minRamMb": 7680
+    }
+  ]
+}

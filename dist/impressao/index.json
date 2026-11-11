@@ -1,0 +1,448 @@
+{
+ "generated": "2026-11-11T00:19:23",
+ "files": [
+  {
+   "file": "Oracle-Impressao-PT.pdf",
+   "lang": "pt",
+   "bytes": 326631,
+   "guides": [
+    {
+     "n": 1,
+     "stem": "primeiros-socorros",
+     "title": "Primeiros socorros em emergência — salvar uma vida até chegar ajuda"
+    },
+    {
+     "n": 2,
+     "stem": "agua-potavel",
+     "title": "Água potável em emergência — encontrar, tratar e guardar"
+    },
+    {
+     "n": 3,
+     "stem": "plano-50-anos",
+     "title": "Plano dos 50 anos — sobreviver e recomeçar depois de um colapso total"
+    },
+    {
+     "n": 4,
+     "stem": "fogo",
+     "title": "Fazer fogo com segurança"
+    },
+    {
+     "n": 5,
+     "stem": "apagao-frio-abrigo",
+     "title": "Apagão prolongado, frio e abrigo em casa"
+    },
+    {
+     "n": 6,
+     "stem": "aquecer-cozinhar-sem-luz",
+     "title": "Aquecer e cozinhar comida sem eletricidade nem gás"
+    },
+    {
+     "n": 7,
+     "stem": "conservar-comida",
+     "title": "Fazer a comida durar — sem frigorífico e a longo prazo"
+    },
+    {
+     "n": 8,
+     "stem": "higiene-banho",
+     "title": "Higiene pessoal e banho com pouca água"
+    },
+    {
+     "n": 9,
+     "stem": "guerra-ataque-nuclear",
+     "title": "Guerra, ataques, explosão nuclear e acidentes químicos — o que fazer"
+    },
+    {
+     "n": 10,
+     "stem": "resgate-busca",
+     "title": "Busca e resgate — escombros, fogo, cheias e pessoas perdidas"
+    },
+    {
+     "n": 11,
+     "stem": "parteira-plantas-medicinais",
+     "title": "Parto, cuidados à mãe e ao bebé, e plantas medicinais"
+    },
+    {
+     "n": 12,
+     "stem": "plantas-silvestres",
+     "title": "Plantas silvestres — identificar, comer, usar e evitar envenenamentos"
+    },
+    {
+     "n": 13,
+     "stem": "pesca",
+     "title": "Pesca para sobreviver — rio, lago e mar"
+    },
+    {
+     "n": 14,
+     "stem": "caca-armadilhas",
+     "title": "Caça, armadilhas e aproveitamento de animais"
+    },
+    {
+     "n": 15,
+     "stem": "sementes-cereais",
+     "title": "Sementes e cereais — da semente ao pão, e guardar semente para o ano seguinte"
+    },
+    {
+     "n": 16,
+     "stem": "animais",
+     "title": "Animais — criar, alimentar, tratar e aproveitar"
+    },
+    {
+     "n": 17,
+     "stem": "construcao-natural",
+     "title": "Construção natural — abrigo durável, fogões, poços, latrinas e água"
+    },
+    {
+     "n": 18,
+     "stem": "energia-sem-rede",
+     "title": "Energia sem rede — carregar o Oracle e trabalhar sem eletricidade da rede"
+    },
+    {
+     "n": 19,
+     "stem": "quimica-basica",
+     "title": "Química básica para recomeçar — sabão, lixívia, cal, carvão, velas, vinagre, álcool, tinta e papel"
+    },
+    {
+     "n": 20,
+     "stem": "ferraria-olaria-carpintaria",
+     "title": "Ferraria, olaria e carpintaria — fazer e reparar ferramentas, recipientes e estruturas"
+    },
+    {
+     "n": 21,
+     "stem": "texteis-couro",
+     "title": "Têxteis e couro — fibras, fiar, tecer, tingir, coser, curtir peles e fazer calçado"
+    },
+    {
+     "n": 22,
+     "stem": "cordas-nos",
+     "title": "Cordas, nós e amarrações — o essencial para abrigo, carga, resgate e pesca"
+    },
+    {
+     "n": 23,
+     "stem": "navegacao",
+     "title": "Navegação sem internet — mapa, bússola, sol, estrelas e mar"
+    },
+    {
+     "n": 24,
+     "stem": "agua-rios-mar",
+     "title": "Água, rios, lagos e mar — correntes, travessias, cheias e sobrevivência na água"
+    },
+    {
+     "n": 25,
+     "stem": "comunicacao-sem-energia",
+     "title": "Comunicação sem energia — sinais, código Morse, mensageiros e rádio simples"
+    },
+    {
+     "n": 26,
+     "stem": "radio-comunicacao",
+     "title": "Comunicação sem internet: rádio AM, FM, onda longa e rádios de dois sentidos"
+    },
+    {
+     "n": 27,
+     "stem": "tempo-calendario",
+     "title": "Tempo e calendário — prever o clima, medir o tempo, planear o ano"
+    },
+    {
+     "n": 28,
+     "stem": "comunidade-educacao",
+     "title": "Comunidade e educação — organizar, decidir, ensinar e preservar o saber"
+    },
+    {
+     "n": 29,
+     "stem": "proteger-familia-recursos",
+     "title": "Proteger a família, a comida e o abrigo numa crise — segurança sem violência"
+    },
+    {
+     "n": 30,
+     "stem": "saude-mental-crise",
+     "title": "Cuidar da mente numa crise — para si e para os outros"
+    },
+    {
+     "n": 31,
+     "stem": "alongamentos-dores",
+     "title": "Alongamentos e dores — costas, pescoço, braços, pernas, pés, cãibras e esforço"
+    },
+    {
+     "n": 32,
+     "stem": "defesa-pessoal",
+     "title": "Defesa pessoal — Krav Maga, boxe, Muay Thai e jiu-jitsu (princípios e técnicas base)"
+    },
+    {
+     "n": 33,
+     "stem": "yoga",
+     "title": "Yoga — posturas, respiração e relaxamento (sequência segura de 30–45 minutos)"
+    },
+    {
+     "n": 34,
+     "stem": "meditacao",
+     "title": "Meditação — todos os grandes tipos, das tradições antigas à ciência moderna"
+    },
+    {
+     "n": 35,
+     "stem": "chakras",
+     "title": "Chakras — origem, os sete centros, nadis, Kundalini e como meditar com eles"
+    },
+    {
+     "n": 36,
+     "stem": "diretorio-paises",
+     "title": "Diretório de emergência por país — números, alertas, rádio pública e proteção civil"
+    }
+   ]
+  },
+  {
+   "file": "Oracle-Print-EN.pdf",
+   "lang": "en",
+   "bytes": 278699,
+   "guides": [
+    {
+     "n": 1,
+     "stem": "first-aid-en",
+     "title": "Emergency first aid — keeping someone alive until help arrives"
+    },
+    {
+     "n": 2,
+     "stem": "water-en",
+     "title": "Emergency drinking water — find, treat, store"
+    },
+    {
+     "n": 3,
+     "stem": "plan-50-years-en",
+     "title": "The 50-year plan — surviving and rebuilding after a total collapse"
+    },
+    {
+     "n": 4,
+     "stem": "fire-en",
+     "title": "Starting a fire safely"
+    },
+    {
+     "n": 5,
+     "stem": "blackout-cold-shelter-en",
+     "title": "Long blackout, cold and sheltering at home"
+    },
+    {
+     "n": 6,
+     "stem": "heat-cook-no-power-en",
+     "title": "Heating and cooking food without electricity or gas"
+    },
+    {
+     "n": 7,
+     "stem": "food-preservation-en",
+     "title": "Making food last — without a fridge and long term"
+    },
+    {
+     "n": 8,
+     "stem": "hygiene-bathing-en",
+     "title": "Personal hygiene and bathing with little water"
+    },
+    {
+     "n": 9,
+     "stem": "war-nuclear-en",
+     "title": "War, attacks, nuclear explosion and chemical incidents"
+    },
+    {
+     "n": 10,
+     "stem": "rescue-search-en",
+     "title": "Search and rescue — rubble, fire, floods and lost people"
+    },
+    {
+     "n": 11,
+     "stem": "midwifery-medicinal-plants-en",
+     "title": "Childbirth, mother-and-baby care, and medicinal plants"
+    },
+    {
+     "n": 12,
+     "stem": "wild-plants-en",
+     "title": "Wild plants — identifying, eating, using and avoiding poisoning"
+    },
+    {
+     "n": 13,
+     "stem": "fishing-en",
+     "title": "Fishing to survive — rivers, lakes and sea"
+    },
+    {
+     "n": 14,
+     "stem": "hunting-trapping-en",
+     "title": "Hunting, trapping and using animals"
+    },
+    {
+     "n": 15,
+     "stem": "seeds-grains-en",
+     "title": "Seeds and grains — from seed to bread, and saving seed for next year"
+    },
+    {
+     "n": 16,
+     "stem": "animals-en",
+     "title": "Animals — raising, feeding, treating and using them"
+    },
+    {
+     "n": 17,
+     "stem": "natural-building-en",
+     "title": "Natural building — durable shelter, stoves, wells, latrines and water"
+    },
+    {
+     "n": 18,
+     "stem": "off-grid-energy-en",
+     "title": "Off-grid energy — charging Oracle and working without mains power"
+    },
+    {
+     "n": 19,
+     "stem": "basic-chemistry-en",
+     "title": "Basic chemistry for rebuilding — soap, lye, lime, charcoal, candles, vinegar, alcohol, ink and paper"
+    },
+    {
+     "n": 20,
+     "stem": "smithing-pottery-carpentry-en",
+     "title": "Smithing, pottery and carpentry — making and repairing tools, vessels and structures"
+    },
+    {
+     "n": 21,
+     "stem": "textiles-leather-en",
+     "title": "Textiles and leather — fibres, spinning, weaving, dyeing, sewing, tanning and shoemaking"
+    },
+    {
+     "n": 22,
+     "stem": "ropes-knots-en",
+     "title": "Ropes, knots and lashings — essentials for shelter, loads, rescue and fishing"
+    },
+    {
+     "n": 23,
+     "stem": "navigation-en",
+     "title": "Navigation without internet — map, compass, sun, stars and sea"
+    },
+    {
+     "n": 24,
+     "stem": "water-rivers-sea-en",
+     "title": "Water, rivers, lakes and sea — currents, crossings, floods and survival in water"
+    },
+    {
+     "n": 25,
+     "stem": "no-power-comm-en",
+     "title": "Communication without power — signals, Morse code, runners and simple radio"
+    },
+    {
+     "n": 26,
+     "stem": "radio-communication-en",
+     "title": "Communication without internet: AM, FM, long wave and two-way radio"
+    },
+    {
+     "n": 27,
+     "stem": "weather-calendar-en",
+     "title": "Weather and calendar — forecasting, telling time, planning the year"
+    },
+    {
+     "n": 28,
+     "stem": "community-education-en",
+     "title": "Community and education — organising, deciding, teaching and preserving knowledge"
+    },
+    {
+     "n": 29,
+     "stem": "protect-family-supplies-en",
+     "title": "Protecting family, food and shelter in a crisis — security without violence"
+    },
+    {
+     "n": 30,
+     "stem": "mental-health-crisis-en",
+     "title": "Looking after your mind in a crisis"
+    },
+    {
+     "n": 31,
+     "stem": "stretching-pain-en",
+     "title": "Stretching and pain — back, neck, arms, legs, feet, cramps and heavy effort"
+    },
+    {
+     "n": 32,
+     "stem": "self-defence-en",
+     "title": "Self-defence — Krav Maga, boxing, Muay Thai and jiu-jitsu (principles and core techniques)"
+    },
+    {
+     "n": 33,
+     "stem": "yoga-en",
+     "title": "Yoga — postures, breathing and relaxation (a safe 30–45 minute sequence)"
+    },
+    {
+     "n": 34,
+     "stem": "meditation-en",
+     "title": "Meditation — every major type, from ancient traditions to modern science"
+    },
+    {
+     "n": 35,
+     "stem": "chakras-en",
+     "title": "Chakras — origins, the seven centres, nadis, Kundalini and how to meditate with them"
+    }
+   ]
+  }
+ ],
+ "manuals": [
+  {
+   "file": "manuais/01-Where-There-Is-No-Doctor-Hesperian.pdf",
+   "bytes": 9917949
+  },
+  {
+   "file": "manuais/02-Survival-Manual-FM21-76-2006.pdf",
+   "bytes": 2658104
+  },
+  {
+   "file": "manuais/03-IFRC-First-Aid-Guidelines-2025.pdf",
+   "bytes": 6261070
+  },
+  {
+   "file": "manuais/04-Stop-the-Bleed.pdf",
+   "bytes": 3065986
+  },
+  {
+   "file": "manuais/05-Manual-ABC-Primeiros-Socorros-PT.pdf",
+   "bytes": 1944161
+  },
+  {
+   "file": "manuais/06-MSF-Obstetric-Newborn-Care.pdf",
+   "bytes": 4941011
+  },
+  {
+   "file": "manuais/06b-Book-for-Midwives-Hesperian.pdf",
+   "bytes": 28077481
+  },
+  {
+   "file": "manuais/06c-FAO-Seeds-for-Communities.pdf",
+   "bytes": 466716
+  },
+  {
+   "file": "manuais/07-Household-Water-Treatment-IFRC.pdf",
+   "bytes": 2329299
+  },
+  {
+   "file": "manuais/08-Slow-Sand-Filtration.pdf",
+   "bytes": 1703708
+  },
+  {
+   "file": "manuais/09-SODIS-Solar-Water-Disinfection.pdf",
+   "bytes": 562644
+  },
+  {
+   "file": "manuais/10-Rainwater-Harvesting.pdf",
+   "bytes": 386010
+  },
+  {
+   "file": "manuais/11-MSF-Essential-Drugs.pdf",
+   "bytes": 2798456
+  },
+  {
+   "file": "manuais/12-MSF-Clinical-Guidelines.pdf",
+   "bytes": 4194304
+  },
+  {
+   "file": "manuais/13-Primeiros-Cuidados-Psicologicos-OMS.pdf",
+   "bytes": 1957246
+  },
+  {
+   "file": "manuais/14-Psychological-First-Aid-WHO.pdf",
+   "bytes": 1487833
+  },
+  {
+   "file": "manuais/15-OS-Map-Reading-Made-Easy.pdf",
+   "bytes": 6339570
+  },
+  {
+   "file": "manuais/16-Zeer-Pot-Cooler.pdf",
+   "bytes": 580137
+  }
+ ]
+}

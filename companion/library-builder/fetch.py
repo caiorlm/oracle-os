@@ -1,0 +1,552 @@
+#!/usr/bin/env python3
+"""Resumable, verified downloader for Oracle OS offline packs (maps, documents, ZIM, APKs).
+
+Runs on the stock macOS Python 3.9 with the standard library only.
+
+  python3 fetch.py CATALOG.json DEST_DIR [--only id1,id2] [--max-priority N] [--kinds pdf,zim]
+
+Each catalog entry is resolved to one or more concrete files, downloaded to
+DEST_DIR/<category>/<file> through a ".part" file with HTTP Range resume, then checked
+against the publisher checksum when one exists (Kiwix .sha256, Geofabrik .md5) and an
+expected size when the catalog gives one. The result of every entry, with its final
+SHA-256, URL and licence, is written to DEST_DIR/fetch-status.json, so the pack builder
+only uses files that were actually obtained and verified.
+"""
+
+from __future__ import annotations
+
+import argparse
+import hashlib
+import html.parser
+import json
+import shutil
+import os
+import re
+import ssl
+import subprocess
+import sys
+import time
+import urllib.error
+import urllib.parse
+import urllib.request
+from datetime import datetime, timezone
+from pathlib import Path
+
+USER_AGENT = "OracleOS-pack-builder/0.2 (+offline library; contact: local)"
+CHUNK = 1024 * 1024
+RETRIES = 6
+# A mirror slower than this after SLOW_AFTER seconds is left for the next one (the .part file is kept).
+SLOW_MB_S = 1.5
+SLOW_AFTER = 120
+
+
+class SlowMirror(Exception):
+    pass
+
+
+def kiwix_mirrors(url: str) -> list[str]:
+    """Mirror URLs listed in Kiwix's Metalink file, best priority first; empty if unavailable."""
+    try:
+        text = get_text(url + ".meta4")
+    except Exception:
+        return []
+    found = []
+    for match in re.finditer(r"<url\b([^>]*)>\s*(https://[^<\s]+)\s*</url>", text):
+        priority = re.search(r'priority="(\d+)"', match.group(1))
+        found.append((int(priority.group(1)) if priority else 999, match.group(2)))
+    mirrors = []
+    for _, mirror in sorted(found):
+        if mirror not in mirrors and mirror.endswith(Path(urllib.parse.urlparse(url).path).name):
+            mirrors.append(mirror)
+    return mirrors[:6]
+
+
+def log(message: str) -> None:
+    print(f"{datetime.now().strftime('%H:%M:%S')} {message}", flush=True)
+
+
+def _context() -> ssl.SSLContext:
+    context = ssl.create_default_context()
+    try:  # The stock macOS Python may lack a CA bundle; certifi is used when present.
+        import certifi  # type: ignore
+
+        context.load_verify_locations(certifi.where())
+    except Exception:
+        pass
+    return context
+
+
+SSL_CONTEXT = _context()
+
+
+def request(url: str, headers: dict | None = None, method: str = "GET"):
+    merged = {"User-Agent": USER_AGENT, "Accept": "*/*"}
+    merged.update(headers or {})
+    req = urllib.request.Request(url, headers=merged, method=method)
+    return urllib.request.urlopen(req, timeout=60, context=SSL_CONTEXT)
+
+
+def get_text(url: str) -> str:
+    with request(url) as response:
+        return response.read().decode("utf-8", errors="replace")
+
+
+class LinkParser(html.parser.HTMLParser):
+    def __init__(self) -> None:
+        super().__init__()
+        self.links: list[str] = []
+
+    def handle_starttag(self, tag, attrs):
+        if tag == "a":
+            for key, value in attrs:
+                if key == "href" and value:
+                    self.links.append(value)
+
+
+def list_links(url: str) -> list[str]:
+    parser = LinkParser()
+    parser.feed(get_text(url))
+    return [urllib.parse.urljoin(url, link) for link in parser.links]
+
+
+def sha256_file(path: Path) -> str:
+    digest = hashlib.sha256()
+    with path.open("rb") as stream:
+        for block in iter(lambda: stream.read(CHUNK), b""):
+            digest.update(block)
+    return digest.hexdigest()
+
+
+def md5_file(path: Path) -> str:
+    digest = hashlib.md5()
+    with path.open("rb") as stream:
+        for block in iter(lambda: stream.read(CHUNK), b""):
+            digest.update(block)
+    return digest.hexdigest()
+
+
+def safe_name(name: str) -> str:
+    name = urllib.parse.unquote(name).split("?")[0]
+    name = re.sub(r"[^A-Za-z0-9._-]+", "_", name).strip("._")
+    return name[:180] or "file"
+
+
+# --------------------------------------------------------------------------- resolvers
+
+def resolve(entry: dict) -> list[dict]:
+    """Returns concrete targets: {url, name, checksum_url?, checksum_type?}."""
+    kind = entry.get("resolver", "url")
+    if kind == "url":
+        urls = entry.get("urls") or [entry["url"]]
+        target = {"urls": urls, "name": entry.get("filename") or safe_name(Path(urllib.parse.urlparse(urls[0]).path).name)}
+        if entry.get("sha256"):
+            target.update(checksum_type="sha256", checksum_value=entry["sha256"])
+        return [target]
+    if kind == "geofabrik":
+        url = entry["url"]
+        return [{"urls": [url], "name": Path(urllib.parse.urlparse(url).path).name,
+                 "checksum_url": url.replace(".osm.pbf", ".osm.pbf.md5"), "checksum_type": "md5"}]
+    if kind == "kiwix":
+        directory = entry["kiwix_dir"].rstrip("/") + "/"
+        prefix = entry["kiwix_prefix"]
+        base = "https://download.kiwix.org/zim/" + directory
+        names = sorted({Path(urllib.parse.urlparse(link).path).name for link in list_links(base)})
+        # Kiwix sometimes drops one flavour; fall back to the lighter ones (maxi -> nopic -> mini).
+        candidates = [prefix] + list(entry.get("kiwix_prefix_fallbacks", []))
+        if "_maxi_" in prefix:
+            candidates += [prefix.replace("_maxi_", "_nopic_"), prefix.replace("_maxi_", "_mini_")]
+        matches = []
+        for candidate in candidates:
+            matches = [n for n in names if re.fullmatch(re.escape(candidate) + r"(?:[a-z]+_)?\d{4}-\d{2}\.zim", n)]
+            if matches:
+                break
+        if not matches:
+            raise LookupError(f"Nenhum ZIM {prefix}*.zim em {base}")
+        name = matches[-1]
+        mirrors = kiwix_mirrors(base + name)
+        if mirrors:
+            log(f"  {len(mirrors)} espelhos: " + ", ".join(urllib.parse.urlparse(m).netloc for m in mirrors))
+        return [{"urls": mirrors + [base + name], "name": name, "checksum_url": base + name + ".sha256", "checksum_type": "sha256"}]
+    if kind == "github_release":
+        api = f"https://api.github.com/repos/{entry['repo']}/releases/latest"
+        data = json.loads(get_text(api))
+        pattern = re.compile(entry["asset_regex"])
+        for asset in data.get("assets", []):
+            if pattern.search(asset["name"]):
+                return [{"urls": [asset["browser_download_url"]], "name": asset["name"], "size": asset.get("size"),
+                         "version": data.get("tag_name")}]
+        raise LookupError(f"Nenhum asset {entry['asset_regex']} em {entry['repo']} {data.get('tag_name')}")
+    if kind == "openstax":
+        # Wagtail caps page size (20 by default) and rejects unknown fields with HTTP 400,
+        # so page through the catalogue and fall back to fewer fields.
+        items = []
+        for fields in ("title,book_state,high_resolution_pdf_url,low_resolution_pdf_url",
+                       "title,high_resolution_pdf_url,low_resolution_pdf_url", "title,high_resolution_pdf_url"):
+            try:
+                items = []
+                offset = 0
+                while offset < 1000:
+                    page = json.loads(get_text("https://openstax.org/apps/cms/api/v2/pages/?type=books.Book"
+                                               f"&fields={fields}&limit=20&offset={offset}"))
+                    batch = page.get("items", [])
+                    items += batch
+                    total = page.get("meta", {}).get("total_count", 0)
+                    offset += 20
+                    if not batch or offset >= total:
+                        break
+                break
+            except urllib.error.HTTPError as error:
+                if error.code != 400:
+                    raise
+        if not items:
+            raise LookupError("OpenStax API não devolveu livros")
+        wanted = {t.lower(): t for t in entry["titles"]}
+        targets = []
+        for item in items:
+            title = (item.get("title") or "").strip()
+            if title.lower() in wanted and item.get("book_state") in (None, "live", "new_edition_available"):
+                url = item.get("low_resolution_pdf_url") or item.get("high_resolution_pdf_url")
+                if url:
+                    targets.append({"urls": [url], "name": safe_name(title) + ".pdf", "title": title})
+        if not targets:
+            raise LookupError("OpenStax API não devolveu nenhum dos títulos pedidos")
+        return targets
+    if kind == "series":
+        targets = []
+        for part in entry["parts"]:
+            url = entry["pattern"].format(part=part)
+            targets.append({"urls": [url], "name": safe_name(Path(urllib.parse.urlparse(url).path).name), "optional": True})
+        return targets
+    if kind == "html_pages":
+        return [{"urls": [url], "name": safe_name(urllib.parse.urlparse(url).netloc + urllib.parse.urlparse(url).path) + ".html",
+                 "optional": True} for url in entry["pages"]]
+    if kind == "html_crawl":
+        start = entry["start"]
+        host = urllib.parse.urlparse(start).netloc
+        pages = [start]
+        for link in list_links(start):
+            parsed = urllib.parse.urlparse(link)
+            clean = parsed._replace(fragment="", query="").geturl()
+            if parsed.netloc != host or clean in pages:
+                continue
+            if re.search(r"\.(pdf|jpe?g|png|gif|svg|zip|docx?|xlsx?|mp4|mp3|css|js)$", parsed.path, re.I):
+                continue
+            pages.append(clean)
+            if len(pages) >= entry.get("max_pages", 40):
+                break
+        return [{"urls": [url], "name": safe_name(urllib.parse.urlparse(url).netloc + urllib.parse.urlparse(url).path) + ".html",
+                 "optional": True} for url in pages]
+    if kind == "git":
+        return [{"git": entry["url"], "name": entry["id"]}]
+    raise ValueError(f"resolver desconhecido: {kind}")
+
+
+# --------------------------------------------------------------------------- download
+
+def zim_internal_ok(path: Path) -> bool:
+    """A ZIM stores the MD5 of everything before it at header.checksumPos: proves the file is whole."""
+    import struct
+    try:
+        with path.open("rb") as stream:
+            header = stream.read(80)
+            if len(header) < 80 or struct.unpack_from("<I", header, 0)[0] != 0x044D495A:
+                return False
+            checksum_pos = struct.unpack_from("<Q", header, 72)[0]
+            stream.seek(0)
+            digest, left = hashlib.md5(), checksum_pos
+            while left > 0:
+                block = stream.read(min(1 << 22, left))
+                if not block:
+                    return False
+                digest.update(block)
+                left -= len(block)
+            return stream.read(16) == digest.digest()
+    except Exception:
+        return False
+
+
+def publisher_checksum(target: dict) -> tuple[str, str] | None:
+    if target.get("checksum_value"):
+        # Known in advance (e.g. Hugging Face LFS sha256 recorded in the catalog).
+        return target.get("checksum_type", "sha256"), target["checksum_value"].lower()
+    url = target.get("checksum_url")
+    if not url:
+        return None
+    try:
+        text = get_text(url).strip()
+    except Exception as error:  # A missing sidecar is recorded, not fatal.
+        log(f"  checksum indisponível ({error}); será registado o SHA-256 local")
+        return None
+    value = text.split()[0].lower()
+    expected_len = 32 if target["checksum_type"] == "md5" else 64
+    if not re.fullmatch(r"[0-9a-f]{%d}" % expected_len, value):
+        return None
+    return target["checksum_type"], value
+
+
+PARALLEL = int(os.environ.get("ORACLE_PARALLEL", "8"))
+PARALLEL_MIN = 300_000_000
+
+
+def parallel_download(url: str, destination: Path, size: int, workers: int) -> None:
+    """Large files with a known size: several HTTP Range connections at once (some servers limit
+    each connection). The plan is saved, so a stop resumes each piece where it was."""
+    import threading
+    part = destination.with_name(destination.name + ".part")
+    plan_path = destination.with_name(destination.name + ".plan.json")
+    if plan_path.exists():
+        plan = json.loads(plan_path.read_text())
+    else:
+        base = part.stat().st_size if part.exists() else 0
+        step = -(-(size - base) // workers)
+        ranges = [[start, min(start + step, size) - 1] for start in range(base, size, step)]
+        plan = {"size": size, "ranges": ranges, "merged": 0}
+        plan_path.write_text(json.dumps(plan))
+    ranges = plan["ranges"]
+    seg = lambda i: destination.with_name(f"{destination.name}.seg{i}")
+    errors: list[str] = []
+
+    def worker(i: int) -> None:
+        start, end = ranges[i]
+        for attempt in range(1, 40):
+            have = seg(i).stat().st_size if seg(i).exists() else 0
+            if start + have > end:
+                return
+            try:
+                with request(url, {"Range": f"bytes={start + have}-{end}"}) as response:
+                    if response.status != 206:
+                        raise IOError(f"servidor sem Range ({response.status})")
+                    with seg(i).open("ab") as out:
+                        while True:
+                            block = response.read(CHUNK)
+                            if not block:
+                                break
+                            out.write(block)
+            except Exception as error:
+                time.sleep(min(60, 3 * attempt))
+                if attempt % 5 == 0:
+                    log(f"  parte {i}: {error}")
+        errors.append(f"parte {i} não terminou")
+
+    pending = [i for i in range(plan["merged"], len(ranges))]
+    threads = [threading.Thread(target=worker, args=(i,), daemon=True) for i in pending]
+    for t in threads:
+        t.start()
+    started = time.time()
+    first = sum(seg(i).stat().st_size for i in pending if seg(i).exists())
+    while any(t.is_alive() for t in threads):
+        time.sleep(15)
+        got = sum(seg(i).stat().st_size for i in pending if seg(i).exists())
+        done = ranges[pending[0]][0] + got if pending else size
+        rate = (got - first) / max(time.time() - started, 0.1) / 1e6
+        log(f"  {destination.name}: {done / 1e6:.0f} MB {done * 100 / size:.1f}% {rate:.1f} MB/s ({len(threads)} ligações)")
+    if errors:
+        raise IOError("; ".join(errors))
+    for i in pending:
+        start, end = ranges[i]
+        if not seg(i).exists() or seg(i).stat().st_size != end - start + 1:
+            raise IOError(f"parte {i} com tamanho errado")
+    with part.open("ab") as out:
+        out.truncate(ranges[plan["merged"]][0]) if plan["merged"] < len(ranges) else None
+    for i in pending:
+        with part.open("ab") as out, seg(i).open("rb") as source:
+            shutil.copyfileobj(source, out, 1 << 22)
+        seg(i).unlink()
+        plan["merged"] = i + 1
+        plan_path.write_text(json.dumps(plan))
+    if part.stat().st_size != size:
+        raise IOError(f"tamanho final {part.stat().st_size} != {size}")
+    plan_path.unlink()
+    os.replace(part, destination)
+
+
+def download(urls: list[str], destination: Path, expected_size: int | None) -> str:
+    part = destination.with_name(destination.name + ".part")
+    if expected_size and expected_size >= PARALLEL_MIN and PARALLEL > 1:
+        # Kiwix lists several mirrors; the first (nearest) one is used with several connections.
+        try:
+            parallel_download(urls[0], destination, expected_size, PARALLEL)
+            return urls[0]
+        except Exception as error:
+            log(f"  download paralelo parou ({error}); as partes ficam guardadas para retomar")
+            raise
+    last_error: Exception | None = None
+    for index, url in enumerate(urls):
+        has_next = index < len(urls) - 1
+        if len(urls) > 1:
+            log(f"  servidor: {urllib.parse.urlparse(url).netloc}")
+        for attempt in range(1, RETRIES + 1):
+            try:
+                offset = part.stat().st_size if part.exists() else 0
+                headers = {"Range": f"bytes={offset}-"} if offset else {}
+                with request(url, headers) as response:
+                    status = response.status
+                    if offset and status != 206:
+                        offset = 0  # Server ignored Range: restart cleanly.
+                    total_header = response.headers.get("Content-Length")
+                    total = (int(total_header) + offset) if total_header else None
+                    mode = "ab" if offset else "wb"
+                    written = offset
+                    started = time.time()
+                    last_report = 0.0
+                    with part.open(mode) as out:
+                        while True:
+                            block = response.read(CHUNK)
+                            if not block:
+                                break
+                            out.write(block)
+                            written += len(block)
+                            now = time.time()
+                            if now - last_report > 15:
+                                rate = (written - offset) / max(now - started, 0.1) / 1e6
+                                share = f"{written * 100 / total:.1f}%" if total else "?"
+                                log(f"  {destination.name}: {written / 1e6:.0f} MB {share} {rate:.1f} MB/s")
+                                last_report = now
+                                if has_next and now - started > SLOW_AFTER and rate < SLOW_MB_S:
+                                    raise SlowMirror(f"{rate:.1f} MB/s")
+                    if total and written < total:
+                        raise IOError(f"transferência incompleta {written}/{total}")
+                if expected_size and part.stat().st_size != expected_size:
+                    log(f"  aviso: tamanho {part.stat().st_size} difere do catálogo {expected_size}")
+                os.replace(part, destination)
+                return url
+            except SlowMirror as error:
+                last_error = error
+                log(f"  servidor lento ({error}); a passar ao seguinte, retomando do mesmo ponto")
+                break
+            except urllib.error.HTTPError as error:
+                last_error = error
+                if error.code == 416 and part.exists():
+                    os.replace(part, destination)  # Already complete.
+                    return url
+                if error.code in (403, 404, 410):
+                    break  # Try the next mirror.
+                time.sleep(min(60, 5 * attempt))
+            except Exception as error:  # Network drop: resume from the .part file.
+                last_error = error
+                if "CERTIFICATE_VERIFY_FAILED" in str(error):
+                    # Some servers omit an intermediate certificate; the macOS curl verifies with the
+                    # system trust store, which can complete the chain. Verification stays on.
+                    log("  certificado incompleto para o Python; a tentar com o curl do sistema")
+                    code = subprocess.run(["curl", "-fsSL", "--retry", "3", "-C", "-", "-A", USER_AGENT,
+                                           "-o", str(part), url]).returncode
+                    if code == 0 and part.exists() and part.stat().st_size > 0:
+                        os.replace(part, destination)
+                        return url
+                    break
+                log(f"  tentativa {attempt} falhou: {error}")
+                time.sleep(min(60, 5 * attempt))
+    raise RuntimeError(f"falha ao obter {destination.name}: {last_error}")
+
+
+def fetch_target(entry: dict, target: dict, folder: Path) -> dict:
+    folder.mkdir(parents=True, exist_ok=True)
+    if "git" in target:
+        repo_dir = folder / target["name"]
+        if (repo_dir / ".git").is_dir():
+            os.system(f"git -C '{repo_dir}' pull --ff-only -q")
+        else:
+            code = os.system(f"git clone --depth 1 -q '{target['git']}' '{repo_dir}'")
+            if code != 0:
+                raise RuntimeError("git clone falhou")
+        head = os.popen(f"git -C '{repo_dir}' rev-parse HEAD").read().strip()
+        return {"path": str(repo_dir), "git": target["git"], "commit": head}
+
+    destination = folder / target["name"]
+    checksum = publisher_checksum(target)
+    if destination.exists() and checksum:
+        actual = md5_file(destination) if checksum[0] == "md5" else sha256_file(destination)
+        if actual != checksum[1] and destination.suffix == ".zim" and zim_internal_ok(destination):
+            log("  ficheiro existente: checksum interno do ZIM confirmado")
+            checksum = (checksum[0], actual)
+        if actual != checksum[1]:
+            log(f"  ficheiro existente não confere com o editor; a descarregar de novo")
+            destination.unlink()
+    if not destination.exists():
+        log(f"  a descarregar {target['name']}")
+        used = download(target["urls"], destination, target.get("size") or entry.get("size"))
+    else:
+        used = target["urls"][0]
+        log(f"  já existe: {target['name']}")
+    with destination.open("rb") as stream:
+        head = stream.read(512)
+    if head.lstrip()[:15].lower().startswith((b"<!doctype html", b"<html")) and not target["name"].endswith(".html"):
+        destination.unlink()
+        raise RuntimeError("o servidor devolveu uma página HTML em vez do ficheiro")
+    if checksum:
+        actual = md5_file(destination) if checksum[0] == "md5" else sha256_file(destination)
+        if actual != checksum[1] and destination.suffix == ".zim" and zim_internal_ok(destination):
+            # Mirrors sometimes hold a rebuilt file under the same name while the .sha256 sidecar
+            # describes the other build. The ZIM's own MD5 proves this copy is complete and intact.
+            log(f"  {checksum[0]} do editor difere (espelho com outra compilação); checksum interno do ZIM confirmado")
+            checksum = (checksum[0], actual)
+        if actual != checksum[1]:
+            aside = destination.with_name(destination.name + ".nao-confere")
+            os.replace(destination, aside)  # kept for inspection instead of downloading again blindly
+            raise RuntimeError(f"{checksum[0]} não confere: {actual} != {checksum[1]} (guardado em {aside.name})")
+        log(f"  {checksum[0]} do editor confirmado")
+    result = {"path": str(destination), "url": used, "bytes": destination.stat().st_size,
+              "sha256": sha256_file(destination), "publisherChecksum": checksum[1] if checksum else None}
+    for key in ("title", "version"):
+        if target.get(key):
+            result[key] = target[key]
+    return result
+
+
+def main() -> int:
+    parser = argparse.ArgumentParser()
+    parser.add_argument("catalog")
+    parser.add_argument("dest")
+    parser.add_argument("--only", default="")
+    parser.add_argument("--max-priority", type=int, default=99)
+    parser.add_argument("--kinds", default="")
+    args = parser.parse_args()
+
+    catalog = json.loads(Path(args.catalog).read_text(encoding="utf-8"))
+    dest = Path(args.dest)
+    dest.mkdir(parents=True, exist_ok=True)
+    status_path = dest / "fetch-status.json"
+    status = json.loads(status_path.read_text(encoding="utf-8")) if status_path.exists() else {"entries": {}}
+    only = {x for x in args.only.split(",") if x}
+    kinds = {x for x in args.kinds.split(",") if x}
+
+    entries = [e for e in catalog["entries"]
+               if (not only or e["id"] in only)
+               and e.get("priority", 1) <= args.max_priority
+               and (not kinds or e.get("kind") in kinds)]
+    entries.sort(key=lambda e: (e.get("priority", 1), e.get("size", 0)))
+    failures = 0
+    for entry in entries:
+        log(f"[{entry['id']}] {entry['title']}")
+        record = {"id": entry["id"], "title": entry["title"], "kind": entry.get("kind"),
+                  "category": entry.get("category"), "lang": entry.get("lang"), "license": entry.get("license"),
+                  "attribution": entry.get("attribution"), "files": [], "errors": [],
+                  "checkedAt": datetime.now(timezone.utc).isoformat()}
+        try:
+            targets = resolve(entry)
+        except Exception as error:
+            record["errors"].append(f"resolver: {error}")
+            targets = []
+        for target in targets:
+            try:
+                record["files"].append(fetch_target(entry, target, dest / entry.get("category", "misc")))
+            except Exception as error:
+                message = f"{target.get('name')}: {error}"
+                if target.get("optional"):
+                    record.setdefault("skipped", []).append(message)
+                else:
+                    record["errors"].append(message)
+                log(f"  ERRO {message}")
+        record["status"] = "complete" if record["files"] and not record["errors"] else ("partial" if record["files"] else "failed")
+        if record["status"] == "failed":
+            failures += 1
+        status["entries"][entry["id"]] = record
+        status["updatedAt"] = datetime.now(timezone.utc).isoformat()
+        status_path.write_text(json.dumps(status, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+        log(f"  -> {record['status']}")
+    log(f"concluído: {len(entries) - failures}/{len(entries)} entradas com ficheiros")
+    return 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())

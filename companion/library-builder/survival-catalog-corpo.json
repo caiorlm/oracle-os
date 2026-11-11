@@ -1,0 +1,370 @@
+{
+ "entries": [
+  {
+   "id": "bible-web-en",
+   "title": "Holy Bible — World English Bible (Old and New Testament)",
+   "category": "biblia",
+   "kind": "pdf",
+   "priority": 1,
+   "license": "Domínio público",
+   "lang": "en",
+   "resolver": "url",
+   "urls": [
+    "https://ebible.org/pdf/engwebu/engwebu_all.pdf"
+   ],
+   "filename": "Bible-World-English-Bible.pdf"
+  },
+  {
+   "id": "bible-kjv-en",
+   "title": "Holy Bible — King James Version (Old and New Testament)",
+   "category": "biblia",
+   "kind": "pdf",
+   "priority": 1,
+   "license": "Domínio público (fora do Reino Unido)",
+   "lang": "en",
+   "resolver": "url",
+   "urls": [
+    "https://ebible.org/pdf/eng-kjv/eng-kjv_all.pdf",
+    "https://ebible.org/pdf/eng-kjv2006/eng-kjv2006_all.pdf"
+   ],
+   "filename": "Bible-King-James-Version.pdf"
+  },
+  {
+   "id": "biblia-livre-pt",
+   "title": "Bíblia Sagrada — Bíblia Livre (Antigo e Novo Testamento, português)",
+   "category": "biblia",
+   "kind": "pdf",
+   "priority": 1,
+   "license": "CC BY 4.0",
+   "lang": "pt",
+   "resolver": "url",
+   "urls": [
+    "https://ebible.org/pdf/porbr2018/porbr2018_all.pdf"
+   ],
+   "filename": "Biblia-Livre-Portugues.pdf"
+  },
+  {
+   "id": "biblia-almeida-pt",
+   "title": "A Bíblia Sagrada — João Ferreira de Almeida (Antigo e Novo Testamento)",
+   "category": "biblia",
+   "kind": "html",
+   "priority": 1,
+   "license": "Domínio público",
+   "lang": "pt",
+   "resolver": "html_pages",
+   "pages": [
+    "https://www.gutenberg.org/cache/epub/62383/pg62383-images.html"
+   ]
+  },
+  {
+   "id": "army-h2f-fm7-22",
+   "title": "US Army FM 7-22 — Holistic Health and Fitness (alongamentos, recuperação, sono, mente; ilustrado)",
+   "category": "dor-alongamento",
+   "kind": "pdf",
+   "priority": 1,
+   "license": "Domínio público",
+   "lang": "en",
+   "resolver": "url",
+   "urls": [
+    "https://media.defense.gov/2023/Jul/27/2003268908/-1/-1/1/H2F-FM-7-22-2020.PDF",
+    "https://arotc.illinoisstate.edu/downloads/resources/FM_7-22_October%202020.pdf"
+   ],
+   "filename": "US-Army-FM7-22-Holistic-Health-Fitness.pdf"
+  },
+  {
+   "id": "army-h2f-recovery-drills",
+   "title": "US Army ATP 7-22.02 — Preparation and Recovery Drills (alongamentos ilustrados)",
+   "category": "dor-alongamento",
+   "kind": "pdf",
+   "priority": 1,
+   "license": "Domínio público",
+   "lang": "en",
+   "resolver": "url",
+   "urls": [
+    "https://co.ng.mil/Portals/25/H2F/ATP%207.22.02%20Preparation,%20Recovery%20&%20PMCS%20Drills.pdf",
+    "https://maxacft-d36345ffc7d1.herokuapp.com/assets/docs/202010-ATP_7-22.02.pdf"
+   ],
+   "filename": "US-Army-ATP7-22-02-Recovery-Drills.pdf"
+  },
+  {
+   "id": "nia-exercise-guide",
+   "title": "NIH/NIA — Exercise & Physical Activity: Your Everyday Guide (alongamentos e força ilustrados)",
+   "category": "dor-alongamento",
+   "kind": "pdf",
+   "priority": 1,
+   "license": "Domínio público",
+   "lang": "en",
+   "resolver": "url",
+   "urls": [
+    "https://geriatrictoolkit.missouri.edu/consumer/Exercise_and_Physical_ActivityYour_Everyday_Guide_from_The_NIA.pdf",
+    "https://corpora.tika.apache.org/base/docs/govdocs1/184/184161.pdf"
+   ],
+   "filename": "NIA-Exercise-Guide.pdf"
+  },
+  {
+   "id": "stop-the-bleed",
+   "title": "Stop the Bleed — controlar hemorragias e torniquete (ilustrado)",
+   "category": "primeiros-socorros",
+   "kind": "pdf",
+   "priority": 1,
+   "license": "American College of Surgeons (uso educativo)",
+   "lang": "en",
+   "resolver": "url",
+   "urls": [
+    "https://police.ucsd.edu/_files/Stop-the-Bleed.pdf",
+    "https://www.uc.edu/content/dam/refresh/cont-ed-62/olli/spring22/class-handouts/stop%20the%20bleed.pdf"
+   ],
+   "filename": "Stop-the-Bleed.pdf"
+  },
+  {
+   "id": "tccc-guidelines",
+   "title": "TCCC — Tactical Combat Casualty Care Guidelines (hemorragia, torniquete, feridas, fraturas)",
+   "category": "primeiros-socorros",
+   "kind": "pdf",
+   "priority": 1,
+   "license": "Domínio público",
+   "lang": "en",
+   "resolver": "url",
+   "urls": [
+    "https://www.fmtbneast.marines.mil/Portals/237/Docs/Student%20Materials/TCCC%20Guidelines.pdf",
+    "https://www.tecom.marines.mil/Portals/120/Docs/Student%20Materials/TCCC%20Guidelines.pdf"
+   ],
+   "filename": "TCCC-Guidelines.pdf"
+  },
+  {
+   "id": "nhs-dores-musculares",
+   "title": "NHS — dores, cãibras, entorses, feridas e fraturas (guias)",
+   "category": "dor-alongamento",
+   "kind": "html",
+   "priority": 1,
+   "license": "Open Government Licence (NHS)",
+   "lang": "en",
+   "resolver": "html_pages",
+   "pages": [
+    "https://www.nhs.uk/conditions/leg-cramps/",
+    "https://www.nhs.uk/conditions/back-pain/",
+    "https://www.nhs.uk/conditions/neck-pain/",
+    "https://www.nhs.uk/conditions/shoulder-pain/",
+    "https://www.nhs.uk/conditions/plantar-fasciitis/",
+    "https://www.nhs.uk/conditions/foot-pain/",
+    "https://www.nhs.uk/conditions/tennis-elbow/",
+    "https://www.nhs.uk/conditions/sprains-and-strains/",
+    "https://www.nhs.uk/conditions/cuts-and-grazes/",
+    "https://www.nhs.uk/conditions/broken-arm-or-wrist/",
+    "https://www.nhs.uk/conditions/knee-pain/",
+    "https://www.nhs.uk/conditions/hip-pain/",
+    "https://www.nhs.uk/conditions/joint-pain/",
+    "https://www.nhs.uk/conditions/repetitive-strain-injury-rsi/"
+   ]
+  },
+  {
+   "id": "nhs-exercicios",
+   "title": "NHS — exercícios de flexibilidade, alongamento e sentados",
+   "category": "dor-alongamento",
+   "kind": "html",
+   "priority": 1,
+   "license": "Open Government Licence (NHS)",
+   "lang": "en",
+   "resolver": "html_pages",
+   "pages": [
+    "https://www.nhs.uk/live-well/exercise/strength-and-flexibility-exercises/flexibility-exercises/",
+    "https://www.nhs.uk/live-well/exercise/strength-and-flexibility-exercises/sitting-exercises/",
+    "https://www.nhs.uk/live-well/exercise/strength-and-flexibility-exercises/strength-exercises/",
+    "https://www.nhs.uk/live-well/exercise/running-and-aerobic-exercises/how-to-warm-up-before-exercising/"
+   ]
+  },
+  {
+   "id": "common-yoga-protocol",
+   "title": "Governo da Índia (AYUSH) — Common Yoga Protocol (posturas ilustradas, respiração, meditação)",
+   "category": "yoga",
+   "kind": "pdf",
+   "priority": 1,
+   "license": "Governo da Índia",
+   "lang": "en",
+   "resolver": "url",
+   "urls": [
+    "https://www.mea.gov.in/images/pdf/common-yoga-protocol-english.pdf",
+    "https://www.sanskrit.nic.in/uploads/CYP_2022/English.pdf"
+   ],
+   "filename": "Common-Yoga-Protocol.pdf"
+  },
+  {
+   "id": "hatha-yoga-pradipika",
+   "title": "Hatha Yoga Pradipika (Svatmarama, trad. Pancham Sinh 1914)",
+   "category": "yoga",
+   "kind": "html",
+   "priority": 1,
+   "license": "Domínio público",
+   "lang": "en",
+   "resolver": "html_pages",
+   "pages": [
+    "https://sacred-texts.com/hin/hyp/index.htm",
+    "https://sacred-texts.com/hin/hyp/hyp01.htm",
+    "https://sacred-texts.com/hin/hyp/hyp02.htm",
+    "https://sacred-texts.com/hin/hyp/hyp03.htm",
+    "https://sacred-texts.com/hin/hyp/hyp04.htm",
+    "https://sacred-texts.com/hin/hyp/hyp05.htm"
+   ]
+  },
+  {
+   "id": "yoga-sutras",
+   "title": "The Yoga Sutras of Patanjali (trad. Johnston)",
+   "category": "yoga",
+   "kind": "html",
+   "priority": 1,
+   "license": "Domínio público",
+   "lang": "en",
+   "resolver": "html_pages",
+   "pages": [
+    "https://www.gutenberg.org/cache/epub/2526/pg2526-images.html"
+   ]
+  },
+  {
+   "id": "with-each-breath",
+   "title": "Thanissaro Bhikkhu — With Each & Every Breath: a guide to meditation",
+   "category": "meditacao",
+   "kind": "pdf",
+   "priority": 1,
+   "license": "Distribuição gratuita",
+   "lang": "en",
+   "resolver": "url",
+   "urls": [
+    "https://assets.mindfulnessexercises.com/wp-content/uploads/2016/08/With_Each__Every_Breath_A_Guide_to_Meditation.pdf"
+   ],
+   "filename": "With-Each-and-Every-Breath.pdf"
+  },
+  {
+   "id": "mindfulness-plain-english",
+   "title": "Bhante Gunaratana — Mindfulness in Plain English",
+   "category": "meditacao",
+   "kind": "html",
+   "priority": 1,
+   "license": "Distribuição gratuita",
+   "lang": "en",
+   "resolver": "html_pages",
+   "pages": [
+    "https://www.vipassana.com/meditation/mindfulness_in_plain_english.php"
+   ]
+  },
+  {
+   "id": "who-doing-what-matters",
+   "title": "OMS — Doing What Matters in Times of Stress (gestão de stress, ilustrado)",
+   "category": "saude-mental",
+   "kind": "pdf",
+   "priority": 1,
+   "license": "CC BY-NC-SA 3.0 IGO",
+   "lang": "en",
+   "resolver": "url",
+   "urls": [
+    "https://iris.who.int/bitstream/handle/10665/331901/9789240003927-eng.pdf",
+    "https://apps.who.int/iris/bitstream/handle/10665/331901/9789240003927-eng.pdf"
+   ],
+   "filename": "WHO-Doing-What-Matters.pdf"
+  },
+  {
+   "id": "nhs-mindfulness",
+   "title": "NHS — mindfulness e respiração para o stress",
+   "category": "dor-alongamento",
+   "kind": "html",
+   "priority": 1,
+   "license": "Open Government Licence (NHS)",
+   "lang": "en",
+   "resolver": "html_pages",
+   "pages": [
+    "https://www.nhs.uk/mental-health/self-help/tips-and-support/mindfulness/",
+    "https://www.nhs.uk/mental-health/self-help/guides-tools-and-activities/breathing-exercises-for-stress/"
+   ]
+  },
+  {
+   "id": "bhagavad-gita",
+   "title": "Bhagavad Gita (trad. Edwin Arnold)",
+   "category": "meditacao",
+   "kind": "html",
+   "priority": 1,
+   "license": "Domínio público",
+   "lang": "en",
+   "resolver": "html_pages",
+   "pages": [
+    "https://www.gutenberg.org/cache/epub/2388/pg2388-images.html"
+   ]
+  },
+  {
+   "id": "upanishads",
+   "title": "The Upanishads (trad. Paramananda)",
+   "category": "meditacao",
+   "kind": "html",
+   "priority": 1,
+   "license": "Domínio público",
+   "lang": "en",
+   "resolver": "html_pages",
+   "pages": [
+    "https://www.gutenberg.org/cache/epub/3283/pg3283-images.html"
+   ]
+  },
+  {
+   "id": "dhammapada",
+   "title": "The Dhammapada (trad. Max Müller)",
+   "category": "meditacao",
+   "kind": "html",
+   "priority": 1,
+   "license": "Domínio público",
+   "lang": "en",
+   "resolver": "html_pages",
+   "pages": [
+    "https://www.gutenberg.org/cache/epub/2017/pg2017-images.html"
+   ]
+  },
+  {
+   "id": "tao-te-ching",
+   "title": "Tao Te Ching (trad. James Legge)",
+   "category": "meditacao",
+   "kind": "html",
+   "priority": 1,
+   "license": "Domínio público",
+   "lang": "en",
+   "resolver": "html_pages",
+   "pages": [
+    "https://www.gutenberg.org/cache/epub/216/pg216-images.html"
+   ]
+  },
+  {
+   "id": "marcus-aurelius",
+   "title": "Marcus Aurelius — Meditations",
+   "category": "meditacao",
+   "kind": "html",
+   "priority": 1,
+   "license": "Domínio público",
+   "lang": "en",
+   "resolver": "html_pages",
+   "pages": [
+    "https://www.gutenberg.org/cache/epub/2680/pg2680-images.html"
+   ]
+  },
+  {
+   "id": "practice-presence",
+   "title": "Brother Lawrence — The Practice of the Presence of God",
+   "category": "meditacao",
+   "kind": "html",
+   "priority": 1,
+   "license": "Domínio público",
+   "lang": "en",
+   "resolver": "html_pages",
+   "pages": [
+    "https://www.gutenberg.org/cache/epub/5657/pg5657-images.html"
+   ]
+  },
+  {
+   "id": "imitation-christ",
+   "title": "Thomas à Kempis — The Imitation of Christ",
+   "category": "meditacao",
+   "kind": "html",
+   "priority": 1,
+   "license": "Domínio público",
+   "lang": "en",
+   "resolver": "html_pages",
+   "pages": [
+    "https://www.gutenberg.org/cache/epub/1653/pg1653-images.html"
+   ]
+  }
+ ]
+}

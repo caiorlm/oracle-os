@@ -23,13 +23,15 @@ from cryptography.hazmat.primitives.asymmetric.ed25519 import Ed25519PrivateKey,
 
 SCHEMA_VERSION = 1
 CHUNK_BYTES = 1024 * 1024
-ALLOWED_TYPES = {"gguf", "knowledge", "index", "map", "license"}
+ALLOWED_TYPES = {"gguf", "knowledge", "index", "map", "license", "zim", "places"}
 ALLOWED_SUFFIXES = {
     "gguf": {".gguf"},
     "knowledge": {".txt", ".md", ".pdf"},
     "index": {".db", ".sqlite", ".sqlite3"},
     "map": {".pmtiles", ".mbtiles"},
     "license": {".txt", ".md"},
+    "zim": {".zim"},
+    "places": {".db"},
 }
 
 
@@ -57,6 +59,14 @@ def digest_and_size(path: Path) -> tuple[str, int]:
             size += len(chunk)
             digest.update(chunk)
     return digest.hexdigest(), size
+
+
+def place_file(source: Path, target: Path) -> None:
+    """Hard-links large immutable inputs when on the same volume; copies otherwise."""
+    try:
+        os.link(source, target)
+    except OSError:
+        shutil.copyfile(source, target)
 
 
 def load_plan(path: Path) -> dict[str, Any]:
@@ -127,7 +137,7 @@ def build(plan_path: Path, source_root: Path, output: Path, private_key_path: Pa
             source = safe_file(source_root, source_name)
             target = stage / target_relative
             target.parent.mkdir(parents=True, exist_ok=True)
-            shutil.copyfile(source, target)
+            place_file(source, target)
             sha256, size = digest_and_size(target)
             package = {"id": package_id, "type": item_type, "path": target_name, "sha256": sha256, "bytes": size}
             if "minRamMb" in item:

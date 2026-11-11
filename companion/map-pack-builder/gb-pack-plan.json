@@ -1,0 +1,32 @@
+{
+  "packId": "oracle-gb-map",
+  "version": "2026.11.08",
+  "minAndroidApi": 28,
+  "keyId": "oracle-dev-2026",
+  "packages": [
+    {
+      "id": "great-britain-scotland-pmtiles",
+      "type": "map",
+      "source": "downloads/maps/great-britain-scotland.pmtiles",
+      "path": "maps/great-britain-scotland.pmtiles"
+    },
+    {
+      "id": "great-britain-england-pmtiles",
+      "type": "map",
+      "source": "downloads/maps/great-britain-england.pmtiles",
+      "path": "maps/great-britain-england.pmtiles"
+    },
+    {
+      "id": "great-britain-wales-pmtiles",
+      "type": "map",
+      "source": "downloads/maps/great-britain-wales.pmtiles",
+      "path": "maps/great-britain-wales.pmtiles"
+    },
+    {
+      "id": "osm-attribution",
+      "type": "license",
+      "source": "data/licenses/OSM-ODbL-NOTICE.txt",
+      "path": "licenses/OSM-ODbL-NOTICE.txt"
+    }
+  ]
+}
