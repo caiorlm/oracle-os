@@ -3,6 +3,8 @@
 # Release que traz os APKs prontos, o modelo de IA e os PDFs de impressão.
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"; cd "$ROOT"
 mkdir -p logs/github
+for p in $(pgrep -f oracle-publicar.command); do [ "$p" != "$$" ] && kill "$p" 2>/dev/null; done
+pkill -f "gh release" 2>/dev/null
 exec > >(tee -a logs/github/publicar.log) 2>&1
 echo "=== Publicar — $(date '+%F %T') ==="
 caffeinate -dimsu -w $$ &
@@ -39,7 +41,9 @@ if ! "$GH" repo view "$LOGIN/oracle-os" >/dev/null 2>&1; then
 fi
 git remote remove origin 2>/dev/null
 git remote add origin "https://github.com/$LOGIN/oracle-os.git"
-git push -u origin main
+git config http.postBuffer 524288000
+git config http.version HTTP/1.1
+for i in 1 2 3 4 5; do git push -u origin main && break; echo "push falhou ($i); a repetir"; sleep 15; done
 "$GH" repo edit "$LOGIN/oracle-os" --add-topic offline,survival,android,llama-cpp,godot,preparedness,offline-first,kotlin 2>/dev/null
 # 4. Release com os ficheiros prontos (o modelo de 508 MB demora com internet lenta)
 "$GH" release view v0.1.0 -R "$LOGIN/oracle-os" >/dev/null 2>&1 || \
