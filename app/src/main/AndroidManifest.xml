@@ -8,6 +8,7 @@
 
     <!-- Only to find the Kiwix reader for ZIM collections (Android 11+ package visibility). -->
     <queries>
+        <package android:name="com.oracleos.genesis" />
         <package android:name="org.kiwix.kiwixmobile" />
         <package android:name="org.kiwix.kiwixmobile.standalone" />
         <package android:name="com.android.fmradio" />

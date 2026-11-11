@@ -89,6 +89,7 @@ private enum class Tab(val label: String, val glyph: String) {
     CHAT("IA", "◇"),
     MAPS("Mapa", "⌖"),
     LIBRARY("Acervo", "▤"),
+    GAME("Jogo", "▶"),
     SYSTEM("Sistema", "⚙"),
 }
 
@@ -260,6 +261,7 @@ private fun ScreenContent(
         )
         Tab.MAPS -> MapsScreen(actions = actions, mapStore = app.mapStore)
         Tab.LIBRARY -> KnowledgeScreen()
+        Tab.GAME -> com.oracleos.app.feature.game.GameScreen()
         Tab.SYSTEM -> SystemScreen(
             modelStore = app.modelStore,
             profile = profile,

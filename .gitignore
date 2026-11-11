@@ -21,3 +21,11 @@ companion/fontes/*.tar
 companion/fontes/*-falhou/
 dist/impressao/manuais/
 _to_delete/
+
+# ferramentas descarregadas (Godot, gh) e ficheiros gerados
+tools/
+genesis/.godot/
+*.idsig
+
+# pasta de montagem da Release (ficheiros grandes vão para as Releases)
+dist/release/

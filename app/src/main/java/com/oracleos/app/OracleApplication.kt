@@ -135,6 +135,36 @@ class OracleApplication : Application() {
                 ),
             )
         }
+        importBundledGuides()
+    }
+
+    /**
+     * The 71 Oracle guides (PT/EN) travel inside the APK, so a phone that only installed the APK
+     * from GitHub already has real survival content. Phones with the signed library pack get the
+     * same guides from the pack, so nothing is imported twice.
+     */
+    private suspend fun importBundledGuides() {
+        if (packStore.state.value.packs.any { it.packId.startsWith("oracle-survival-library") }) return
+        val names = assets.list("guias") ?: return
+        for (name in names.filter { it.endsWith(".md") }.sorted()) {
+            val id = "oracle-guia-" + name.removeSuffix(".md")
+            if (knowledgeEngine.getDocument(id) != null) continue
+            try {
+                val bytes = assets.open("guias/$name").use { it.readBytes() }
+                val title = String(bytes, Charsets.UTF_8).lineSequence().firstOrNull()?.removePrefix("#")?.trim()
+                    ?.takeIf { it.isNotEmpty() } ?: name
+                knowledgeEngine.importStream(
+                    ByteArrayInputStream(bytes),
+                    DocumentImportMetadata(
+                        title = title,
+                        format = DocumentFormat.MARKDOWN,
+                        documentId = id,
+                        origin = "Guia Oracle OS (incluído no APK)",
+                    ),
+                )
+            } catch (_: Exception) {
+            }
+        }
     }
 
     fun currentMode(): OracleMode {
