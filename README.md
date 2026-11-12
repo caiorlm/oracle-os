@@ -53,9 +53,11 @@ Não precisa de saber programar. **Faça isto no telemóvel Android, enquanto ai
 | O quê | Para quê | Como |
 |---|---|---|
 | 🎮 [`GENESIS.apk`](https://github.com/caiorlm/oracle-os/releases/latest/download/GENESIS.apk) | O jogo (fazenda + bichinho + linhagem) | Instale igual ao Oracle. Abre-se no Oracle pela aba **JOGO** ▶ |
-| 🧠 [`Qwen3.5-0.8B-Q4_K_M.gguf`](https://github.com/caiorlm/oracle-os/releases/latest/download/Qwen3.5-0.8B-Q4_K_M.gguf) | A **IA** que responde no telemóvel, sem internet (508 MB) | Descarregue → no Oracle: **Sistema → Importar GGUF** → escolha o ficheiro → aba **IA** → Ativar |
+| 🧠 [`Qwen3.5-0.8B-Q4_K_M.gguf`](https://huggingface.co/unsloth/Qwen3.5-0.8B-GGUF/resolve/main/Qwen3.5-0.8B-Q4_K_M.gguf) | A **IA** que responde no telemóvel, sem internet (508 MB) | Descarregue → no Oracle: **Sistema → Importar GGUF** → escolha o ficheiro → aba **IA** → Ativar |
 | 🖨️ [`Oracle-Impressao-PT.pdf`](https://github.com/caiorlm/oracle-os/releases/latest/download/Oracle-Impressao-PT.pdf) | Todos os guias em papel (A4), por ordem de prioridade | Imprima **já**, guarde em saco plástico, em 2 sítios |
 | 🖨️ [`Oracle-Print-EN.pdf`](https://github.com/caiorlm/oracle-os/releases/latest/download/Oracle-Print-EN.pdf) | The same, in English | Print it now |
+
+> 🧠 O modelo é descarregado do **Hugging Face** (o mesmo ficheiro oficial, SHA-256 `bd258782e35f7f45…`, conferido com o nosso `SHA256SUMS.txt`).
 
 > 💡 **Papel não precisa de bateria.** Imprima pelo menos os guias 1–3: primeiros socorros, água e o plano de 50 anos.
 
@@ -205,6 +207,6 @@ As enciclopédias offline (Wikipedia, medicina, iFixit, Wikibooks…), o mapa de
 2. Open `OracleOS.apk` and tap **Install** (allow "install from this source" if asked; on Play Protect choose *Install anyway*).
 3. Open Oracle — the guides are already inside and work without internet.
 
-Optional: **[GENESIS.apk](https://github.com/caiorlm/oracle-os/releases/latest/download/GENESIS.apk)** (the game, opens from the **GAME** tab), the **[AI model](https://github.com/caiorlm/oracle-os/releases/latest/download/Qwen3.5-0.8B-Q4_K_M.gguf)** (import it in **System → Import GGUF**) and the **[printable guides](https://github.com/caiorlm/oracle-os/releases/latest/download/Oracle-Print-EN.pdf)**. Do it while you still have internet.
+Optional: **[GENESIS.apk](https://github.com/caiorlm/oracle-os/releases/latest/download/GENESIS.apk)** (the game, opens from the **GAME** tab), the **[AI model](https://huggingface.co/unsloth/Qwen3.5-0.8B-GGUF/resolve/main/Qwen3.5-0.8B-Q4_K_M.gguf)** (import it in **System → Import GGUF**) and the **[printable guides](https://github.com/caiorlm/oracle-os/releases/latest/download/Oracle-Print-EN.pdf)**. Do it while you still have internet.
 
 **For developers:** Android app in `app/` (Kotlin/Compose/llama.cpp), game in `genesis/` (Godot 4.7, 559 automated tests), library tooling in `companion/`. Code is **GPL-3.0**; the Qwen model is Apache-2.0; large third-party packs are fetched from their original sources by `companion/library-builder/fetch.py`.

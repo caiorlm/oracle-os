@@ -6,7 +6,7 @@
 |---|---|
 | `OracleOS.apk` | A app: guias incluídos, bússola, plantas, mapas, energia, emergência, aba Jogo |
 | `GENESIS.apk` | O jogo (fazenda, bichinho, linhagem) — abre pela aba JOGO |
-| `Qwen3.5-0.8B-Q4_K_M.gguf` | IA local (opcional): Sistema → Importar GGUF |
+| [`Qwen3.5-0.8B-Q4_K_M.gguf`](https://huggingface.co/unsloth/Qwen3.5-0.8B-GGUF/resolve/main/Qwen3.5-0.8B-Q4_K_M.gguf) | IA local (opcional, 508 MB, no Hugging Face — mesmo SHA-256): Sistema → Importar GGUF |
 | `Oracle-Impressao-PT.pdf` / `Oracle-Print-EN.pdf` | Todos os guias para imprimir em A4 |
 | `SHA256SUMS.txt` | Somas para conferir os ficheiros |
 
